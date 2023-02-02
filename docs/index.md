@@ -1,6 +1,6 @@
 ---
 hero:
-  title: library
+  title: Page Generator
   description: epub 低代码 页面生成器
   actions:
     - text: Hello

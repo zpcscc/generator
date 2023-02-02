@@ -1,9 +1,9 @@
-# epub-page-generator
+# page-generator
 
-[![NPM version](https://img.shields.io/npm/v/epub-page-generator.svg?style=flat)](https://npmjs.org/package/epub-page-generator)
-[![NPM downloads](http://img.shields.io/npm/dm/epub-page-generator.svg?style=flat)](https://npmjs.org/package/epub-page-generator)
+[![NPM version](https://img.shields.io/npm/v/@dxsixpc/page-generator.svg?style=flat)](https://npmjs.org/package/@dxsixpc/page-generator)
+[![NPM downloads](http://img.shields.io/npm/dm/@dxsixpc/page-generator.svg?style=flat)](https://npmjs.org/package/@dxsixpc/page-generator)
 
-epub 低代码 页面生成器
+低代码页面(表单)生成器
 
 ## Usage
 

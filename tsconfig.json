@@ -8,8 +8,8 @@
     "baseUrl": "./",
     "paths": {
       "@@/*": [".dumi/tmp/*"],
-      "epub-page-generator": ["src"],
-      "epub-page-generator/*": ["src/*", "*"]
+      "src": ["src"],
+      "src/*": ["src/*", "*"]
     }
   },
   "include": [".dumi/**/*", ".dumirc.ts", "src/**/*"]
