@@ -1,5 +1,5 @@
 {
-  "name": "@dxsixpc/page-generator",
+  "name": "@dxsixpc/generator",
   "version": "0.0.1",
   "description": "低代码页面(表单)生成器",
   "license": "MIT",
@@ -11,20 +11,15 @@
   "scripts": {
     "build": "father build",
     "build:watch": "father dev",
+    "commit": "git add . && git-cz",
+    "deploy": "npm run docs:build && npm run docs:deploy",
     "dev": "dumi dev",
     "docs:build": "dumi build",
+    "docs:deploy": "gh-pages -d docs-dist",
     "doctor": "father doctor",
-    "lint": "npm run lint:es && npm run lint:css",
-    "lint:css": "stylelint \"{src,test}/**/*.{css,less}\"",
-    "lint:es": "eslint \"{src,test}/**/*.{js,jsx,ts,tsx}\"",
     "prepare": "husky install && dumi setup",
     "prepublishOnly": "father doctor && npm run build",
     "start": "npm run dev"
-  },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
   },
   "lint-staged": {
     "*.{md,json}": [
@@ -43,32 +38,42 @@
       "prettier --parser=typescript --write"
     ]
   },
+  "config": {
+    "commitizen": {
+      "path": "@commitlint/cz-commitlint"
+    }
+  },
   "dependencies": {
-    "@dnd-kit/core": "^6.0.7",
+    "@dnd-kit/core": "^6.0.8",
     "@dnd-kit/modifiers": "^6.0.1",
     "@dnd-kit/sortable": "^7.0.2",
-    "@emotion/react": "^11.10.5",
-    "@emotion/styled": "^11.10.5",
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
     "@emotion/utils": "^1.2.0",
-    "antd": "^5.1.7",
+    "antd": "^5.2.2",
     "lodash": "^4.17.21"
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.1.2",
-    "@commitlint/config-conventional": "^17.1.0",
+    "@babel/core": "^7.21.0",
+    "@dxsixpc/configs": "^0.4.6",
     "@types/lodash": "^4.14.191",
-    "@umijs/lint": "^4.0.0",
-    "dumi": "^2.0.2",
-    "eslint": "^8.23.0",
-    "father": "^4.1.0",
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.11",
+    "dumi": "^2.1.12",
+    "eslint": "^8.34.0",
+    "father": "^4.1.5",
+    "gh-pages": "^5.0.0",
     "husky": "^8.0.1",
-    "lint-staged": "^13.0.3",
-    "prettier": "^2.7.1",
-    "prettier-plugin-organize-imports": "^3.0.0",
-    "prettier-plugin-packagejson": "^2.2.18",
+    "lint-staged": "^13.1.2",
+    "postcss": ">=8.4.6 <9.0.0",
+    "prettier": "^2.8.4",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "stylelint": "^14.9.1"
+    "react-is": "^18.2.0",
+    "styled-components": ">= 2",
+    "stylelint": "^15.2.0",
+    "typescript": ">=4.7.0 <5.0.0",
+    "webpack": ">=5.20.0 <6.0.0"
   },
   "peerDependencies": {
     "react": ">=16.9.0",

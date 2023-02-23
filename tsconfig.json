@@ -1,16 +1,13 @@
 {
+  "extends": "@dxsixpc/configs/tsconfig",
   "compilerOptions": {
-    "strict": true,
-    "declaration": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "jsx": "react",
-    "baseUrl": "./",
+    "jsxImportSource": "@emotion/react",
+    "baseUrl": ".",
     "paths": {
       "@@/*": [".dumi/tmp/*"],
-      "src": ["src"],
-      "src/*": ["src/*", "*"]
+      "@dxsixpc/generator": ["src"],
+      "@dxsixpc/generator/*": ["src/*"]
     }
   },
-  "include": [".dumi/**/*", ".dumirc.ts", "src/**/*"]
+  "include": [".dumi/**/*", ".dumirc.ts", "src/**/*", "docs/**/*"]
 }
