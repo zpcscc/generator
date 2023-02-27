@@ -1,4 +1,3 @@
-import React from 'react';
 import type { RenderProps } from '../type';
 
 // 页面渲染器

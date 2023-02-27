@@ -1,6 +1,5 @@
 import { Button } from 'antd';
 import type { ButtonProps } from 'antd/lib/button';
-import React from 'react';
 import { Wrapper } from './Styled';
 
 export interface ButtonWidgetProps extends ButtonProps {

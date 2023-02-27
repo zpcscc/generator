@@ -1,5 +1,4 @@
 import type { TabPaneProps } from 'antd';
-import React from 'react';
 import { TabPaneWrapper } from './Styled';
 
 export interface TabPaneWidgetProps extends TabPaneProps {

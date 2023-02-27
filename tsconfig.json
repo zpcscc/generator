@@ -1,13 +1,14 @@
 {
   "extends": "@dxsixpc/configs/tsconfig",
   "compilerOptions": {
-    "jsxImportSource": "@emotion/react",
     "baseUrl": ".",
+    "outDir": "dist",
     "paths": {
       "@@/*": [".dumi/tmp/*"],
       "@dxsixpc/generator": ["src"],
       "@dxsixpc/generator/*": ["src/*"]
-    }
+    },
+    "types": ["@emotion/react", "react"]
   },
   "include": [".dumi/**/*", ".dumirc.ts", "src/**/*", "docs/**/*"]
 }

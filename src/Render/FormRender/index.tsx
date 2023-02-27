@@ -1,11 +1,6 @@
 import type { FormInstance, FormProps } from 'antd';
 import { Form } from 'antd';
-import React from 'react';
-import type {
-  ComponentItemType,
-  ComponentMapType,
-  ComponentStructureType,
-} from 'src/types';
+import type { ComponentItemType, ComponentMapType, ComponentStructureType } from 'src/types';
 import { separateToIntegrate } from '../CommonRender';
 import LoopRender from '../CommonRender/LoopRender';
 import { FormWrapper } from './Styled';
@@ -19,11 +14,7 @@ interface FormRenderProps {
   // 外部传入的自定义组件对象
   componentMap?: ComponentMapType;
   formProps?: FormProps;
-  onValuesChange: (
-    changedValues: AnyObject,
-    values: any,
-    form: FormInstance<any>,
-  ) => void;
+  onValuesChange: (changedValues: AnyObject, values: any, form: FormInstance<any>) => void;
 }
 
 /**
@@ -47,10 +38,7 @@ const FormRender: React.FC<FormRenderProps> = (props) => {
   } = props;
   const [form] = Form.useForm();
   // const [formValues, setFormValues] = useState<AnyObject>(initialValues);
-  const newComponentList = separateToIntegrate(
-    componentItems,
-    componentStructure,
-  );
+  const newComponentList = separateToIntegrate(componentItems, componentStructure);
 
   // 优化性能，数据未变化时，不重复渲染
   // const formValueMemo = useMemo(() => formValues, [formValues]);
@@ -68,12 +56,7 @@ const FormRender: React.FC<FormRenderProps> = (props) => {
   };
 
   return (
-    <FormWrapper
-      form={form}
-      layout="vertical"
-      onValuesChange={onFormValuesChange}
-      {...formProps}
-    >
+    <FormWrapper form={form} layout='vertical' onValuesChange={onFormValuesChange} {...formProps}>
       <LoopRender
         componentItems={newComponentList}
         initialValues={initialValues}

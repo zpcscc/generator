@@ -1,4 +1,3 @@
-import React from 'react';
 // import FormRender from './FormRender';
 import PageRender from './PageRender';
 import { RenderWrapper } from './Styled';

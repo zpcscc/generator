@@ -1,6 +1,5 @@
 import { InputNumber } from 'antd';
 import type { InputNumberProps } from 'antd/lib/input-number';
-import React from 'react';
 import { Wrapper } from './Styled';
 
 export interface FormInputNumberProps extends InputNumberProps {

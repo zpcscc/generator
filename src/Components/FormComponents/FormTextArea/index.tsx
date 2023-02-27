@@ -1,6 +1,5 @@
 import { Input } from 'antd';
 import type { TextAreaProps } from 'antd/lib/input';
-import React from 'react';
 import { Wrapper } from './Styled';
 
 export interface FormTextAreaProps extends Omit<TextAreaProps, 'onChange'> {
@@ -20,10 +19,7 @@ const FormTextArea: React.FC<FormTextAreaProps> = (props) => {
 
   return (
     <Wrapper styled={styled}>
-      <Input.TextArea
-        onChange={(e) => onChange?.(e?.target?.value)}
-        {...rest}
-      />
+      <Input.TextArea onChange={(e) => onChange?.(e?.target?.value)} {...rest} />
     </Wrapper>
   );
 };

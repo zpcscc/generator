@@ -1,4 +1,3 @@
-import React from 'react';
 import type { ComponentItemType } from 'src/types';
 import { styledToString } from './helpers';
 import { FormItemWrapper } from './Styled';

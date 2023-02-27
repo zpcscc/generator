@@ -1,5 +1,4 @@
 import type { CollapseProps } from 'antd';
-import React from 'react';
 import { CollapseWrapper } from './Styled';
 
 export interface CollapseWidgetProps extends CollapseProps {

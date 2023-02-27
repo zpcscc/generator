@@ -1,7 +1,6 @@
 import { Checkbox, List } from 'antd';
 import type { CheckboxGroupProps } from 'antd/lib/checkbox';
 import { uniqueId } from 'lodash';
-import React from 'react';
 import type { OptionsConfigType, OptionType } from '../../type';
 import { Wrapper } from './Styled';
 
@@ -26,7 +25,7 @@ export const FormCheckbox: React.FC<FormCheckboxProps> = (props) => {
 
   return (
     <Wrapper styled={styled}>
-      <List bordered itemLayout="vertical" size={listSize}>
+      <List bordered itemLayout='vertical' size={listSize}>
         <Checkbox.Group {...rest}>
           {optionsConfig?.options?.map((option: OptionType) => (
             <List.Item key={uniqueId()}>

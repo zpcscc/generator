@@ -8,11 +8,7 @@ import {
   useSensors,
 } from '@dnd-kit/core';
 import { restrictToVerticalAxis } from '@dnd-kit/modifiers';
-import {
-  SortableContext,
-  verticalListSortingStrategy,
-} from '@dnd-kit/sortable';
-import React from 'react';
+import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import Option from './Option';
 import type { CurrOptionsConfigType, CurrOptionType } from './type';
 import { sortOptions } from './utils';
@@ -61,17 +57,15 @@ const OptionsContainer: React.FC<OptionsContainerProps> = (props) => {
 
   // 更新选项
   const onCheckedChange = (id: string) => {
-    const newOptions = optionsConfig?.options?.map(
-      (option: CurrOptionType) => ({
-        ...option,
-        checked:
-          option.id === id
-            ? !option?.checked
-            : optionsConfig?.type === 'Checkbox'
-            ? option?.checked
-            : false,
-      }),
-    );
+    const newOptions = optionsConfig?.options?.map((option: CurrOptionType) => ({
+      ...option,
+      checked:
+        option.id === id
+          ? !option?.checked
+          : optionsConfig?.type === 'Checkbox'
+          ? option?.checked
+          : false,
+    }));
     onOptionsConfigChange({
       ...optionsConfig,
       options: newOptions,

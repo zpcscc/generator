@@ -1,5 +1,5 @@
 import type { SelectProps } from 'antd/lib/select';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { FormSelectProps } from '../FormSelect';
 import FormSelect from '../FormSelect';
 import type { FormTextAreaProps } from '../FormTextArea';
@@ -8,8 +8,7 @@ import { Wrapper } from './Styled';
 import type { SelectListType } from './type';
 import { arr2Tree, initValueArr, updateSelectList } from './utils';
 
-export interface FormCascadeProps
-  extends Omit<SelectProps<string>, 'onChange' | 'value'> {
+export interface FormCascadeProps extends Omit<SelectProps<string>, 'onChange' | 'value'> {
   value: string[];
   cascadeData: string[][];
   styled?: string;
@@ -88,9 +87,7 @@ const FormCascade: React.FC<FormCascadeProps> = (props) => {
           optionsConfig={selectItem}
           onChange={(selectValue) => onSelectChange(selectValue, index)}
           style={{
-            marginBottom: `${
-              index === selectList.length - 1 && !showTextArea ? 0 : 20
-            }px`,
+            marginBottom: `${index === selectList.length - 1 && !showTextArea ? 0 : 20}px`,
           }}
           {...FormSelectOptions}
         />

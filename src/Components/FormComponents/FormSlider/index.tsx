@@ -1,7 +1,7 @@
 import { InputNumber, Slider } from 'antd';
 import type { InputNumberProps } from 'antd/lib/input-number';
 import type { SliderBaseProps } from 'antd/lib/slider';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Wrapper } from './Styled';
 
 export interface FormSliderProps extends Omit<SliderBaseProps, 'onChange'> {
@@ -34,9 +34,7 @@ const FormSlider: React.FC<FormSliderProps> = (props) => {
   } = props;
   const [inputValue, setInputValue] = useState<number>(value || 0);
 
-  const onSliderChange = (
-    newValue: number | string | null | [number, number],
-  ) => {
+  const onSliderChange = (newValue: number | string | null | [number, number]) => {
     if (typeof newValue === 'number') setInputValue(newValue);
     onChange?.(newValue);
   };
@@ -50,11 +48,7 @@ const FormSlider: React.FC<FormSliderProps> = (props) => {
     <Wrapper styled={styled} showInputNumber={showInputNumber} layout={layout}>
       <Slider value={inputValue} onChange={onSliderChange} {...rest} />
       {showInputNumber && (
-        <InputNumber
-          value={inputValue}
-          onChange={onSliderChange}
-          {...inputNumberProps}
-        />
+        <InputNumber value={inputValue} onChange={onSliderChange} {...inputNumberProps} />
       )}
     </Wrapper>
   );

@@ -1,15 +1,8 @@
 import type { EditorProps, OnChange } from '@monaco-editor/react';
-import MonacoEditor, { loader } from '@monaco-editor/react';
+import MonacoEditor from '@monaco-editor/react';
 import { useDebounceFn } from 'ahooks';
 import type { DebounceOptions } from 'ahooks/lib/useDebounce/debounceOptions';
-import React from 'react';
 import { Wrapper } from './Styled';
-
-loader.config({
-  paths: {
-    vs: 'https://unpkg.creatby.com/monaco-editor@0.28.1/min/vs',
-  },
-});
 
 export interface FormMonacoEditorProps extends EditorProps {
   // 防抖配置
@@ -48,7 +41,7 @@ const FormMonacoEditor: React.FC<FormMonacoEditorProps> = (props) => {
   const { run } = useDebounceFn(onEditorChange, debounceOptions);
 
   return (
-    <Wrapper className="FormMonacoEditor" styled={styled}>
+    <Wrapper className='FormMonacoEditor' styled={styled}>
       <MonacoEditor
         defaultLanguage={defaultLanguage}
         theme={theme}

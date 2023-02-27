@@ -1,6 +1,5 @@
 import { Input } from 'antd';
 import type { InputProps } from 'antd/lib/input';
-import React from 'react';
 import { Wrapper } from './Styled';
 
 export interface FormInputProps extends Omit<InputProps, 'onChange'> {

@@ -1,7 +1,6 @@
 import { Select } from 'antd';
 import type { SelectProps } from 'antd/lib/select';
 import { uniqueId } from 'lodash';
-import React from 'react';
 import type { OptionsConfigType, OptionType } from '../../type';
 import { Wrapper } from './Styled';
 

@@ -1,5 +1,4 @@
 import type { CollapsePanelProps } from 'antd';
-import React from 'react';
 import { CollapsePanelWrapper } from './Styled';
 
 export interface CollapsePanelWidgetProps extends CollapsePanelProps {

@@ -1,6 +1,5 @@
 import { Alert } from 'antd';
 import type { AlertProps } from 'antd/lib/alert';
-import React from 'react';
 import { Wrapper } from './Styled';
 
 export interface AlertWidgetProps extends AlertProps {
