@@ -1,0 +1,16 @@
+import { Button } from '@dxsixpc/generator';
+
+const App: React.FC = () => {
+  // css-in-js写法的自定义样式
+  const styled = `
+    button {
+      width: 100px;
+      span {
+        color: #66ccff;
+      }
+    }
+  `;
+  return <Button styled={styled}>{'这是按钮'}</Button>;
+};
+
+export default App;

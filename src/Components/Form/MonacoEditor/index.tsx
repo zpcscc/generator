@@ -25,7 +25,7 @@ const MonacoEditor: React.FC<MonacoEditorProps> = (props) => {
   const {
     debounceOptions = { wait: 100 },
     value = '',
-    defaultLanguage = 'javascript',
+    language = 'javascript',
     theme = 'vs-dark',
     styled,
     onChange,
@@ -43,7 +43,7 @@ const MonacoEditor: React.FC<MonacoEditorProps> = (props) => {
   return (
     <Wrapper className='MonacoEditor' styled={styled}>
       <Editor
-        defaultLanguage={defaultLanguage}
+        language={language}
         theme={theme}
         defaultValue={value || ''}
         onChange={run}

@@ -7,7 +7,3 @@ export { default as Col } from './Grid/Col';
 export type { ColProps } from './Grid/Col';
 export { default as Row } from './Grid/Row';
 export type { RowProps } from './Grid/Row';
-export { default as TabPane } from './Tabs/TabPane';
-export type { TabPaneProps } from './Tabs/TabPane';
-export { default as Tabs } from './Tabs/Tabs';
-export type { TabsProps } from './Tabs/Tabs';

@@ -6,8 +6,6 @@ export { default as Button } from './Button';
 export type { ButtonProps } from './Button';
 export { default as Divider } from './Divider';
 export type { DividerProps } from './Divider';
-export { default as ErrorAlert } from './ErrorAlert';
-export type { ErrorAlertProps } from './ErrorAlert';
 export { default as Text } from './Text';
 export type { TextProps } from './Text';
 export { default as Title } from './Title';

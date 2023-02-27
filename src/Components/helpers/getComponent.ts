@@ -2,6 +2,7 @@ import type { ComponentItemType, ComponentMapType } from 'src/types';
 import * as Container from '../Container';
 import * as Display from '../Display';
 import * as Form from '../Form';
+import ErrorAlert from './ErrorAlert';
 
 // 组件库中的所有组件
 export const ComponentMap = {
@@ -20,7 +21,7 @@ export const getComponent = (
   type: ComponentItemType['type'],
   otherComponentMap?: ComponentMapType,
 ): React.FC<any> => {
-  return Reflect.get({ ...ComponentMap, ...otherComponentMap }, type);
+  return Reflect.get({ ...ComponentMap, ...otherComponentMap }, type) || ErrorAlert;
 };
 
 export default getComponent;

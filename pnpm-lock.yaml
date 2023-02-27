@@ -12,6 +12,9 @@ specifiers:
   '@emotion/styled': ^11.10.6
   '@emotion/utils': ^1.2.0
   '@monaco-editor/react': ^4.4.6
+  '@province-city-china/area': ^8.5.6
+  '@province-city-china/city': ^8.5.6
+  '@province-city-china/province': ^8.5.6
   '@types/lodash': ^4.14.191
   '@types/react': ^18.0.28
   '@types/react-dom': ^18.0.11
@@ -52,6 +55,9 @@ dependencies:
 devDependencies:
   '@babel/core': 7.21.0
   '@dxsixpc/configs': 0.4.6
+  '@province-city-china/area': 8.5.6
+  '@province-city-china/city': 8.5.6
+  '@province-city-china/province': 8.5.6
   '@types/lodash': 4.14.191
   '@types/react': 18.0.28
   '@types/react-dom': 18.0.11
@@ -2015,6 +2021,28 @@ packages:
       schema-utils: 3.1.1
       source-map: 0.7.4
       webpack: 5.75.0
+    dev: true
+
+  /@province-city-china/area/8.5.6:
+    resolution: {integrity: sha512-1QDsbeYWK6THB+igUOUzSaWCbgLNuQHmtmQ+rbt289XPo85+QzPlNd6UqPaMg1njTeDYMgHvVg8YiVovhQEXsg==}
+    dependencies:
+      '@province-city-china/types': 8.5.6
+    dev: true
+
+  /@province-city-china/city/8.5.6:
+    resolution: {integrity: sha512-6Y7KZ0mCWhEwFgljq3oyX/OkqV0SF+YCU2oj1vpIb9ixbDy7GBZKHJVUMe3NJ1WUVpcxuY5ETCHyUjqfnvZWIQ==}
+    dependencies:
+      '@province-city-china/types': 8.5.6
+    dev: true
+
+  /@province-city-china/province/8.5.6:
+    resolution: {integrity: sha512-CO2hgX0Uh5EMRtRx5I7yo58HnDTFGXsObx0nrOYKuu9W1ZishYO7rZP/3G9AVH7CfAmCFYebLXoeylkUJrUfhA==}
+    dependencies:
+      '@province-city-china/types': 8.5.6
+    dev: true
+
+  /@province-city-china/types/8.5.6:
+    resolution: {integrity: sha512-Ii2p24i7z66Fe98sZb1u1FIAN9eZoyaF6+HAcpgZCHVf0PuTVS72E3u0ibSqaLb8ZuMzSNFCtcuilnfMFfAlFQ==}
     dev: true
 
   /@rc-component/context/1.3.0_biqbaboplfbrettd7655fr4n2y:

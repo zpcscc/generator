@@ -3,9 +3,7 @@ import type { TitleProps as AntTitleProps } from 'antd/lib/typography/Title';
 import { Wrapper } from './Styled';
 
 export interface TitleProps extends AntTitleProps {
-  title: string;
   styled?: string;
-  useAntd?: boolean;
 }
 
 /**
@@ -15,14 +13,10 @@ export interface TitleProps extends AntTitleProps {
  * @link 其他参数详见 https://ant.design/components/typography-cn/#Typography.Title
  */
 const Title: React.FC<TitleProps> = (props) => {
-  const { title, styled, useAntd = true, ...rest } = props;
+  const { children, styled, ...rest } = props;
   return (
     <Wrapper styled={styled}>
-      {useAntd ? (
-        <Typography.Title {...rest}>{title}</Typography.Title>
-      ) : (
-        <h5 className='ant-typography'>{title}</h5>
-      )}
+      <Typography.Title {...rest}>{children}</Typography.Title>
     </Wrapper>
   );
 };

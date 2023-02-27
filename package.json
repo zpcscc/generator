@@ -60,6 +60,9 @@
   "devDependencies": {
     "@babel/core": "^7.21.0",
     "@dxsixpc/configs": "^0.4.6",
+    "@province-city-china/area": "^8.5.6",
+    "@province-city-china/city": "^8.5.6",
+    "@province-city-china/province": "^8.5.6",
     "@types/lodash": "^4.14.191",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
