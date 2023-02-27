@@ -1,4 +1,4 @@
-import type { ComponentItemType, ComponentMapType } from 'src/types';
+import type { ComponentItemType, ComponentMapType } from '@dxsixpc/generator/type';
 import { styledToString } from './helpers';
 import LoopRender from './LoopRender';
 

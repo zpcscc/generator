@@ -1,4 +1,5 @@
 import type { FormItemProps } from 'antd';
+import type { AnyObject } from './Custom';
 import type { OptionsConfigType } from './OptionsConfigType';
 
 /**

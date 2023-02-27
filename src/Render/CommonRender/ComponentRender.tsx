@@ -1,4 +1,4 @@
-import type { ComponentItemType } from 'src/types';
+import type { ComponentItemType } from '@dxsixpc/generator/type';
 import { styledToString } from './helpers';
 import { FormItemWrapper } from './Styled';
 

@@ -1,9 +1,10 @@
-import type { FormInstance, FormProps } from 'antd';
 import type {
+  AnyObject,
   ComponentItemType,
   ComponentMapType,
   ComponentStructureType,
-} from 'src/types';
+} from '@dxsixpc/generator/type';
+import type { FormInstance, FormProps } from 'antd';
 
 export interface RenderProps {
   // 表单组件列表
@@ -17,9 +18,5 @@ export interface RenderProps {
   // 表单参数
   formProps?: FormProps;
   // 数据改变时
-  onValuesChange: (
-    changedValues: AnyObject,
-    values: AnyObject,
-    form: FormInstance<any>,
-  ) => void;
+  onValuesChange: (changedValues: AnyObject, values: AnyObject, form: FormInstance<any>) => void;
 }

@@ -1,5 +1,5 @@
+import type { StyledType } from '@dxsixpc/generator/type';
 import { isObject } from 'lodash';
-import type { StyledType } from 'src/types';
 
 // 循环遍历styled对象，转为string
 const loopStyled = (styledObj: StyledType): string => {

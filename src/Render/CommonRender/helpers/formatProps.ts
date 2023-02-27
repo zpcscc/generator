@@ -1,3 +1,4 @@
+import type { AnyObject } from '@dxsixpc/generator/type';
 /**
  * @name 格式化参数， 只有指定的字段可以当做props传入组件
  * @param props

@@ -1,5 +1,5 @@
+import type { ComponentItemType, ComponentMapType } from '@dxsixpc/generator/type';
 import { Fragment } from 'react';
-import type { ComponentItemType, ComponentMapType } from 'src/types';
 import { getComponent } from '../../Components';
 import * as containerComponents from '../../Components/Container';
 import type { RenderProps } from '../type';

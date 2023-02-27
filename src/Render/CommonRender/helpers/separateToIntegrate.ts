@@ -1,4 +1,4 @@
-import type { WidgetItemType, WidgetStructureType } from 'src/types';
+import type { WidgetItemType, WidgetStructureType } from '@dxsixpc/generator/type';
 
 // 分离 -> 集成
 const separateToIntegrate = (
@@ -9,9 +9,7 @@ const separateToIntegrate = (
   if (!widgetStructure) return widgetItems || [];
 
   // 递归循环遍历json
-  const loopComponents = (
-    components: WidgetStructureType[],
-  ): WidgetItemType[] => {
+  const loopComponents = (components: WidgetStructureType[]): WidgetItemType[] => {
     return components.map((component) =>
       component.children
         ? {

@@ -1,7 +1,7 @@
 # page-generator
 
-[![NPM version](https://img.shields.io/npm/v/@dxsixpc/page-generator.svg?style=flat)](https://npmjs.org/package/@dxsixpc/page-generator)
-[![NPM downloads](http://img.shields.io/npm/dm/@dxsixpc/page-generator.svg?style=flat)](https://npmjs.org/package/@dxsixpc/page-generator)
+[![NPM version](https://img.shields.io/npm/v/@dxsixpc/page-generator.svg?style=flat)](https://npmjs.org/package/@dxsixpc/generator)
+[![NPM downloads](http://img.shields.io/npm/dm/@dxsixpc/page-generator.svg?style=flat)](https://npmjs.org/package/@dxsixpc/generator)
 
 低代码页面(表单)生成器
 

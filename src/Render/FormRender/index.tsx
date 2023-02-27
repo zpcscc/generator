@@ -1,6 +1,11 @@
+import type {
+  AnyObject,
+  ComponentItemType,
+  ComponentMapType,
+  ComponentStructureType,
+} from '@dxsixpc/generator/type';
 import type { FormInstance, FormProps } from 'antd';
 import { Form } from 'antd';
-import type { ComponentItemType, ComponentMapType, ComponentStructureType } from 'src/types';
 import { separateToIntegrate } from '../CommonRender';
 import LoopRender from '../CommonRender/LoopRender';
 import { FormWrapper } from './Styled';

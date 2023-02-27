@@ -1,4 +1,4 @@
-import type { ComponentItemType, ComponentMapType } from 'src/types';
+import type { ComponentItemType, ComponentMapType } from '@dxsixpc/generator/type';
 import * as Container from '../Container';
 import * as Display from '../Display';
 import * as Form from '../Form';
