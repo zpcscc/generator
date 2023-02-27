@@ -1,7 +1,7 @@
-import React, { Fragment } from 'react';
+import { Fragment } from 'react';
 import type { ComponentItemType, ComponentMapType } from 'src/types';
-import { ErrorAlertWidget, getComponent } from '../../Components';
-import * as containerComponents from '../../Components/ContainerComponents';
+import { ErrorAlert, getComponent } from '../../Components';
+import * as containerComponents from '../../Components/Container';
 import type { RenderProps } from '../type';
 import ComponentRender from './ComponentRender';
 import ContainerRender from './ContainerRender';
@@ -23,7 +23,7 @@ const LoopRender: React.FC<LoopRenderProps> = (props) => {
     <Fragment>
       {componentItems.map((componentItem: ComponentItemType) => {
         const { name, type } = componentItem;
-        const Component = getComponent(type, componentMap) || ErrorAlertWidget;
+        const Component = getComponent(type, componentMap) || ErrorAlert;
         if (Object.keys(containerComponents).includes(type)) {
           return (
             <ContainerRender
