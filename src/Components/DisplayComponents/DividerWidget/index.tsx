@@ -1,6 +1,5 @@
 import { Divider } from 'antd';
 import type { DividerProps } from 'antd/lib/Divider';
-import React from 'react';
 import { Wrapper } from './Styled';
 
 export interface DividerWidgetProps extends DividerProps {

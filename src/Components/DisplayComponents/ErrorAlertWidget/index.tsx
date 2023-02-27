@@ -1,7 +1,6 @@
+import type { ComponentItemType } from '@dxsixpc/generator';
 import { Alert } from 'antd';
 import type { AlertProps } from 'antd/lib/alert';
-import React from 'react';
-import type { ComponentItemType } from 'src/types';
 import { Wrapper } from './Styled';
 
 export interface ErrorAlertWidgetProps extends AlertProps {
@@ -16,7 +15,7 @@ const ErrorAlertWidget: React.FC<ErrorAlertWidgetProps> = (props) => {
   return (
     <Wrapper>
       <Alert
-        type="error"
+        type='error'
         showIcon
         message={`${label}组件渲染错误,请检查json里的组件type${type}是否正确`}
       />

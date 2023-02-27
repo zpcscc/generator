@@ -1,5 +1,4 @@
 import type { RowProps } from 'antd';
-import React from 'react';
 import { RowWrapper } from './Styled';
 
 export interface RowWidgetProps extends RowProps {

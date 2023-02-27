@@ -1,4 +1,3 @@
-import React from 'react';
 import type { ComponentItemType, ComponentMapType } from 'src/types';
 import * as ContainerComponents from '../ContainerComponents';
 import * as DisplayComponents from '../DisplayComponents';

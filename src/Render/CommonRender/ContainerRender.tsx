@@ -1,4 +1,3 @@
-import React from 'react';
 import type { ComponentItemType, ComponentMapType } from 'src/types';
 import { styledToString } from './helpers';
 import LoopRender from './LoopRender';

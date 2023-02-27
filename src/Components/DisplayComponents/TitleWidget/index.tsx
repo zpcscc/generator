@@ -1,6 +1,5 @@
 import { Typography } from 'antd';
 import type { TitleProps } from 'antd/lib/typography/Title';
-import React from 'react';
 import { Wrapper } from './Styled';
 
 export interface TitleWidgetProps extends TitleProps {
@@ -22,7 +21,7 @@ const TitleWidget: React.FC<TitleWidgetProps> = (props) => {
       {useAntd ? (
         <Typography.Title {...rest}>{title}</Typography.Title>
       ) : (
-        <h5 className="ant-typography">{title}</h5>
+        <h5 className='ant-typography'>{title}</h5>
       )}
     </Wrapper>
   );

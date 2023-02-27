@@ -1,10 +1,8 @@
 import { Checkbox } from 'antd';
 import type { CheckboxProps } from 'antd/es/checkbox';
-import React from 'react';
 import { SpaceWrapper } from './Styled';
 
-export interface FormSingleCheckboxProps
-  extends Omit<CheckboxProps, 'onChange'> {
+export interface FormSingleCheckboxProps extends Omit<CheckboxProps, 'onChange'> {
   // 前缀文字
   prefixText?: string;
   // 后缀文字
@@ -30,11 +28,7 @@ const FormSingleCheckbox: React.FC<FormSingleCheckboxProps> = (props) => {
   return (
     <SpaceWrapper styled={styled}>
       {prefixText}
-      <Checkbox
-        checked={!!value}
-        onChange={(e) => onChange?.(e?.target?.checked)}
-        {...rest}
-      />
+      <Checkbox checked={!!value} onChange={(e) => onChange?.(e?.target?.checked)} {...rest} />
       {suffixText}
     </SpaceWrapper>
   );

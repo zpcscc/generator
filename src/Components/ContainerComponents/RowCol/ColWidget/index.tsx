@@ -1,5 +1,4 @@
 import type { ColProps } from 'antd';
-import React from 'react';
 import { ColWrapper } from './Styled';
 
 export interface ColWidgetProps extends ColProps {

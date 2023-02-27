@@ -1,5 +1,4 @@
 import type { TabsProps } from 'antd';
-import React from 'react';
 import { TabsWrapper } from './Styled';
 
 export interface TabsWidgetProps extends TabsProps {

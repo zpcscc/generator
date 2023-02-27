@@ -1,10 +1,9 @@
 import { Input } from 'antd';
 import type { InputProps } from 'antd/lib/input';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Wrapper } from './Styled';
 
-export interface FormInputGroupProps
-  extends Omit<InputProps, 'onChange' | 'placeholder'> {
+export interface FormInputGroupProps extends Omit<InputProps, 'onChange' | 'placeholder'> {
   value: string[];
   placeholder?: string[];
   level?: number;
@@ -22,23 +21,11 @@ export interface FormInputGroupProps
  * @link 其他参数详见 https://ant.design/components/input-cn/
  */
 const FormInputGroup: React.FC<FormInputGroupProps> = (props) => {
-  const {
-    value = [],
-    placeholder = [],
-    level = 2,
-    styled,
-    onChange,
-    ...rest
-  } = props;
+  const { value = [], placeholder = [], level = 2, styled, onChange, ...rest } = props;
 
-  const [valueArr, setValueArr] = useState<string[]>(
-    Array.isArray(value) ? value : [],
-  );
+  const [valueArr, setValueArr] = useState<string[]>(Array.isArray(value) ? value : []);
 
-  const onInputChange = (
-    e: React.ChangeEvent<HTMLInputElement>,
-    index: number,
-  ) => {
+  const onInputChange = (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
     const newValueArr = [...valueArr];
     newValueArr[index] = e?.target?.value;
     setValueArr(newValueArr);

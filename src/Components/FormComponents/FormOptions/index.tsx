@@ -1,7 +1,7 @@
 import { PlusOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 import { uniqueId } from 'lodash';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import type { OptionsConfigType } from '../../type';
 import OptionsContainer from './OptionsContainer';
 import { Wrapper } from './Styled';
@@ -31,8 +31,7 @@ const FormOptions: React.FC<FormOptionsProps> = (props) => {
   const onOptionsConfigChange = (newOptionsConfig: CurrOptionsConfigType) => {
     const { options } = newOptionsConfig;
     // 设置选中的默认值
-    let defaultValue: string[] | string =
-      optionsConfig?.type === 'Checkbox' ? [] : '';
+    let defaultValue: string[] | string = optionsConfig?.type === 'Checkbox' ? [] : '';
     options?.forEach((option: CurrOptionType) => {
       if (option?.checked) {
         if (optionsConfig?.type === 'Checkbox') {
@@ -48,10 +47,11 @@ const FormOptions: React.FC<FormOptionsProps> = (props) => {
 
   // 添加选项
   const addOption = () => {
+    const optionsLength = optionsConfig?.options?.length;
     const newOptions = optionsConfig?.options?.concat({
       id: uniqueId('op'),
-      label: `选项${optionsConfig?.options?.length + 1}`,
-      value: `选项${optionsConfig?.options?.length + 1}`,
+      label: `选项${optionsLength + 1}`,
+      value: `选项${optionsLength + 1}`,
       checked: false,
     });
     onOptionsConfigChange({
@@ -66,7 +66,7 @@ const FormOptions: React.FC<FormOptionsProps> = (props) => {
         optionsConfig={optionsConfig}
         onOptionsConfigChange={onOptionsConfigChange}
       />
-      <Button type="text" style={{ color: '#00bcd4' }} onClick={addOption}>
+      <Button type='text' style={{ color: '#00bcd4' }} onClick={addOption}>
         <PlusOutlined /> 添加选项
       </Button>
     </Wrapper>
