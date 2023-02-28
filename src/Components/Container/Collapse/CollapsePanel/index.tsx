@@ -3,6 +3,7 @@ import { CollapsePanelWrapper } from './Styled';
 
 export interface CollapsePanelProps extends AntCollapsePanelProps {
   styled?: string;
+  children?: React.ReactNode;
 }
 
 /**

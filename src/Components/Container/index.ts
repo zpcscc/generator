@@ -7,3 +7,5 @@ export { default as Col } from './Grid/Col';
 export type { ColProps } from './Grid/Col';
 export { default as Row } from './Grid/Row';
 export type { RowProps } from './Grid/Row';
+export { default as Space } from './Space';
+export type { SpaceProps } from './Space';

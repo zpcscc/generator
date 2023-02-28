@@ -1,5 +1,6 @@
 .dumi
 .husky
 .dumirc.ts
+.eslintcache
 dist
 node_modules

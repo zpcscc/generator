@@ -1,23 +1,28 @@
-import { Input, Space } from '@dxsixpc/generator';
+import { Checkbox, Input, Space } from '@dxsixpc/generator';
 import { ResultTextarea } from 'docs/Common';
 import { useState } from 'react';
 
 const App: React.FC = () => {
-  const [value, setValue] = useState<string>('这是输入框');
+  const [value, setValue] = useState<boolean>(true);
 
   // css-in-js写法的自定义样式
   const styled = `
     width: 300px;
-    color: #66ccff;
   `;
 
-  const onChange = (value: string) => {
+  const onChange = (value: boolean) => {
     setValue(value);
   };
 
   return (
     <Space size={100}>
-      <Input value={value} placeholder={'请输入内容'} onChange={onChange} styled={styled} />
+      <Checkbox
+        value={value}
+        onChange={onChange}
+        prefix={<Input />}
+        suffix={'后缀内容'}
+        styled={styled}
+      />
       <ResultTextarea value={value} />
     </Space>
   );

@@ -10,7 +10,16 @@ const App: React.FC = () => {
       }
     }
   `;
-  return <Button styled={styled}>{'这是按钮'}</Button>;
+
+  const onClick = () => {
+    console.log('点击了按钮');
+  };
+
+  return (
+    <Button styled={styled} onClick={onClick}>
+      {'这是按钮'}
+    </Button>
+  );
 };
 
 export default App;

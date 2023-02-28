@@ -1,4 +1,5 @@
 import type { StyledType } from '@dxsixpc/generator/type';
+import { dataToString } from '@dxsixpc/utils';
 import { isObject } from 'lodash';
 
 // 循环遍历styled对象，转为string
@@ -10,7 +11,7 @@ const loopStyled = (styledObj: StyledType): string => {
       styledValue = loopStyled(styledObj[key] as StyledType);
       returnValue += `${key}${styledValue}`;
     } else {
-      styledValue = `${value};`;
+      styledValue = dataToString(value);
       returnValue += `${key}:${styledValue}`;
     }
   });

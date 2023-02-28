@@ -18,7 +18,7 @@ export interface MonacoEditorProps extends EditorProps {
  * @param debounceOptions 防抖配置 示例：{wait:100}
  * @param theme 主题样式
  * @param options 微软原版monaco-editor配置参数
- * @link options参数详见 https://microsoft.github.io/monaco-editor/api/modules/monaco.editor.html
+ * @link rest参数详见 https://microsoft.github.io/monaco-editor/api/modules/monaco.editor.html
  * @link 其他参数详见 https://github.com/suren-atoyan/monaco-react
  */
 const MonacoEditor: React.FC<MonacoEditorProps> = (props) => {
@@ -33,7 +33,7 @@ const MonacoEditor: React.FC<MonacoEditorProps> = (props) => {
   } = props;
 
   // onChange封装
-  const onEditorChange: OnChange = (editorValue, ev) => {
+  const onEditorChange: OnChange = (editorValue = '', ev) => {
     onChange?.(editorValue, ev);
   };
 

@@ -5,10 +5,12 @@
     "outDir": "dist",
     "paths": {
       "@@/*": [".dumi/tmp/*"],
+      "docs/": ["docs"],
+      "docs/*": ["docs/*"],
       "@dxsixpc/generator": ["src"],
       "@dxsixpc/generator/*": ["src/*"]
     },
-    "types": ["@emotion/react", "react"]
+    "types": ["react", "@emotion/react"]
   },
-  "include": [".dumi/**/*", ".dumirc.ts", "src/**/*", "docs/**/*"]
+  "include": [".dumi/**/*", ".dumirc.ts", "src/**/*", "docs/**/*", ".eslintrc.js"]
 }

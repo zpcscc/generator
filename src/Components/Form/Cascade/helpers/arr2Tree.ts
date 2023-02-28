@@ -30,9 +30,9 @@ const arr2Tree = (arr: string[][]) => {
     }
     return pre;
   };
-  return arr.reduce((pre, curr) => {
+  return arr.reduce<TreeDataType[]>((pre, curr) => {
     return loopTree(curr, pre);
-  }, [] as TreeDataType[]);
+  }, []);
 };
 
 export default arr2Tree;

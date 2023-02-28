@@ -1,4 +1,5 @@
 import { defineConfig } from 'dumi';
+import { resolve } from 'path';
 
 const name = 'generator';
 
@@ -10,30 +11,10 @@ export default defineConfig({
       github: `https://github.com/dxsixpc/${name}`,
     },
     logo: `/${name}/logo.png`,
-    // nav: {
-    //   'zh-CN': [
-    //     {
-    //       title: 'FormRender',
-    //       link: '/form-render',
-    //     },
-    //     {
-    //       title: 'TableRender',
-    //       link: '/table-render',
-    //     },
-    //     {
-    //       title: 'ChartRender',
-    //       link: '/chart-render',
-    //     },
-    //     { title: '表单设计器', link: '/generator' },
-    //     {
-    //       title: 'Playground',
-    //       link: '/playground',
-    //     }
-    //   ],
-    // },
   },
   alias: {
-    src: './src',
+    '@dxsixpc/generator': resolve(__dirname, './src'),
+    docs: resolve(__dirname, './docs'),
   },
   base: `/${name}/`,
   publicPath: `/${name}/`,

@@ -51,7 +51,7 @@ const Cascade: React.FC<CascadeProps> = (props) => {
   );
   const [textValue, setTextValue] = useState<string>(valueArr?.[level]);
   const [selectList, setSelectList] = useState<SelectListType[]>(
-    updateSelectList(treeData, [], level),
+    updateSelectList(treeData, valueArr, level),
   );
 
   const onSelectChange = (selectValue: string, index: number) => {
@@ -66,11 +66,11 @@ const Cascade: React.FC<CascadeProps> = (props) => {
       setSelectList(updateSelectList(treeData, newValueArr, level));
     }
     setValueArr(newValueArr);
-    onChange?.(newValueArr);
+    onChange?.(newValueArr.filter(Boolean));
   };
 
   useEffect(() => {
-    setSelectList(updateSelectList(treeData, [], level));
+    setSelectList(updateSelectList(treeData, valueArr, level));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [level]);
 

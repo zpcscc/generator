@@ -1,6 +1,6 @@
 import { arrayMove } from '@dnd-kit/sortable';
+import type { OptionsConfigType } from '@dxsixpc/generator/type';
 import { uniqueId } from 'lodash';
-import type { OptionsConfigType } from '../../type';
 import type { CurrOptionsConfigType, CurrOptionType } from './type';
 
 /**
@@ -29,5 +29,5 @@ export const sortOptions = (
 ) => {
   const oldIndex = options.findIndex((item) => item.id === activeId);
   const newIndex = options.findIndex((item) => item.id === overId);
-  return arrayMove(options, oldIndex, newIndex) as CurrOptionType[];
+  return arrayMove(options, oldIndex, newIndex);
 };
