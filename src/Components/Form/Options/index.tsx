@@ -1,16 +1,18 @@
 import { PlusOutlined } from '@ant-design/icons';
+import type { InputProps } from '@dxsixpc/generator';
 import type { OptionsConfigType } from '@dxsixpc/generator/type';
 import { Button } from 'antd';
 import { uniqueId } from 'lodash';
 import { useState } from 'react';
+import { formatOptionsConfig } from './helpers';
 import OptionsContainer from './OptionsContainer';
 import { Wrapper } from './Styled';
 import type { CurrOptionsConfigType, CurrOptionType } from './type';
-import { formatOptionsConfig } from './utils';
 
 export interface OptionsProps {
   value?: OptionsConfigType;
   optionsConfig: OptionsConfigType;
+  inputOptions?: InputProps;
   styled?: string;
   onChange?: (optionsConfig: OptionsConfigType) => void;
 }
@@ -23,7 +25,7 @@ export interface OptionsProps {
  * @param optionsConfig 选项配置
  */
 const Options: React.FC<OptionsProps> = (props) => {
-  const { value, styled, onChange } = props;
+  const { value, styled, inputOptions, onChange } = props;
   const [optionsConfig, setOptionsConfig] = useState<CurrOptionsConfigType>(
     formatOptionsConfig(value || props.optionsConfig),
   );
@@ -65,6 +67,7 @@ const Options: React.FC<OptionsProps> = (props) => {
       <OptionsContainer
         optionsConfig={optionsConfig}
         onOptionsConfigChange={onOptionsConfigChange}
+        inputOptions={inputOptions}
       />
       <Button type='text' style={{ color: '#00bcd4' }} onClick={addOption}>
         <PlusOutlined /> 添加选项

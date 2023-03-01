@@ -36,7 +36,7 @@ const App: React.FC = () => {
   // ];
 
   return (
-    <Space size={100}>
+    <Space size={100} align='end'>
       <Cascade
         value={value}
         level={3}
@@ -45,9 +45,9 @@ const App: React.FC = () => {
         // 级联数据
         cascadeData={provinceCityAreaCascadeData()}
         // 对内部的select组件进行配置
-        SelectOptions={{ size: 'large' }}
+        selectOptions={{ size: 'large' }}
         // 对内部的textarea组件进行配置
-        TextAreaOptions={{ size: 'large' }}
+        textAreaOptions={{ size: 'large' }}
         onChange={onChange}
         styled={styled}
       />

@@ -1,12 +1,12 @@
 import type { OptionsConfigType, OptionType } from '@dxsixpc/generator';
+import type { ListProps } from 'antd';
 import { Checkbox, List } from 'antd';
 import type { CheckboxGroupProps as AntCheckboxGroupProps } from 'antd/lib/checkbox';
-import { uniqueId } from 'lodash';
 import { Wrapper } from './Styled';
 
 export interface CheckboxGroupProps extends AntCheckboxGroupProps {
-  size?: 'large' | 'middle' | 'small';
   optionsConfig: OptionsConfigType<'Checkbox'>;
+  listOptions?: ListProps<string>;
   styled?: string;
 }
 
@@ -20,20 +20,19 @@ export interface CheckboxGroupProps extends AntCheckboxGroupProps {
  * @link 其他参数详见 https://ant.design/components/checkbox-cn/
  */
 export const CheckboxGroup: React.FC<CheckboxGroupProps> = (props) => {
-  const { optionsConfig, size, styled, ...rest } = props;
-  const listSize = size === 'middle' ? 'default' : size;
+  const { optionsConfig, listOptions = { size: 'default' }, styled, ...rest } = props;
 
   return (
     <Wrapper styled={styled}>
-      <List bordered itemLayout='vertical' size={listSize}>
-        <Checkbox.Group {...rest}>
+      <Checkbox.Group {...rest}>
+        <List bordered {...listOptions}>
           {optionsConfig?.options?.map((option: OptionType) => (
-            <List.Item key={uniqueId()}>
+            <List.Item key={option.value}>
               <Checkbox value={option.value}>{option.label}</Checkbox>
             </List.Item>
           ))}
-        </Checkbox.Group>
-      </List>
+        </List>
+      </Checkbox.Group>
     </Wrapper>
   );
 };

@@ -5,6 +5,11 @@ export interface WrapperProps {
 }
 
 export const Wrapper = styled.div<WrapperProps>`
-  width: 100%;
+  .ant-input:first-child {
+    border-radius: 6px 6px 0 0;
+  }
+  .ant-input:last-child {
+    border-radius: 0 0 6px 6px;
+  }
   ${(props) => props.styled};
 `;

@@ -18,7 +18,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <Space size={100}>
+    <Space size={100} align='end'>
       <Collapse styled={styled} onChange={onChange}>
         <CollapsePanel key={'1'} header='面板1'>
           {'内容1'}

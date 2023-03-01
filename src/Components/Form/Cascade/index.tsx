@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import type { SelectProps } from '../Select';
-import FormSelect from '../Select';
+import Select from '../Select';
 import type { TextAreaProps } from '../TextArea';
-import FormTextArea from '../TextArea';
+import TextArea from '../TextArea';
 import { arr2Tree, initValueArr, updateSelectList } from './helpers';
 import { Wrapper } from './Styled';
 import type { SelectListType } from './type';
@@ -12,8 +12,8 @@ export interface CascadeProps extends Omit<SelectProps, 'onChange' | 'value' | '
   cascadeData: string[][];
   styled?: string;
   level?: number;
-  SelectOptions?: Omit<SelectProps, 'onChange' | 'optionsConfig'>;
-  TextAreaOptions?: Omit<TextAreaProps, 'onChange'>;
+  selectOptions?: Omit<SelectProps, 'onChange' | 'optionsConfig'>;
+  textAreaOptions?: Omit<TextAreaProps, 'onChange'>;
   showTextArea?: boolean;
   placeholders?: string[];
   onChange?: (value: string[]) => void;
@@ -27,8 +27,8 @@ export interface CascadeProps extends Omit<SelectProps, 'onChange' | 'value' | '
  * @param level 级联层级
  * @param placeholder 级联输入框占位符
  * @param showTextArea 显示自定义文本框
- * @param SelectOptions 自定义下拉框的配置项
- * @param TextAreaOptions 自定义文本框的配置项
+ * @param selectOptions 自定义下拉框的配置项
+ * @param textAreaOptions 自定义文本框的配置项
  * @param cascadeData 外部输入的级联选项数据
  * @link 其他参数详见 https://ant.design/components/select-cn/
  */
@@ -39,8 +39,8 @@ const Cascade: React.FC<CascadeProps> = (props) => {
     level = 3,
     styled,
     showTextArea = false,
-    SelectOptions = {},
-    TextAreaOptions = {},
+    selectOptions = {},
+    textAreaOptions = {},
     placeholders = [],
     onChange,
   } = props;
@@ -76,26 +76,26 @@ const Cascade: React.FC<CascadeProps> = (props) => {
 
   return (
     <Wrapper styled={styled}>
-      {selectList?.map((selectItem, index) => (
-        <FormSelect
+      {selectList?.map(({ options }, index) => (
+        <Select
           key={index}
           value={valueArr?.[index]}
           placeholder={placeholders?.[index] ?? '请选择...'}
-          optionsConfig={selectItem}
+          options={options}
           onChange={(selectValue) => onSelectChange(selectValue, index)}
           style={{
             marginBottom: `${index === selectList.length - 1 && !showTextArea ? 0 : 20}px`,
           }}
           notFoundContent={'暂无数据'}
-          {...SelectOptions}
+          {...selectOptions}
         />
       ))}
       {showTextArea && (
-        <FormTextArea
+        <TextArea
           defaultValue={textValue}
           placeholder={placeholders?.[level] ?? '请输入...'}
           onChange={(textAreaValue) => onSelectChange(textAreaValue, level)}
-          {...TextAreaOptions}
+          {...textAreaOptions}
         />
       )}
     </Wrapper>

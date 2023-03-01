@@ -16,7 +16,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <Space size={100}>
+    <Space size={100} align='end'>
       <Input value={value} placeholder={'请输入内容'} onChange={onChange} styled={styled} />
       <ResultTextarea value={value} />
     </Space>

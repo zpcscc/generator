@@ -8,4 +8,8 @@ module.exports = {
   parserOptions: {
     project: ['./tsconfig.json'],
   },
+  rules: {
+    // 无浮动的promise，要求处理每个promise的then和catch。
+    '@typescript-eslint/no-floating-promises': 'off',
+  },
 };

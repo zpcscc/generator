@@ -32,7 +32,7 @@ export default App;
   `;
 
   return (
-    <Space styled={spaceStyled}>
+    <Space styled={spaceStyled} align='end'>
       <MonacoEditor
         value={defaultValue}
         height={400}

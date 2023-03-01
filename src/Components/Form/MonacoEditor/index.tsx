@@ -41,7 +41,7 @@ const MonacoEditor: React.FC<MonacoEditorProps> = (props) => {
   const { run } = useDebounceFn(onEditorChange, debounceOptions);
 
   return (
-    <Wrapper className='MonacoEditor' styled={styled}>
+    <Wrapper styled={styled}>
       <Editor
         language={language}
         theme={theme}

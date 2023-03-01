@@ -7,4 +7,6 @@ hero:
       link: /editor
     - text: 渲染器
       link: /render
+    - text: 组件
+      link: /components
 ---

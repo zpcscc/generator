@@ -5,11 +5,11 @@ import { useEffect, useState } from 'react';
 import { Wrapper } from './Styled';
 
 export interface SliderProps extends Omit<SliderBaseProps, 'onChange'> {
-  styled?: string;
   value: number;
-  onChange?: (value: number | string | null | [number, number]) => void;
+  onChange?: (value: number) => void;
   showInputNumber?: boolean;
-  inputNumberProps?: InputNumberProps;
+  inputNumberOptions?: InputNumberProps;
+  styled?: string;
   layout?: 'horizontal' | 'vertical';
 }
 
@@ -18,8 +18,8 @@ export interface SliderProps extends Omit<SliderBaseProps, 'onChange'> {
  * @param value 组件的值
  * @param onChange 组件值修改的回调
  * @param showInputNumber 显示数字输入框
- * @param inputNumberProps 数字显示框的props
- * @param styled 自定义样式 示例：styled：`{width:'100%'}`
+ * @param inputNumberOptions 数字显示框的参数
+ * @param styled 自定义样式 示例：styled：`width:'100%'`
  * @link 其他参数详见 https://ant.design/components/slider-cn/
  */
 const Slider: React.FC<SliderProps> = (props) => {
@@ -28,13 +28,13 @@ const Slider: React.FC<SliderProps> = (props) => {
     value,
     onChange,
     showInputNumber = false,
-    inputNumberProps,
+    inputNumberOptions,
     layout = 'horizontal',
     ...rest
   } = props;
   const [inputValue, setInputValue] = useState<number>(value || 0);
 
-  const onSliderChange = (newValue: number | string | null | [number, number]) => {
+  const onSliderChange = (newValue: number) => {
     if (typeof newValue === 'number') setInputValue(newValue);
     onChange?.(newValue);
   };
@@ -48,7 +48,13 @@ const Slider: React.FC<SliderProps> = (props) => {
     <Wrapper styled={styled} showInputNumber={showInputNumber} layout={layout}>
       <AntSlider value={inputValue} onChange={onSliderChange} {...rest} />
       {showInputNumber && (
-        <InputNumber value={inputValue} onChange={onSliderChange} {...inputNumberProps} />
+        <InputNumber
+          value={inputValue}
+          onChange={(value) => {
+            if (value !== null) onSliderChange(Number(value));
+          }}
+          {...inputNumberOptions}
+        />
       )}
     </Wrapper>
   );

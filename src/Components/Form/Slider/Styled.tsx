@@ -8,6 +8,7 @@ export interface WrapperProps {
 
 export const Wrapper = styled.div<WrapperProps>`
   width: 100%;
+  min-width: 100px;
   display: flex;
   flex-direction: ${(props) =>
     props.showInputNumber && props.layout === 'vertical' ? 'column' : 'row'};

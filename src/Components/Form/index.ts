@@ -19,6 +19,8 @@ export { default as RadioGroup } from './RadioGroup';
 export type { RadioGroupProps } from './RadioGroup';
 export { default as Select } from './Select';
 export type { SelectProps } from './Select';
+export { default as SimpleCodeEditor } from './SimpleCodeEditor';
+export type { SimpleCodeEditorProps } from './SimpleCodeEditor';
 export { default as Slider } from './Slider';
 export type { SliderProps } from './Slider';
 export { default as Switch } from './Switch';

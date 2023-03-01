@@ -1,12 +1,12 @@
 import type { OptionsConfigType, OptionType } from '@dxsixpc/generator';
+import type { ListProps } from 'antd';
 import { List, Radio } from 'antd';
 import type { RadioProps as AntRadioProps } from 'antd/lib/radio';
-import { uniqueId } from 'lodash';
 import { Wrapper } from './Styled';
 
 export interface RadioGroupProps extends Omit<AntRadioProps, 'onChange'> {
   optionsConfig: OptionsConfigType<'Radio'>;
-  size?: 'large' | 'middle' | 'small';
+  listOptions?: ListProps<string>;
   styled?: string;
   onChange?: (value: string) => void;
 }
@@ -21,20 +21,19 @@ export interface RadioGroupProps extends Omit<AntRadioProps, 'onChange'> {
  * @link 其他参数详见 https://ant.design/components/radio-cn/
  */
 const RadioGroup: React.FC<RadioGroupProps> = (props) => {
-  const { optionsConfig, size, styled, onChange, ...rest } = props;
-  const listSize = size === 'middle' ? 'default' : size;
+  const { optionsConfig, listOptions = { size: 'default' }, styled, onChange, ...rest } = props;
 
   return (
     <Wrapper styled={styled}>
-      <List bordered itemLayout='vertical' size={listSize}>
-        <Radio.Group onChange={(e) => onChange?.(e?.target?.value)} {...rest}>
+      <Radio.Group onChange={(e) => onChange?.(e?.target?.value)} {...rest}>
+        <List bordered {...listOptions}>
           {optionsConfig?.options?.map((option: OptionType) => (
-            <List.Item key={uniqueId()}>
+            <List.Item key={option.value}>
               <Radio value={option.value}>{option.label}</Radio>
             </List.Item>
           ))}
-        </Radio.Group>
-      </List>
+        </List>
+      </Radio.Group>
     </Wrapper>
   );
 };

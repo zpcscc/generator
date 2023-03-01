@@ -9,18 +9,20 @@ import {
 } from '@dnd-kit/core';
 import { restrictToVerticalAxis } from '@dnd-kit/modifiers';
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
+import type { InputProps } from '@dxsixpc/generator';
+import { sortOptions } from './helpers';
 import Option from './Option';
 import type { CurrOptionsConfigType, CurrOptionType } from './type';
-import { sortOptions } from './utils';
 
 interface OptionsContainerProps {
   optionsConfig: CurrOptionsConfigType;
+  inputOptions?: InputProps;
   onOptionsConfigChange: (value: CurrOptionsConfigType) => void;
 }
 
 // 选项容器
 const OptionsContainer: React.FC<OptionsContainerProps> = (props) => {
-  const { optionsConfig, onOptionsConfigChange } = props;
+  const { optionsConfig, inputOptions, onOptionsConfigChange } = props;
   const sensors = useSensors(useSensor(PointerSensor), useSensor(TouchSensor));
   const { type, options } = optionsConfig || {};
 
@@ -85,6 +87,7 @@ const OptionsContainer: React.FC<OptionsContainerProps> = (props) => {
             key={option.id}
             type={type}
             option={option}
+            inputOptions={inputOptions}
             onOptionChange={onOptionChange}
             onCheckedChange={onCheckedChange}
             onRemoveOption={onRemoveOption}

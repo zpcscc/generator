@@ -4,7 +4,7 @@ import { Wrapper } from './Styled';
 
 export interface InputProps extends Omit<AntInputProps, 'onChange'> {
   styled?: string;
-  onChange?: (value: string) => void;
+  onChange?: (value: string, e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 /**
@@ -19,7 +19,7 @@ const Input: React.FC<InputProps> = (props) => {
 
   return (
     <Wrapper styled={styled}>
-      <AntInput onChange={(e) => onChange?.(e?.target?.value)} {...rest} />
+      <AntInput onChange={(e) => onChange?.(e?.target?.value, e)} {...rest} />
     </Wrapper>
   );
 };
