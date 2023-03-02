@@ -3,6 +3,10 @@
   "version": "0.1.1",
   "description": "低代码页面(表单)生成器",
   "license": "MIT",
+  "author": {
+    "name": "dxsix",
+    "email": "dxsixpc@gmail.com"
+  },
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -89,9 +93,7 @@
     "react-dom": ">=16.9.0"
   },
   "publishConfig": {
-    "access": "public"
-  },
-  "authors": [
-    "dxsixpc"
-  ]
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  }
 }
