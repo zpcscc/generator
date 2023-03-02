@@ -1,6 +1,2 @@
-// 页面编辑器
-const PageEditor: React.FC<any> = () => {
-  return <div>这是页面编辑器</div>;
-};
-
-export default PageEditor;
+export { default as Editor } from './Editor';
+export type { EditorProps } from './Editor';

@@ -20,11 +20,11 @@ export interface CheckboxGroupProps extends AntCheckboxGroupProps {
  * @link 其他参数详见 https://ant.design/components/checkbox-cn/
  */
 export const CheckboxGroup: React.FC<CheckboxGroupProps> = (props) => {
-  const { optionsConfig, listOptions = { size: 'default' }, styled, ...rest } = props;
+  const { value, optionsConfig, listOptions = { size: 'default' }, styled, ...rest } = props;
 
   return (
     <Wrapper styled={styled}>
-      <Checkbox.Group {...rest}>
+      <Checkbox.Group value={value || optionsConfig.defaultValue} {...rest}>
         <List bordered {...listOptions}>
           {optionsConfig?.options?.map((option: OptionType) => (
             <List.Item key={option.value}>

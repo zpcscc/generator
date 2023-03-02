@@ -1,24 +1,76 @@
-// import FormRender from './FormRender';
-import PageRender from './PageRender';
-import { RenderWrapper } from './Styled';
-import type { RenderProps } from './type';
+import type {
+  AnyObject,
+  ComponentItemType,
+  ComponentMapType,
+  ComponentStructureType,
+} from '@dxsixpc/generator/type';
+import type { FormInstance, FormProps } from 'antd';
+import { Form } from 'antd';
+import { separateToIntegrate } from './helpers';
+import { loopRender } from './renderFn';
+import { FormWrapper } from './Styled';
+
+export interface RenderProps {
+  // 初始值
+  initialValues?: AnyObject;
+  // 表单结构,布局
+  componentStructure?: ComponentStructureType[];
+  // 表单组件列表
+  componentItems: ComponentItemType[];
+  // 外部传入的自定义组件对象
+  componentMap?: ComponentMapType;
+  // 表单参数
+  formOptions?: FormProps;
+  // 值改变时
+  onValuesChange: (changedValues: AnyObject, values: AnyObject, form: FormInstance<any>) => void;
+}
 
 /**
- * @name 表单渲染
+ * @name 渲染器
  * @param initialValues 初始值
- * @param WidgetStructure 表单的布局结构
- * @param WidgetList 组件配置列表
- * @param WidgetMap 自定义组件实例列表
+ * @param componentStructure 表单的布局结构
+ * @param componentList 组件配置列表
+ * @param componentMap 自定义组件实例列表
  * @param onValuesChange 表单值改变时的回调
- * @param formProps 表单组件props
- * @link formProps参数详见 https://ant.design/Widgets/form-cn/#Form
+ * @param formOptions 表单组件props
+ * @link formOptions参数详见 https://ant.design/components/form-cn/#Form
  */
 const Render: React.FC<RenderProps> = (props) => {
+  const {
+    initialValues = {},
+    componentStructure,
+    componentItems,
+    componentMap = {},
+    formOptions,
+    onValuesChange,
+  } = props;
+  const [form] = Form.useForm();
+  // const [formValues, setFormValues] = useState<AnyObject>(initialValues);
+  const newComponentList = separateToIntegrate(componentItems, componentStructure);
+
+  // 优化性能，数据未变化时，不重复渲染
+  // const formValueMemo = useMemo(() => formValues, [formValues]);
+
+  const onFormValuesChange = (changedValues: AnyObject, values: any) => {
+    // 获取当前改变字段的name值
+    // const [name] = Object.keys(changedValues);
+    // 判断改变的字段，有没有包含children。
+    // const isHaveChildren = Boolean(
+    //   componentItems.find((item) => item.name === name)?.children,
+    // );
+    // 若有children，则表示此字段的值可能会用于判断渲染children
+    // if (isHaveChildren) setFormValues(values);
+    onValuesChange(changedValues, values, form);
+  };
+
   return (
-    <RenderWrapper>
-      <PageRender {...props} />
-      {/* <FormRender {...props} /> */}
-    </RenderWrapper>
+    <FormWrapper form={form} layout='vertical' onValuesChange={onFormValuesChange} {...formOptions}>
+      {loopRender({
+        componentItems: newComponentList,
+        initialValues,
+        componentMap,
+      })}
+    </FormWrapper>
   );
 };
 

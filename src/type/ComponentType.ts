@@ -15,7 +15,7 @@ export interface ComponentPropsType {
 /**
  * @name component对象的类型
  */
-export interface ComponentItemType {
+export interface ComponentItemType extends Omit<FormItemProps, 'children'> {
   // 每个组件的唯一标识id
   id?: string;
   // 组件对应的name，单个表单中的区分组件的唯一标识
@@ -23,18 +23,15 @@ export interface ComponentItemType {
   // 组件标题名称
   label?: string;
   // 组件的类型
-  // type: keyof typeof componentsMap;
   type: string;
   // 组件的参数集合，props里的内容会传到组件里
   props?: ComponentPropsType;
-  // 表单item的配置参数
-  formItemProps?: FormItemProps & {
-    // 组件自定义样式
-    styled?: AnyObject;
-  };
+  // 隐藏组件
   hidden?: boolean;
   // 可嵌套的子组件
   children?: ComponentItemType[];
+  // 组件自定义样式
+  styled?: AnyObject;
 }
 
 export interface ComponentStructureType {

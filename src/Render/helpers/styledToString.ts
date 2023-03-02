@@ -23,10 +23,10 @@ const loopStyled = (styledObj: StyledType): string => {
  * @param styled  样式对象 key为css选择器，value为css
  * @returns
  */
-const styledToString = (styled?: StyledType | string): string => {
-  if (!styled) return '';
+const styledToString = (styled?: StyledType | string): string | undefined => {
+  if (!styled) return undefined;
   if (typeof styled === 'string') return styled;
-  return `&${loopStyled(styled)}`;
+  return `&${loopStyled(styled)}` || undefined;
 };
 
 export default styledToString;

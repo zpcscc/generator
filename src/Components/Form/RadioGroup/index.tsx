@@ -21,11 +21,22 @@ export interface RadioGroupProps extends Omit<AntRadioProps, 'onChange'> {
  * @link 其他参数详见 https://ant.design/components/radio-cn/
  */
 const RadioGroup: React.FC<RadioGroupProps> = (props) => {
-  const { optionsConfig, listOptions = { size: 'default' }, styled, onChange, ...rest } = props;
+  const {
+    value,
+    optionsConfig,
+    listOptions = { size: 'default' },
+    styled,
+    onChange,
+    ...rest
+  } = props;
 
   return (
     <Wrapper styled={styled}>
-      <Radio.Group onChange={(e) => onChange?.(e?.target?.value)} {...rest}>
+      <Radio.Group
+        value={value || optionsConfig.defaultValue}
+        onChange={(e) => onChange?.(e?.target?.value)}
+        {...rest}
+      >
         <List bordered {...listOptions}>
           {optionsConfig?.options?.map((option: OptionType) => (
             <List.Item key={option.value}>

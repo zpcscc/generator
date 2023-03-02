@@ -1,6 +1,6 @@
 {
   "name": "@dxsixpc/generator",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "低代码页面(表单)生成器",
   "license": "MIT",
   "module": "dist/index.js",
@@ -47,6 +47,7 @@
     "@dnd-kit/modifiers": "^6.0.1",
     "@dnd-kit/sortable": "^7.0.2",
     "@dnd-kit/utilities": "^3.2.1",
+    "@dxsixpc/utils": "^0.1.2",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@emotion/utils": "^1.2.0",
@@ -61,7 +62,6 @@
   "devDependencies": {
     "@babel/core": "^7.21.0",
     "@dxsixpc/configs": "^0.4.16",
-    "@dxsixpc/utils": "^0.1.2",
     "@province-city-china/area": "^8.5.6",
     "@province-city-china/city": "^8.5.6",
     "@province-city-china/province": "^8.5.6",
