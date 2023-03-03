@@ -23,7 +23,7 @@ const RenderPanel: React.FC = () => {
   };
 
   useEffect(() => {
-    const sidebar = document.getElementsByClassName('dumi-default-sidebar')[0] as HTMLElement;
+    const sidebar = document.querySelectorAll('.dumi-default-sidebar')[0] as HTMLElement;
     sidebar.style.display = 'none';
     return () => {
       sidebar.style.display = 'block';
@@ -44,7 +44,7 @@ const RenderPanel: React.FC = () => {
       </EditorSpace>
       <RenderSpace direction='vertical'>
         <Title>实时预览渲染效果</Title>
-        <Render componentItems={value} onValuesChange={onValuesChange} />
+        <Render componentItems={value} onChange={onValuesChange} />
       </RenderSpace>
     </SpaceWrapper>
   );

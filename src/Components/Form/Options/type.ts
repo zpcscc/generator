@@ -1,4 +1,4 @@
-import type { OptionsConfigType, OptionType } from '@dxsixpc/generator/type';
+import type { OptionsConfigType, OptionType } from 'src/type';
 
 // 选项配置类型
 export interface CurrOptionType extends Omit<OptionType, 'id'> {

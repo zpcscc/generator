@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
 import { Space } from 'antd';
 
-// 表单
 export const SpaceWrapper = styled(Space)`
   display: flex;
   justify-content: space-around;

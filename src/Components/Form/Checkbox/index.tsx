@@ -1,7 +1,7 @@
-import type { SpaceProps } from '@dxsixpc/generator';
-import { Space } from '@dxsixpc/generator';
 import { Checkbox as AntCheckbox } from 'antd';
 import type { CheckboxProps as AntCheckboxProps } from 'antd/es/checkbox';
+import type { SpaceProps } from 'src/Components';
+import { SpaceWrapper } from './Styled';
 
 export interface CheckboxProps extends Omit<AntCheckboxProps, 'onChange'> {
   // 前缀内容
@@ -30,7 +30,7 @@ const Checkbox: React.FC<CheckboxProps> = (props) => {
   const { value, prefix, suffix, spaceOptions, styled, onChange, ...rest } = props;
 
   return (
-    <Space styled={styled} {...spaceOptions}>
+    <SpaceWrapper styled={styled} {...spaceOptions}>
       {prefix}
       <AntCheckbox
         checked={Boolean(value)}
@@ -38,7 +38,7 @@ const Checkbox: React.FC<CheckboxProps> = (props) => {
         {...rest}
       />
       {suffix}
-    </Space>
+    </SpaceWrapper>
   );
 };
 

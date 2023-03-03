@@ -7,6 +7,8 @@
       "@@/*": [".dumi/tmp/*"],
       "docs/": ["docs"],
       "docs/*": ["docs/*"],
+      "src": ["src"],
+      "src/*": ["src/*"],
       "@dxsixpc/generator": ["src"],
       "@dxsixpc/generator/*": ["src/*"]
     },

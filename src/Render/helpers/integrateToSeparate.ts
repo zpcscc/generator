@@ -1,32 +1,32 @@
-import type { ComponentItemType, ComponentStructureType } from '@dxsixpc/generator/type';
+import type { ComponentItemsState, ComponentItemType, ComponentStructureType } from 'src/type';
 
 /**
  * @name 数据与布局结构分离
  * @param componentConfig
  * @returns
  */
-const integrateToSeparate = (componentConfig: ComponentItemType[]) => {
-  const ComponentItems: ComponentItemType[] = [];
+const integrateToSeparate = (componentConfig: ComponentItemType[]): ComponentItemsState => {
+  const componentFlatItems: ComponentItemType[] = [];
 
   // 递归循环遍历json
   const loopComponents = (components: ComponentItemType[]): ComponentStructureType[] => {
     return components.map((component) => {
-      const { name = '', children } = component || {};
+      const { id = '', children } = component || {};
       if (children) {
-        ComponentItems.push({ ...component, children: undefined });
+        componentFlatItems.push({ ...component, children: undefined });
         return {
-          name,
+          id,
           children: loopComponents(children),
         };
       }
-      ComponentItems.push({ ...component });
-      return { name };
+      componentFlatItems.push({ ...component });
+      return { id };
     });
   };
 
   return {
-    ComponentStructure: loopComponents(componentConfig),
-    ComponentItems,
+    componentStructure: loopComponents(componentConfig),
+    componentFlatItems,
   };
 };
 

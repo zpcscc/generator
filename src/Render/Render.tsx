@@ -1,18 +1,18 @@
+import type { FormInstance, FormProps } from 'antd';
+import { ConfigProvider, Form } from 'antd';
 import type {
   AnyObject,
   ComponentItemType,
   ComponentMapType,
   ComponentStructureType,
-} from '@dxsixpc/generator/type';
-import type { FormInstance, FormProps } from 'antd';
-import { Form } from 'antd';
+} from 'src/type';
 import { separateToIntegrate } from './helpers';
 import { loopRender } from './renderFn';
 import { FormWrapper } from './Styled';
 
 export interface RenderProps {
   // 初始值
-  initialValues?: AnyObject;
+  defaultValue?: AnyObject;
   // 表单结构,布局
   componentStructure?: ComponentStructureType[];
   // 表单组件列表
@@ -22,12 +22,12 @@ export interface RenderProps {
   // 表单参数
   formOptions?: FormProps;
   // 值改变时
-  onValuesChange: (changedValues: AnyObject, values: AnyObject, form: FormInstance<any>) => void;
+  onChange?: (changedValues: AnyObject, values: AnyObject, form: FormInstance<any>) => void;
 }
 
 /**
  * @name 渲染器
- * @param initialValues 初始值
+ * @param defaultValue 初始值
  * @param componentStructure 表单的布局结构
  * @param componentList 组件配置列表
  * @param componentMap 自定义组件实例列表
@@ -37,12 +37,12 @@ export interface RenderProps {
  */
 const Render: React.FC<RenderProps> = (props) => {
   const {
-    initialValues = {},
+    defaultValue = {},
     componentStructure,
     componentItems,
     componentMap = {},
     formOptions,
-    onValuesChange,
+    onChange,
   } = props;
   const [form] = Form.useForm();
   // const [formValues, setFormValues] = useState<AnyObject>(initialValues);
@@ -60,17 +60,24 @@ const Render: React.FC<RenderProps> = (props) => {
     // );
     // 若有children，则表示此字段的值可能会用于判断渲染children
     // if (isHaveChildren) setFormValues(values);
-    onValuesChange(changedValues, values, form);
+    onChange?.(changedValues, values, form);
   };
 
   return (
-    <FormWrapper form={form} layout='vertical' onValuesChange={onFormValuesChange} {...formOptions}>
-      {loopRender({
-        componentItems: newComponentList,
-        initialValues,
-        componentMap,
-      })}
-    </FormWrapper>
+    <ConfigProvider>
+      <FormWrapper
+        form={form}
+        layout='vertical'
+        onValuesChange={onFormValuesChange}
+        {...formOptions}
+      >
+        {loopRender({
+          componentItems: newComponentList,
+          defaultValue,
+          componentMap,
+        })}
+      </FormWrapper>
+    </ConfigProvider>
   );
 };
 

@@ -5,7 +5,7 @@ export interface WrapperProps {
 }
 
 export const Wrapper = styled.div<WrapperProps>`
-  .ant-input:first-child {
+  .ant-input:first-of-type {
     border-radius: 6px 6px 0 0;
   }
   .ant-input:last-child {

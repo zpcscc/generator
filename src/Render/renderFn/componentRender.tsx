@@ -7,19 +7,19 @@ import type { ComponentRenderProps } from './type';
 
 // 渲染组件
 const componentRender = (props: ComponentRenderProps) => {
-  const { componentItem, componentMap, initialValues } = props;
-  const { id = '', name = '', type, styled } = componentItem || {};
-  const ComponentWidget = getComponent(type, componentMap);
+  const { componentItem, componentMap, defaultValue, index } = props;
+  const { id = '', type, styled } = componentItem || {};
+  const Component = getComponent(type, componentMap);
   return (
-    <Fragment key={id + name}>
+    <Fragment key={`${id}${index || ''}`}>
       <FormItemWrapper
-        key={id + name}
-        initialValue={initialValues?.[name]}
-        name={name || id + type}
-        {...omit(componentItem, ['styled'])}
-        styled={styledToString(styled || {})}
+        key={`${id}${index || ''}`}
+        initialValue={defaultValue?.[id]}
+        name={id}
+        {...omit(componentItem, ['styled', 'id', 'props', 'hidden', 'children', 'showLabel'])}
+        styled={styledToString(styled || undefined)}
       >
-        <ComponentWidget {...componentItem?.props} />
+        <Component {...componentItem?.props} />
       </FormItemWrapper>
     </Fragment>
   );

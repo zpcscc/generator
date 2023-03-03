@@ -1,26 +1,26 @@
-import type { ComponentItemType, ComponentStructureType } from '@dxsixpc/generator/type';
+import type { ComponentItemType, ComponentStructureType } from 'src/type';
 
 // 分离 -> 集成
 const separateToIntegrate = (
-  ComponentItems: ComponentItemType[],
-  ComponentStructure?: ComponentStructureType[],
+  componentFlatItems: ComponentItemType[],
+  componentStructure?: ComponentStructureType[],
 ) => {
   // 若没有单独写布局，则直接返回组件列表
-  if (!ComponentStructure) return ComponentItems || [];
+  if (!componentStructure) return componentFlatItems || [];
 
   // 递归循环遍历json
   const loopComponents = (components: ComponentStructureType[]): ComponentItemType[] => {
     return components.map((component) =>
       component.children
         ? {
-            ...ComponentItems.find((item) => item.name === component.name),
+            ...componentFlatItems.find((item) => item.id === component.id),
             children: loopComponents(component.children),
           }
-        : ComponentItems.find((item) => item.name === component.name),
+        : componentFlatItems.find((item) => item.id === component.id),
     ) as ComponentItemType[];
   };
 
-  return loopComponents(ComponentStructure);
+  return loopComponents(componentStructure);
 };
 
 export default separateToIntegrate;

@@ -1,6 +1,6 @@
-import type { StyledType } from '@dxsixpc/generator/type';
 import { dataToString } from '@dxsixpc/utils';
 import { isObject } from 'lodash';
+import type { StyledType } from 'src/type';
 
 // 循环遍历styled对象，转为string
 const loopStyled = (styledObj: StyledType): string => {
@@ -9,13 +9,13 @@ const loopStyled = (styledObj: StyledType): string => {
     let styledValue = '';
     if (isObject(styledObj[key])) {
       styledValue = loopStyled(styledObj[key] as StyledType);
-      returnValue += `${key}${styledValue}`;
+      returnValue += `${key}${styledValue};`;
     } else {
       styledValue = dataToString(value);
-      returnValue += `${key}:${styledValue}`;
+      returnValue += `${key}:${styledValue};`;
     }
   });
-  return `{${returnValue}}`;
+  return `${returnValue}`;
 };
 
 /**
@@ -26,7 +26,7 @@ const loopStyled = (styledObj: StyledType): string => {
 const styledToString = (styled?: StyledType | string): string | undefined => {
   if (!styled) return undefined;
   if (typeof styled === 'string') return styled;
-  return `&${loopStyled(styled)}` || undefined;
+  return `&{${loopStyled(styled)}}` || undefined;
 };
 
 export default styledToString;

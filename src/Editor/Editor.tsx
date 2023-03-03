@@ -1,13 +1,25 @@
+import { RecoilRoot } from 'recoil';
+import type { ComponentItemType } from 'src/type';
+import Content from './Content';
+import LeftSider from './LeftSider';
+import RightSider from './RightSider';
+import { LayoutWrapper } from './Styled';
+
 export interface EditorProps {
   // 值改变时
-  onValuesChange: () => void;
+  onChange: (componentItems: ComponentItemType[]) => void;
 }
 
-/**
- * @name 编辑器
- */
 const Editor: React.FC<EditorProps> = (props) => {
-  return <div>编辑器</div>;
+  return (
+    <RecoilRoot>
+      <LayoutWrapper>
+        <LeftSider />
+        <Content />
+        <RightSider />
+      </LayoutWrapper>
+    </RecoilRoot>
+  );
 };
 
 export default Editor;

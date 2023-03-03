@@ -1,9 +1,9 @@
 import { PlusOutlined } from '@ant-design/icons';
-import type { InputProps } from '@dxsixpc/generator';
-import type { OptionsConfigType } from '@dxsixpc/generator/type';
 import { Button } from 'antd';
 import { uniqueId } from 'lodash';
 import { useState } from 'react';
+import type { InputProps } from 'src/Components';
+import type { OptionsConfigType } from 'src/type';
 import { formatOptionsConfig } from './helpers';
 import OptionsContainer from './OptionsContainer';
 import { Wrapper } from './Styled';

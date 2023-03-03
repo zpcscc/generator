@@ -1,10 +1,10 @@
 import { CloseCircleOutlined, MenuOutlined } from '@ant-design/icons';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import type { InputProps } from '@dxsixpc/generator';
-import { Input } from '@dxsixpc/generator';
-import type { OptionSelectType } from '@dxsixpc/generator/type';
 import { Checkbox, Radio, Space, Tooltip } from 'antd';
+import type { InputProps } from 'src/Components';
+import { Input } from 'src/Components';
+import type { OptionSelectType } from 'src/type';
 import { OptionWrapper } from './Styled';
 import type { CurrOptionType } from './type';
 

@@ -1,7 +1,7 @@
-import type { OptionsConfigType, OptionType } from '@dxsixpc/generator';
 import type { ListProps } from 'antd';
 import { Checkbox, List } from 'antd';
 import type { CheckboxGroupProps as AntCheckboxGroupProps } from 'antd/lib/checkbox';
+import type { OptionsConfigType, OptionType } from 'src/type';
 import { Wrapper } from './Styled';
 
 export interface CheckboxGroupProps extends AntCheckboxGroupProps {

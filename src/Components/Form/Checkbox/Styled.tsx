@@ -1,9 +1,11 @@
 import styled from '@emotion/styled';
+import { Space } from 'antd';
 
-export interface WrapperProps {
+export interface SpaceWrapperProps {
   styled?: string;
 }
 
-export const Wrapper = styled.div<WrapperProps>`
+export const SpaceWrapper = styled(Space)<SpaceWrapperProps>`
+  width: 100%;
   ${(props) => props.styled};
 `;

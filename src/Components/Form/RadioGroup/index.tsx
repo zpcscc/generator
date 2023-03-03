@@ -1,7 +1,7 @@
-import type { OptionsConfigType, OptionType } from '@dxsixpc/generator';
 import type { ListProps } from 'antd';
 import { List, Radio } from 'antd';
 import type { RadioProps as AntRadioProps } from 'antd/lib/radio';
+import type { OptionsConfigType, OptionType } from 'src/type';
 import { Wrapper } from './Styled';
 
 export interface RadioGroupProps extends Omit<AntRadioProps, 'onChange'> {

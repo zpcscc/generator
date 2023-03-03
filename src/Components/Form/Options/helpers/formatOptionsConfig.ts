@@ -1,5 +1,5 @@
-import type { OptionsConfigType } from '@dxsixpc/generator/type';
 import { uniqueId } from 'lodash';
+import type { OptionsConfigType } from 'src/type';
 import type { CurrOptionsConfigType } from '../type';
 
 /**

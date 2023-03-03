@@ -1,4 +1,4 @@
-import type { OptionsConfigType } from '@dxsixpc/generator';
+import type { OptionsConfigType } from 'src/type';
 
 // 级联数据类型；
 export interface TreeDataType {

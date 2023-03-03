@@ -11,10 +11,4 @@ export const FormItemWrapper = styled(Form.Item)<FormItemWrapperProps>`
 `;
 
 // 表单
-export const FormWrapper = styled(Form)`
-  .ant-select,
-  input,
-  .ant-input-number {
-    max-width: 300px;
-  }
-`;
+export const FormWrapper = styled(Form)``;

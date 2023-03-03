@@ -1,10 +1,11 @@
-import type { AnyObject, ComponentItemType, ComponentMapType } from '@dxsixpc/generator/type';
+import type { AnyObject, ComponentItemType, ComponentMapType } from 'src/type';
 
 // 渲染组件列表参数
 export interface LoopRenderProps {
   componentItems: ComponentItemType[];
-  initialValues?: AnyObject;
+  defaultValue?: AnyObject;
   componentMap?: ComponentMapType;
+  index?: number;
 }
 
 // 渲染单个组件参数

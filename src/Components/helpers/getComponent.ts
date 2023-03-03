@@ -1,4 +1,4 @@
-import type { ComponentItemType, ComponentMapType } from '@dxsixpc/generator/type';
+import type { ComponentItemType, ComponentMapType } from 'src/type';
 import * as Container from '../Container';
 import * as Display from '../Display';
 import * as Form from '../Form';
@@ -23,5 +23,3 @@ export const getComponent = (
 ): React.FC<any> => {
   return Reflect.get({ ...ComponentMap, ...otherComponentMap }, type) || ErrorAlert;
 };
-
-export default getComponent;

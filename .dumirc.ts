@@ -13,6 +13,7 @@ export default defineConfig({
     logo: `/${name}/logo.png`,
   },
   alias: {
+    src: resolve(__dirname, './src'),
     '@dxsixpc/generator': resolve(__dirname, './src'),
     docs: resolve(__dirname, './docs'),
   },

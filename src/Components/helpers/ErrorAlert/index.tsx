@@ -1,6 +1,6 @@
-import type { ComponentItemType } from '@dxsixpc/generator';
 import { Alert } from 'antd';
 import type { AlertProps } from 'antd/lib/alert';
+import type { ComponentItemType } from 'src/type';
 import { Wrapper } from './Styled';
 
 export interface ErrorAlertProps extends AlertProps {

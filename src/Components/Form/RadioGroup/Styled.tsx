@@ -5,7 +5,10 @@ export interface WrapperProps {
 }
 
 export const Wrapper = styled.div<WrapperProps>`
-  width: 100%;
+  background-color: #fff;
+  & > div {
+    width: 100%;
+  }
   .ant-list {
     width: 100%;
     .ant-radio-group {

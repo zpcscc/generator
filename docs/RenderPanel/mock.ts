@@ -2,6 +2,7 @@ import type { ComponentItemType } from '@dxsixpc/generator';
 
 export const pageData: ComponentItemType[] = [
   {
+    id: 'Divider1',
     type: 'Divider',
     props: {
       children: '以下是表单组件演示',
@@ -9,7 +10,7 @@ export const pageData: ComponentItemType[] = [
   },
   {
     label: '名称',
-    name: 'title',
+    id: 'title',
     type: 'Input',
     props: {
       placeholder: '请输入名称',
@@ -17,7 +18,7 @@ export const pageData: ComponentItemType[] = [
   },
   {
     label: '爱好',
-    name: 'hobby',
+    id: 'hobby',
     type: 'Select',
     props: {
       placeholder: '请选择爱好',
@@ -32,7 +33,7 @@ export const pageData: ComponentItemType[] = [
   },
   {
     label: '性别',
-    name: 'sex',
+    id: 'sex',
     type: 'RadioGroup',
     props: {
       optionsConfig: {
@@ -48,17 +49,18 @@ export const pageData: ComponentItemType[] = [
   },
   {
     label: '开关',
-    name: 'switch',
+    id: 'switch',
     type: 'Switch',
   },
   {
+    id: 'Divider2',
     type: 'Divider',
     props: {
       children: '以下是Collapse折叠面板演示',
     },
   },
   {
-    name: 'Collapse',
+    id: 'Collapse',
     type: 'Collapse',
     props: {
       ghost: false,
@@ -70,7 +72,7 @@ export const pageData: ComponentItemType[] = [
     },
     children: [
       {
-        name: 'CollapsePanel1',
+        id: 'CollapsePanel1',
         type: 'CollapsePanel',
         props: {
           key: '1',
@@ -78,7 +80,7 @@ export const pageData: ComponentItemType[] = [
         },
         children: [
           {
-            name: 'CollapsePanelAlertSuccess',
+            id: 'CollapsePanelAlertSuccess',
             type: 'Alert',
             props: {
               message: '这是一个折叠框内的Alert成功提示',
@@ -92,7 +94,7 @@ export const pageData: ComponentItemType[] = [
         ],
       },
       {
-        name: 'CollapsePanel2',
+        id: 'CollapsePanel2',
         type: 'CollapsePanel',
         props: {
           key: '2',
@@ -100,7 +102,7 @@ export const pageData: ComponentItemType[] = [
         },
         children: [
           {
-            name: 'CollapsePanelAlertInfo',
+            id: 'CollapsePanelAlertInfo',
             type: 'Alert',
             props: {
               message: '这是一个折叠框内的Alert信息提示',
@@ -116,20 +118,21 @@ export const pageData: ComponentItemType[] = [
     ],
   },
   {
+    id: 'Divider3',
     type: 'Divider',
     props: {
       children: '以下是Space间隔演示',
     },
   },
   {
-    name: 'Space',
+    id: 'Space1',
     type: 'Space',
     props: {
       size: 'large',
     },
     children: [
       {
-        name: 'SpaceAlertSuccess',
+        id: 'SpaceAlertSuccess',
         type: 'Alert',
         props: {
           message: '这是一个Space内的提示信息',
@@ -141,7 +144,7 @@ export const pageData: ComponentItemType[] = [
         },
       },
       {
-        name: 'SpaceAlertInfo',
+        id: 'SpaceAlertInfo',
         type: 'Alert',
         props: {
           message: '这是一个提示信息',
@@ -155,13 +158,14 @@ export const pageData: ComponentItemType[] = [
     ],
   },
   {
+    id: 'Divider4',
     type: 'Divider',
     props: {
       children: '以下是Grid栅格布局演示',
     },
   },
   {
-    name: 'Row',
+    id: 'Row',
     type: 'Row',
     props: {
       wrap: false,
@@ -178,14 +182,14 @@ export const pageData: ComponentItemType[] = [
     },
     children: [
       {
-        name: 'Col1',
+        id: 'Col1',
         type: 'Col',
         props: {
           span: 8,
         },
         children: [
           {
-            name: 'RowColAlertSuccess',
+            id: 'RowColAlertSuccess',
             type: 'Alert',
             props: {
               message: '这里是一条成功信息',
@@ -196,14 +200,14 @@ export const pageData: ComponentItemType[] = [
         ],
       },
       {
-        name: 'Col2',
+        id: 'Col2',
         type: 'Col',
         props: {
           span: 8,
         },
         children: [
           {
-            name: 'RowColAlertWarning',
+            id: 'RowColAlertWarning',
             type: 'Alert',
             props: {
               message: '这里是一条警告信息',
@@ -212,7 +216,7 @@ export const pageData: ComponentItemType[] = [
             },
           },
           {
-            name: 'RowColAlertError',
+            id: 'RowColAlertError',
             type: 'Alert',
             props: {
               message: '这里是一条错误信息',
@@ -223,14 +227,14 @@ export const pageData: ComponentItemType[] = [
         ],
       },
       {
-        name: 'Col3',
+        id: 'Col3',
         type: 'Col',
         props: {
           span: 8,
         },
         children: [
           {
-            name: 'RowColAlertInfo',
+            id: 'RowColAlertInfo',
             type: 'Alert',
             props: {
               message: '这里是一条提示信息',
