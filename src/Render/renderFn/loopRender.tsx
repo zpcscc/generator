@@ -1,18 +1,35 @@
-import type { ComponentItemType } from 'src/type';
-import * as containerComponents from '../../Components/Container';
-import componentRender from './componentRender';
-import containerRender from './containerRender';
-import type { LoopRenderProps } from './type';
+import type { ComponentItemType, StructureItemType } from 'src/type';
+import { getWrapper } from '../helpers';
+import renderItem from './renderItem';
+import type { BaseRenderType } from './type';
+
+// 渲染组件列表参数
+export interface LoopRenderProps extends BaseRenderType {
+  componentItems: ComponentItemType[];
+  structureItems: StructureItemType[];
+}
 
 // 循环渲染页面
 const loopRender = (props: LoopRenderProps): React.ReactNode => {
-  const { componentItems } = props;
-  return componentItems?.map((componentItem: ComponentItemType, index: number) => {
-    if (Object.keys(containerComponents).includes(componentItem?.type)) {
-      return containerRender({ componentItem, ...props, index });
-    }
-    return componentRender({ componentItem, ...props, index });
-  });
+  const { componentItems, structureItems, defaultValue, componentMap, type } = props;
+  const isEditor = type === 'editor';
+  const wrapperProps = isEditor ? { items: structureItems } : {};
+  const Wrapper = getWrapper(type);
+  const ComponentWrapper = getWrapper(isEditor ? 'component' : 'play');
+
+  return (
+    <Wrapper {...wrapperProps}>
+      {structureItems?.map((structureItem: StructureItemType) => {
+        const { id } = structureItem;
+        const componentWrapperProps = isEditor ? { id } : {};
+        return (
+          <ComponentWrapper key={id} {...componentWrapperProps}>
+            {renderItem({ componentItems, structureItem, defaultValue, componentMap, type })}
+          </ComponentWrapper>
+        );
+      })}
+    </Wrapper>
+  );
 };
 
 export default loopRender;

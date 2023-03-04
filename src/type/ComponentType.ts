@@ -59,17 +59,18 @@ export interface ComponentItemType extends Omit<FormItemProps, 'children'> {
   children?: ComponentItemType[];
 }
 
-export interface ComponentStructureType {
+// 结构对象类型
+export interface StructureItemType {
   // 每个组件的唯一标识id
   id: string;
   // 可嵌套的子组件
-  children?: ComponentStructureType[];
+  children?: StructureItemType[];
+}
+
+export interface ComponentStructureType {
+  componentItems: ComponentItemType[];
+  structureItems: StructureItemType[];
 }
 
 // 外部传入的组件对象类型
 export type ComponentMapType = Record<string, React.FC<any>>;
-
-export interface ComponentItemsState {
-  componentFlatItems: ComponentItemType[];
-  componentStructure: ComponentStructureType[];
-}

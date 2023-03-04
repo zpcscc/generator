@@ -4,7 +4,7 @@ import type { ModalProps } from 'antd';
 import { message } from 'antd';
 import { useState } from 'react';
 import { useSetRecoilState } from 'recoil';
-import componentItemsState from 'src/Editor/atoms/componentItemsState';
+import componentItemsState from 'src/Editor/atoms/componentStructureState';
 import { integrateToSeparate } from 'src/Render';
 import type { ModelType } from '../type';
 

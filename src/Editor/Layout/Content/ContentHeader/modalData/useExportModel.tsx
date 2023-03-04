@@ -4,14 +4,14 @@ import type { ModalProps } from 'antd';
 import { Button, message, Space } from 'antd';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { useRecoilValue } from 'recoil';
-import componentItemsState from 'src/Editor/atoms/componentItemsState';
+import componentItemsState from 'src/Editor/atoms/componentStructureState';
 import type { ModelType } from '../type';
 
 // 导出弹出框
 const useExportModel = (setModalType: (modelType: ModelType | null) => void): ModalProps => {
-  const { componentFlatItems, componentStructure } = useRecoilValue(componentItemsState);
-  const componentItems = separateToIntegrate(componentFlatItems, componentStructure);
-  const value = dataToString(componentItems, null, 2);
+  const { componentItems, structureItems } = useRecoilValue(componentItemsState);
+  const componentItemsData = separateToIntegrate(componentItems, structureItems);
+  const value = dataToString(componentItemsData, null, 2);
 
   return {
     title: '导出',

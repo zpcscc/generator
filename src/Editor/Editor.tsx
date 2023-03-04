@@ -1,11 +1,10 @@
 import { RecoilRoot } from 'recoil';
-import type { ComponentItemType } from 'src/type';
-import Content from './Content';
-import LeftSider from './LeftSider';
-import RightSider from './RightSider';
-import { LayoutWrapper } from './Styled';
+import type { ComponentItemType, ComponentMapType } from 'src/type';
+import Layout from './Layout';
 
 export interface EditorProps {
+  // 外部传入的自定义组件对象
+  componentMap?: ComponentMapType;
   // 值改变时
   onChange: (componentItems: ComponentItemType[]) => void;
 }
@@ -13,11 +12,7 @@ export interface EditorProps {
 const Editor: React.FC<EditorProps> = (props) => {
   return (
     <RecoilRoot>
-      <LayoutWrapper>
-        <LeftSider />
-        <Content />
-        <RightSider />
-      </LayoutWrapper>
+      <Layout {...props} />
     </RecoilRoot>
   );
 };

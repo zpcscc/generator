@@ -2,7 +2,7 @@ import { omit } from 'lodash';
 import { useRecoilValue } from 'recoil';
 import { Render } from 'src/Render';
 import type { AnyObject, ComponentItemType } from 'src/type';
-import fieldConfigState from '../atoms/fieldConfigState';
+import fieldConfigState from '../../atoms/fieldConfigState';
 import { LeftSiderWrapper } from './Styled';
 
 export interface LeftSiderProps {

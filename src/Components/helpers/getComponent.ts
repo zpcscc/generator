@@ -18,8 +18,9 @@ export const ComponentMap = {
  * @returns
  */
 export const getComponent = (
-  type: ComponentItemType['type'],
+  type?: ComponentItemType['type'],
   otherComponentMap?: ComponentMapType,
 ): React.FC<any> => {
+  if (!type) return ErrorAlert;
   return Reflect.get({ ...ComponentMap, ...otherComponentMap }, type) || ErrorAlert;
 };

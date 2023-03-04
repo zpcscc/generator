@@ -1,32 +1,32 @@
-import type { ComponentItemsState, ComponentItemType, ComponentStructureType } from 'src/type';
+import type { ComponentItemType, ComponentStructureType, StructureItemType } from 'src/type';
 
 /**
  * @name 数据与布局结构分离
  * @param componentConfig
  * @returns
  */
-const integrateToSeparate = (componentConfig: ComponentItemType[]): ComponentItemsState => {
-  const componentFlatItems: ComponentItemType[] = [];
+const integrateToSeparate = (componentConfig: ComponentItemType[]): ComponentStructureType => {
+  const componentItems: ComponentItemType[] = [];
 
   // 递归循环遍历json
-  const loopComponents = (components: ComponentItemType[]): ComponentStructureType[] => {
+  const loopComponents = (components: ComponentItemType[]): StructureItemType[] => {
     return components.map((component) => {
       const { id = '', children } = component || {};
       if (children) {
-        componentFlatItems.push({ ...component, children: undefined });
+        componentItems.push({ ...component, children: undefined });
         return {
           id,
           children: loopComponents(children),
         };
       }
-      componentFlatItems.push({ ...component });
+      componentItems.push({ ...component });
       return { id };
     });
   };
 
   return {
-    componentStructure: loopComponents(componentConfig),
-    componentFlatItems,
+    structureItems: loopComponents(componentConfig),
+    componentItems,
   };
 };
 

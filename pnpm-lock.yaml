@@ -10,6 +10,7 @@ specifiers:
   '@dnd-kit/utilities': ^3.2.1
   '@dxsixpc/configs': ^0.4.16
   '@dxsixpc/utils': ^0.1.2
+  '@emotion/css': ^11.10.6
   '@emotion/react': ^11.10.6
   '@emotion/styled': ^11.10.6
   '@emotion/utils': ^1.2.0
@@ -52,6 +53,7 @@ dependencies:
   '@dnd-kit/sortable': 7.0.2_52scne4zmdeyjh2otzkgz2xfvu
   '@dnd-kit/utilities': 3.2.1_react@18.2.0
   '@dxsixpc/utils': 0.1.2_biqbaboplfbrettd7655fr4n2y
+  '@emotion/css': 11.10.6
   '@emotion/react': 11.10.6_pmekkgnqduwlme35zpnqhenc34
   '@emotion/styled': 11.10.6_oouaibmszuch5k64ms7uxp2aia
   '@emotion/utils': 1.2.0
@@ -1139,6 +1141,16 @@ packages:
       '@emotion/utils': 1.2.0
       '@emotion/weak-memoize': 0.3.0
       stylis: 4.1.3
+    dev: false
+
+  /@emotion/css/11.10.6:
+    resolution: {integrity: sha512-88Sr+3heKAKpj9PCqq5A1hAmAkoSIvwEq1O2TwDij7fUtsJpdkV4jMTISSTouFeRvsGvXIpuSuDQ4C1YdfNGXw==}
+    dependencies:
+      '@emotion/babel-plugin': 11.10.6
+      '@emotion/cache': 11.10.5
+      '@emotion/serialize': 1.1.1
+      '@emotion/sheet': 1.2.1
+      '@emotion/utils': 1.2.0
     dev: false
 
   /@emotion/hash/0.8.0:

@@ -1,7 +1,7 @@
 import { Button, Modal } from 'antd';
 import { useState } from 'react';
 import { useSetRecoilState } from 'recoil';
-import componentItemsState from '../../atoms/componentItemsState';
+import componentItemsState from '../../../atoms/componentStructureState';
 import useModelData from './modalData';
 import { ContentHeaderWrapper } from './Styled';
 import type { ModelType } from './type';
@@ -17,10 +17,7 @@ const ContentHeader: React.FC = () => {
   return (
     <ContentHeaderWrapper size={[8, 16]} wrap>
       <Button onClick={() => setModalType('previewModel')}>预览</Button>
-      <Button
-        danger
-        onClick={() => setComponentItems({ componentFlatItems: [], componentStructure: [] })}
-      >
+      <Button danger onClick={() => setComponentItems({ componentItems: [], structureItems: [] })}>
         清空
       </Button>
       <Button onClick={() => setModalType('importModel')}>导入</Button>

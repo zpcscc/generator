@@ -1,14 +1,8 @@
-import type { AnyObject, ComponentItemType, ComponentMapType } from 'src/type';
+import type { RenderProps } from 'src/Render';
+import type { AnyObject, ComponentMapType } from 'src/type';
 
-// 渲染组件列表参数
-export interface LoopRenderProps {
-  componentItems: ComponentItemType[];
+export interface BaseRenderType {
   defaultValue?: AnyObject;
   componentMap?: ComponentMapType;
-  index?: number;
-}
-
-// 渲染单个组件参数
-export interface ComponentRenderProps extends LoopRenderProps {
-  componentItem: ComponentItemType;
+  type?: RenderProps['type'];
 }

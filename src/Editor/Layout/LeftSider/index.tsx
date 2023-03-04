@@ -5,8 +5,8 @@ import * as containerConfigMap from 'src/fieldConfig/container';
 import * as displayConfigMap from 'src/fieldConfig/display';
 import * as formConfigMap from 'src/fieldConfig/form';
 import type { FieldConfigType } from 'src/type';
-import componentItemsState from '../atoms/componentItemsState';
-import fieldConfigState from '../atoms/fieldConfigState';
+import componentItemsState from '../../atoms/componentStructureState';
+import fieldConfigState from '../../atoms/fieldConfigState';
 import { ButtonWrapper, LeftSiderWrapper } from './Styled';
 
 const fieldConfig = {
@@ -24,9 +24,9 @@ const LeftSider: React.FC = () => {
     const { componentItem } = fieldConfig;
     const id = uniqueId(`${componentItem.id}-`);
     setFieldConfig(fieldConfig);
-    setComponentItems(({ componentFlatItems, componentStructure }) => ({
-      componentFlatItems: [...componentFlatItems, { ...componentItem, id }],
-      componentStructure: [...componentStructure, { id }],
+    setComponentItems(({ componentItems, structureItems }) => ({
+      componentItems: [...componentItems, { ...componentItem, id }],
+      structureItems: [...structureItems, { id }],
     }));
   };
 
