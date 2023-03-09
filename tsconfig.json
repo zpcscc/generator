@@ -3,12 +3,24 @@
   "compilerOptions": {
     "baseUrl": ".",
     "outDir": "dist",
+    "jsxImportSource": "@emotion/react",
     "paths": {
       "@@/*": [".dumi/tmp/*"],
+      "docs/": ["docs"],
+      "docs/*": ["docs/*"],
+      "src": ["src"],
+      "src/*": ["src/*"],
       "@dxsixpc/generator": ["src"],
       "@dxsixpc/generator/*": ["src/*"]
     },
-    "types": ["@emotion/react", "react"]
+    "types": ["react", "@emotion/react"]
   },
-  "include": [".dumi/**/*", ".dumirc.ts", "src/**/*", "docs/**/*"]
+  "include": [
+    ".dumi/**/*",
+    ".dumirc.ts",
+    "src/**/*",
+    "docs/**/*",
+    ".eslintrc.js",
+    "babel.config.js"
+  ]
 }

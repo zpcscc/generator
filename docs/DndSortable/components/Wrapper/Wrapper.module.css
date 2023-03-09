@@ -1,0 +1,11 @@
+.Wrapper {
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+  justify-content: flex-start;
+  padding: 20px;
+
+  &.center {
+    justify-content: center;
+  }
+}

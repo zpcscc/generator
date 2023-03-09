@@ -1,13 +1,14 @@
-import type { ComponentItemType, ComponentMapType } from 'src/types';
-import * as ContainerComponents from '../ContainerComponents';
-import * as DisplayComponents from '../DisplayComponents';
-import * as FormComponents from '../FormComponents';
+import type { ComponentItemType, ComponentMapType } from 'src/type';
+import * as Container from '../Container';
+import * as Display from '../Display';
+import * as Form from '../Form';
+import ErrorAlert from './ErrorAlert';
 
 // 组件库中的所有组件
 export const ComponentMap = {
-  ...FormComponents,
-  ...DisplayComponents,
-  ...ContainerComponents,
+  ...Form,
+  ...Display,
+  ...Container,
 };
 
 /**
@@ -17,10 +18,9 @@ export const ComponentMap = {
  * @returns
  */
 export const getComponent = (
-  componentType: ComponentItemType['type'],
+  type?: ComponentItemType['type'],
   otherComponentMap?: ComponentMapType,
 ): React.FC<any> => {
-  return Reflect.get({ ...ComponentMap, ...otherComponentMap }, componentType);
+  if (!type) return ErrorAlert;
+  return Reflect.get({ ...ComponentMap, ...otherComponentMap }, type) || ErrorAlert;
 };
-
-export default getComponent;

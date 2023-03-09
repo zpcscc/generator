@@ -1,1 +1,1 @@
-export { default as getComponent } from './getComponent';
+export * from './getComponent';

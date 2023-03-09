@@ -1,3 +1,4 @@
+export * from './Components';
 export * from './Editor';
 export * from './Render';
-export * from './types';
+export * from './type';
