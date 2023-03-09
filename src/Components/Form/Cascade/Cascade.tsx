@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import type { SelectProps } from '../Select';
-import Select from '../Select';
-import type { TextAreaProps } from '../TextArea';
-import TextArea from '../TextArea';
+import type { SelectProps } from '../Select/Select';
+import Select from '../Select/Select';
+import type { TextAreaProps } from '../TextArea/TextArea';
+import TextArea from '../TextArea/TextArea';
 import { arr2Tree, initValueArr, updateSelectList } from './helpers';
 import { Wrapper } from './Styled';
 import type { SelectListType } from './type';

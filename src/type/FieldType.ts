@@ -1,4 +1,4 @@
-import type * as fieldList from 'src/fieldConfig';
+import type * as fieldMao from 'src/fieldConfig';
 import type { ComponentItemType } from './ComponentType';
 import type { AnyObject } from './Custom';
 
@@ -14,4 +14,4 @@ export interface FieldConfigType {
   configPanel: (value?: AnyObject) => ComponentItemType[];
 }
 
-export type FieldListType = Record<keyof typeof fieldList, () => FieldConfigType>;
+export type FieldMapType = Record<keyof typeof fieldMao, FieldConfigType>;

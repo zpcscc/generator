@@ -1,5 +1,7 @@
 import type { DragEndEvent } from '@dnd-kit/core';
-import type { StructureItemType } from 'src/type';
+import type { SetterOrUpdater } from 'recoil';
+import type { ComponentStructureType } from 'src/type';
+import formatComponentItems from './formatComponentItems';
 import sortItems from './sortItems';
 
 /**
@@ -9,14 +11,19 @@ import sortItems from './sortItems';
  * @param setItems
  */
 const onDragEnd = (
-  event: DragEndEvent,
-  structureItems: StructureItemType[],
-  setItems: (items: StructureItemType[]) => void,
+  { active, over }: DragEndEvent,
+  setComponentItems: SetterOrUpdater<ComponentStructureType>,
 ) => {
-  console.log('dnd-event: ', event);
-  const { active, over } = event;
+  // 当前拖拽组件与所覆盖的组件不是同一个，则进行排序
   if (active.id !== over?.id && over?.id !== undefined) {
-    setItems(sortItems(structureItems, active.id, over?.id));
+    setComponentItems(({ componentItems, structureItems }) =>
+      formatComponentItems({
+        componentItems,
+        structureItems: sortItems(structureItems, active.id, over?.id),
+      }),
+    );
+  } else {
+    setComponentItems((componentItems) => formatComponentItems(componentItems));
   }
 };
 

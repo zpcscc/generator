@@ -13,8 +13,8 @@ const sortItems = (
   activeId: string | number,
   overId: string | number,
 ) => {
-  const oldIndex = items.findIndex((item) => item.id === activeId);
-  const newIndex = items.findIndex((item) => item.id === overId);
+  const oldIndex = items?.findIndex((item) => item?.id === activeId);
+  const newIndex = items?.findIndex((item) => item?.id === overId);
   return arrayMove(items, oldIndex, newIndex);
 };
 

@@ -1,5 +1,5 @@
 import type { ComponentItemType, StructureItemType } from 'src/type';
-import { getWrapper } from '../helpers';
+import { getWrapper, strategy } from '../helpers';
 import renderItem from './renderItem';
 import type { BaseRenderType } from './type';
 
@@ -13,7 +13,7 @@ export interface LoopRenderProps extends BaseRenderType {
 const loopRender = (props: LoopRenderProps): React.ReactNode => {
   const { componentItems, structureItems, defaultValue, componentMap, type } = props;
   const isEditor = type === 'editor';
-  const wrapperProps = isEditor ? { items: structureItems } : {};
+  const wrapperProps = isEditor ? { items: structureItems, strategy } : {};
   const Wrapper = getWrapper(type);
   const ComponentWrapper = getWrapper(isEditor ? 'component' : 'play');
 

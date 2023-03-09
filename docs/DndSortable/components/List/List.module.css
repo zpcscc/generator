@@ -1,0 +1,25 @@
+.List {
+  display: grid;
+  min-width: 350px;
+  min-height: 200px;
+  box-sizing: border-box;
+  padding: 20px;
+  padding-bottom: 0;
+  border-radius: 5px;
+  margin: 10px;
+  grid-auto-rows: max-content;
+  grid-gap: 10px;
+  grid-template-columns: repeat(var(--columns, 1), 1fr);
+  transition: background-color 350ms ease;
+
+  &::after {
+    height: 10px;
+    content: '';
+    grid-column-start: span var(--columns, 1);
+  }
+
+  &.horizontal {
+    width: 100%;
+    grid-auto-flow: column;
+  }
+}

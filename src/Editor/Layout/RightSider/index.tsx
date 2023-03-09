@@ -2,7 +2,7 @@ import { omit } from 'lodash';
 import { useRecoilValue } from 'recoil';
 import { Render } from 'src/Render';
 import type { AnyObject, ComponentItemType } from 'src/type';
-import fieldConfigState from '../../atoms/fieldConfigState';
+import currentState from '../../atoms/currentState';
 import { LeftSiderWrapper } from './Styled';
 
 export interface LeftSiderProps {
@@ -12,7 +12,7 @@ export interface LeftSiderProps {
 
 // 左侧组件配置面板,用于渲染配置项
 const RightSider: React.FC<LeftSiderProps> = () => {
-  const fieldConfig = useRecoilValue(fieldConfigState);
+  const { fieldConfig } = useRecoilValue(currentState);
   const { componentItem, configPanel } = fieldConfig || {};
   const defaultValue = { ...omit(componentItem, ['props', 'type']), ...componentItem?.props };
 

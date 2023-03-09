@@ -31,13 +31,13 @@ export const provinceCityAreaCascadeData = () => {
   const newProvinceJson: ProvinceJsonType = provinceCityChina;
 
   newProvinceJson.Area.forEach((currArea) => {
-    const city_code = currArea.c.substring(0, 4);
+    const cityCode = currArea.c.substring(0, 4);
     const currCity = newProvinceJson.City.find(
-      (cityItem) => cityItem.c.substring(0, 4) === city_code.substring(0, 4),
+      (cityItem) => cityItem.c.substring(0, 4) === cityCode.substring(0, 4),
     );
 
     const currProvince = newProvinceJson.Province.find((provinceItem) => {
-      return provinceItem.c.substring(0, 2) === city_code.substring(0, 2);
+      return provinceItem.c.substring(0, 2) === cityCode.substring(0, 2);
     });
 
     if (currProvince) {

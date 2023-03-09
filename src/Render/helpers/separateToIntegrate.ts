@@ -11,12 +11,12 @@ const separateToIntegrate = (
   // 递归循环遍历json
   const loopComponents = (components: StructureItemType[]): ComponentItemType[] => {
     return components.map((component) =>
-      component.children
+      component?.children
         ? {
-            ...componentItems.find((item) => item.id === component.id),
-            children: loopComponents(component.children),
+            ...componentItems.find((item) => item?.id === component?.id),
+            children: loopComponents(component?.children),
           }
-        : componentItems.find((item) => item.id === component.id),
+        : componentItems.find((item) => item?.id === component?.id),
     ) as ComponentItemType[];
   };
 

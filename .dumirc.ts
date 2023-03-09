@@ -19,4 +19,8 @@ export default defineConfig({
   },
   base: `/${name}/`,
   publicPath: `/${name}/`,
+  extraBabelPlugins: ['@emotion/babel-plugin'],
+  extraBabelPresets: [
+    ['@babel/preset-react', { runtime: 'automatic', importSource: '@emotion/react' }],
+  ],
 });

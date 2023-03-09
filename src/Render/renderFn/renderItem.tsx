@@ -1,3 +1,4 @@
+import { isEmpty } from 'lodash';
 import type { ComponentItemType, StructureItemType } from 'src/type';
 import { getComponentItem } from '../helpers';
 import componentRender from './componentRender';
@@ -11,9 +12,9 @@ export interface RenderItemProps extends BaseRenderType {
 
 const renderItem = (props: RenderItemProps) => {
   const { componentItems, structureItem, defaultValue, componentMap, type } = props;
-  const { id, children } = structureItem || {};
+  const { id = '', children } = structureItem || {};
   const componentItem = getComponentItem(componentItems, id);
-  return children
+  return !isEmpty(children)
     ? containerRender({
         componentItem,
         componentItems,

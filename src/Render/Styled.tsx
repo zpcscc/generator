@@ -4,7 +4,6 @@ import { Form } from 'antd';
 
 export const editorStyled = css`
   pointer-events: none;
-  border: 1px dashed rgb(187, 187, 187);
 `;
 
 export interface FormItemWrapperProps {
@@ -19,4 +18,5 @@ export const FormItemWrapper = styled(Form.Item)<FormItemWrapperProps>`
 // 表单
 export const FormWrapper = styled(Form)`
   overflow: hidden;
+  padding: 2px;
 `;

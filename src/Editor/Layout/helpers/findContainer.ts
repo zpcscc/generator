@@ -1,4 +1,5 @@
 import type { UniqueIdentifier } from '@dnd-kit/core';
+import { isEmpty } from 'lodash';
 import type { StructureItemType } from 'src/type';
 
 /**
@@ -17,16 +18,16 @@ const findContainer = (
   const loopItems = (items) => {
     for (let i = 0; i < items.length; i++) {
       const currItem = items[i];
-      if (items[i].id === id) {
+      if (items[i]?.id === id) {
         structureItem = currItem;
         break;
-      } else if (currItem.children) {
+      } else if (!isEmpty(currItem?.children)) {
         loopItems(currItem.children);
       }
     }
   };
   loopItems(items);
-  return structureItem;
+  return structureItem || { id, children: [] };
 };
 
 export default findContainer;

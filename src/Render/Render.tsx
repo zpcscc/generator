@@ -8,7 +8,7 @@ import { FormWrapper } from './Styled';
 
 export interface RenderProps {
   // 表单组件列表
-  componentItems: ComponentItemType[];
+  componentItems?: ComponentItemType[];
   // 渲染类型
   type?: 'editor' | 'play';
   // 初始值
@@ -21,6 +21,8 @@ export interface RenderProps {
   formOptions?: FormProps;
   // 值改变时
   onChange?: (changedValues: AnyObject, values: AnyObject, form: FormInstance<any>) => void;
+  // 选中的元素
+  onSelect?: (selectId: string) => void;
 }
 
 /**
@@ -34,12 +36,19 @@ export interface RenderProps {
  * @link formOptions参数详见 https://ant.design/components/form-cn/#Form
  */
 const Render: React.FC<RenderProps> = (props) => {
-  const { type = 'play', defaultValue = {}, componentMap = {}, formOptions, onChange } = props;
+  const {
+    type = 'play',
+    defaultValue = {},
+    componentMap = {},
+    formOptions,
+    onChange,
+    onSelect,
+  } = props;
   const [form] = Form.useForm();
   const useComponentStructure = !isEmpty(props.structureItems);
   const componentItemState = integrateToSeparate(props.componentItems || []);
   const componentItems = useComponentStructure
-    ? props.componentItems
+    ? props.componentItems || []
     : componentItemState.componentItems;
   const structureItems = useComponentStructure
     ? props.structureItems || []
@@ -55,6 +64,7 @@ const Render: React.FC<RenderProps> = (props) => {
         form={form}
         layout='vertical'
         onValuesChange={onFormValuesChange}
+        onClick={(e) => onSelect?.((e.target as HTMLDivElement).id)}
         {...formOptions}
       >
         {loopRender({
