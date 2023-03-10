@@ -1,6 +1,11 @@
+import type {
+  ComponentMap,
+  OptionsConfigType,
+  OptionType,
+  SelectProps,
+  TextAreaProps,
+} from '@dxsixpc/components';
 import type { FormItemProps } from 'antd';
-import type { ComponentMap, SelectProps, TextAreaProps } from '../Components';
-import type { OptionsConfigType, OptionType } from './OptionsConfigType';
 
 /**
  * @name component组件参数的类型

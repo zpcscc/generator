@@ -5,7 +5,7 @@ import componentStructureState from 'src/Editor/atoms/componentStructureState';
 import currentState from 'src/Editor/atoms/currentState';
 import leftSortableItemsState from 'src/Editor/atoms/leftSortableItemsState';
 import type { FieldConfigType } from 'src/type';
-import { getFieldConfig } from '../helpers';
+import { getFieldConfig } from '../utils';
 import { ButtonWrapper } from './Styled';
 
 interface ItemProps {

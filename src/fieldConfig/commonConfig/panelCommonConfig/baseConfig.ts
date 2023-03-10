@@ -19,9 +19,7 @@ export const showLabelConfig = (): ComponentItemType => ({
   id: 'showLabel',
   type: 'Checkbox',
   label: '显示标题',
-  styled: {
-    width: '60px',
-  },
+  styled: { width: '70px' },
 });
 
 /**
