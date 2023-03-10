@@ -15,12 +15,5 @@
     },
     "types": ["react", "@emotion/react"]
   },
-  "include": [
-    ".dumi/**/*",
-    ".dumirc.ts",
-    "src/**/*",
-    "docs/**/*",
-    ".eslintrc.js",
-    "babel.config.js"
-  ]
+  "include": [".dumi/**/*", ".dumirc.ts", "src/**/*", "docs/**/*", ".eslintrc.js"]
 }

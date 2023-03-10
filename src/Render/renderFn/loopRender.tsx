@@ -1,5 +1,6 @@
 import type { ComponentItemType, StructureItemType } from 'src/type';
-import { getWrapper, strategy } from '../helpers';
+import { getWrapper } from '../helpers';
+import { strategy } from '../utils';
 import renderItem from './renderItem';
 import type { BaseRenderType } from './type';
 

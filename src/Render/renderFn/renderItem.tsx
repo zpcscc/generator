@@ -1,6 +1,6 @@
 import { isEmpty } from 'lodash';
 import type { ComponentItemType, StructureItemType } from 'src/type';
-import { getComponentItem } from '../helpers';
+import { getComponentItem } from '../utils';
 import componentRender from './componentRender';
 import containerRender from './containerRender';
 import type { BaseRenderType } from './type';

@@ -3,7 +3,7 @@ import { useRecoilValue, useSetRecoilState } from 'recoil';
 import currentState from 'src/Editor/atoms/currentState';
 import { Render } from 'src/Render';
 import componentStructureState from '../../atoms/componentStructureState';
-import { getFieldConfig } from '../helpers';
+import { getFieldConfig } from '../utils';
 import ContentHeader from './ContentHeader';
 import { ContentLayoutWrapper, ContentWrapper } from './Styled';
 

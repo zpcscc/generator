@@ -1,5 +1,6 @@
+import { MonacoEditor, Title } from '@dxsixpc/components';
 import type { AnyObject, ComponentItemType } from '@dxsixpc/generator';
-import { MonacoEditor, Render, Title } from '@dxsixpc/generator';
+import { Render } from '@dxsixpc/generator';
 import { dataToString, stringToData } from '@dxsixpc/utils';
 import { useEffect, useState } from 'react';
 import { pageData } from './mock';

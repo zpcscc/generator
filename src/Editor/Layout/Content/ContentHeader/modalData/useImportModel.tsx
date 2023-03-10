@@ -1,4 +1,4 @@
-import { SimpleCodeEditor } from '@dxsixpc/generator';
+import { SimpleCodeEditor } from '@dxsixpc/components';
 import { stringToData } from '@dxsixpc/utils';
 import type { ModalProps } from 'antd';
 import { message } from 'antd';

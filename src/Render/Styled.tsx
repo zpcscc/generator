@@ -12,7 +12,9 @@ export interface FormItemWrapperProps {
 
 // 表单子项
 export const FormItemWrapper = styled(Form.Item)<FormItemWrapperProps>`
-  ${(props) => props.styled};
+  .ant-form-item-label > label::after {
+    display: inline-block;
+  }
 `;
 
 // 表单

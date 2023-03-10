@@ -2,9 +2,9 @@ import type { FormInstance, FormProps } from 'antd';
 import { ConfigProvider, Form } from 'antd';
 import { isEmpty } from 'lodash';
 import type { AnyObject, ComponentItemType, ComponentMapType, StructureItemType } from 'src/type';
-import { integrateToSeparate } from './helpers';
 import { loopRender } from './renderFn';
 import { FormWrapper } from './Styled';
+import { integrateToSeparate } from './utils';
 
 export interface RenderProps {
   // 表单组件列表

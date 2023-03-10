@@ -1,9 +1,7 @@
 import type { DragEndEvent } from '@dnd-kit/core';
 import type { SetterOrUpdater } from 'recoil';
 import type { ComponentItemType, ComponentStructureType, FieldConfigType } from 'src/type';
-import getFieldConfig from './getFieldConfig';
-// import findContainer from './findContainer';
-// import sortItems from './sortItems';
+import { getFieldConfig } from '../utils';
 
 /**
  * @name 拖拽覆盖到某个组件时

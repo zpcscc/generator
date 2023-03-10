@@ -1,7 +1,7 @@
+import { getComponent } from '@dxsixpc/components';
 import { omit } from 'lodash';
 import type { ComponentItemType, StructureItemType } from 'src/type';
-import { getComponent } from '../../Components';
-import { styledToString } from '../helpers';
+import { styledToString } from '../utils';
 import loopRender from './loopRender';
 import type { BaseRenderType } from './type';
 

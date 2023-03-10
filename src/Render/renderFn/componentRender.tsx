@@ -1,8 +1,9 @@
+import { getComponent } from '@dxsixpc/components';
+import { css } from '@emotion/react';
 import { omit } from 'lodash';
 import type { ComponentItemType } from 'src/type';
-import { getComponent } from '../../Components';
-import { styledToString } from '../helpers';
 import { editorStyled, FormItemWrapper } from '../Styled';
+import { styledToString } from '../utils';
 import type { BaseRenderType } from './type';
 
 export interface ComponentRenderProps extends BaseRenderType {
@@ -18,10 +19,12 @@ const componentRender = (props: ComponentRenderProps) => {
   return (
     <FormItemWrapper
       key={id}
-      initialValue={defaultValue?.[id]}
       name={id}
+      initialValue={defaultValue?.[id]}
       {...omit(componentItem, ['styled', 'id', 'props', 'hidden', 'children', 'showLabel'])}
-      styled={styledToString(styled || undefined)}
+      css={css`
+        ${styledToString(styled)}
+      `}
       className={props.type === 'editor' ? editorStyled : ''}
     >
       <Component {...componentItem?.props} />

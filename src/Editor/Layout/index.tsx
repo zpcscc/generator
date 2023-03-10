@@ -21,11 +21,12 @@ import leftSortableItemsState from 'src/Editor/atoms/leftSortableItemsState';
 import { renderItem, SortableContainer } from 'src/Render';
 import type { EditorProps } from '../Editor';
 import Content from './Content';
-import { findContainer, getFieldConfig, onDragEnd, onDragOver } from './helpers';
+import { onDragEnd, onDragOver } from './helpers';
 import LeftSider from './LeftSider';
 import { ButtonWrapper } from './LeftSider/Styled';
 import RightSider from './RightSider';
 import { LayoutWrapper } from './Styled';
+import { findContainer, getFieldConfig } from './utils';
 
 // 编辑器布局容器
 const Layout: React.FC<EditorProps> = (props) => {

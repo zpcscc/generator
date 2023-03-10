@@ -1,4 +1,5 @@
-import { separateToIntegrate, SimpleCodeEditor } from '@dxsixpc/generator';
+import { SimpleCodeEditor } from '@dxsixpc/components';
+import { separateToIntegrate } from '@dxsixpc/generator';
 import { dataToString } from '@dxsixpc/utils';
 import type { ModalProps } from 'antd';
 import { Button, message, Space } from 'antd';
