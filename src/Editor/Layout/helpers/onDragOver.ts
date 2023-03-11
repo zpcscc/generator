@@ -11,7 +11,7 @@ import { getFieldConfig } from '../utils';
  */
 const onDragOver = (
   { active, over }: DragEndEvent,
-  setComponentItems: SetterOrUpdater<ComponentStructureType>,
+  setComponentStructure: SetterOrUpdater<ComponentStructureType>,
   componentItems: ComponentItemType[],
 ) => {
   /**
@@ -22,7 +22,7 @@ const onDragOver = (
     const fieldConfig: FieldConfigType = getFieldConfig(String(active.id));
     const { componentItem } = fieldConfig;
     const id = String(active?.id);
-    setComponentItems(({ componentItems, structureItems }) => ({
+    setComponentStructure(({ componentItems, structureItems }) => ({
       componentItems: [...componentItems, { ...componentItem, id }],
       structureItems: [...structureItems, { id }],
     }));

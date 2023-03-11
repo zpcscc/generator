@@ -17,7 +17,7 @@ const Button: React.FC<ItemProps> = (props) => {
   const { fieldConfig } = props;
   const { label, componentItem } = fieldConfig;
   const setCurrent = useSetRecoilState(currentState);
-  const setComponentItems = useSetRecoilState(componentStructureState);
+  const setComponentStructure = useSetRecoilState(componentStructureState);
   const leftSortableItems = useRecoilValue(leftSortableItemsState);
   const id = leftSortableItems.find((item) => item.split('-')[0] === componentItem.id) || 'input';
   const { listeners, setNodeRef, attributes, isDragging } = useSortable({
@@ -30,7 +30,7 @@ const Button: React.FC<ItemProps> = (props) => {
       fieldConfig: getFieldConfig(id),
       currentId: newId,
     });
-    setComponentItems(({ componentItems, structureItems }) => ({
+    setComponentStructure(({ componentItems, structureItems }) => ({
       componentItems: [...componentItems, { ...componentItem, id: newId }],
       structureItems: [...structureItems, { id: newId }],
     }));

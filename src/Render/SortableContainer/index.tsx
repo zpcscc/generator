@@ -1,12 +1,15 @@
+import { CopyOutlined, DeleteOutlined } from '@ant-design/icons';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { useState } from 'react';
-import { SortableWrapper } from './Styled';
+import type { OnEventChangeType } from 'src/type';
+import { PointerWrapper, SortableWrapper } from './Styled';
 
 interface SortableContainerProps {
-  id?: string;
   children: React.ReactNode;
+  id?: string;
   focus?: boolean;
+  onEventChange?: OnEventChangeType;
 }
 
 /**
@@ -15,7 +18,8 @@ interface SortableContainerProps {
  * @returns
  */
 const SortableContainer: React.FC<SortableContainerProps> = (props) => {
-  const { id = '', focus = false, children } = props;
+  const { id = '', focus = false, children, onEventChange } = props;
+  const { onSelect, onCopy, onDelete } = onEventChange || {};
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
     id,
   });
@@ -39,13 +43,24 @@ const SortableContainer: React.FC<SortableContainerProps> = (props) => {
         opacity: isDragging ? 0.5 : undefined,
         ...focusStyle,
       }}
-      onFocus={() => setIsFocus(true)}
+      onFocus={() => {
+        setIsFocus(true);
+        onSelect?.(id);
+      }}
       onBlur={() => setIsFocus(false)}
       ref={setNodeRef}
       {...attributes}
       {...listeners}
     >
       {children}
+      <PointerWrapper style={{ display: isFocus ? 'flex' : 'none' }}>
+        <div className='pointer' role='button' onClick={() => onDelete?.(id)}>
+          <DeleteOutlined />
+        </div>
+        <div className='pointer' role='button' onClick={() => onCopy?.(id)}>
+          <CopyOutlined />
+        </div>
+      </PointerWrapper>
     </SortableWrapper>
   );
 };

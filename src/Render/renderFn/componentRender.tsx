@@ -1,9 +1,9 @@
 import { getComponent } from '@dxsixpc/components';
+import { styledToString } from '@dxsixpc/utils';
 import { css } from '@emotion/react';
 import { omit } from 'lodash';
 import type { ComponentItemType } from 'src/type';
 import { editorStyled, FormItemWrapper } from '../Styled';
-import { styledToString } from '../utils';
 import type { BaseRenderType } from './type';
 
 export interface ComponentRenderProps extends BaseRenderType {
@@ -27,7 +27,10 @@ const componentRender = (props: ComponentRenderProps) => {
       `}
       className={props.type === 'editor' ? editorStyled : ''}
     >
-      <Component {...componentItem?.props} />
+      <Component
+        {...omit(componentItem?.props, ['styled'])}
+        styled={styledToString(componentItem?.props?.styled)}
+      />
     </FormItemWrapper>
   );
 };

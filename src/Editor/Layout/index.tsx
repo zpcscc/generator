@@ -15,7 +15,7 @@ import { uniqueId } from 'lodash';
 import { useCallback, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useRecoilState, useSetRecoilState } from 'recoil';
-import componentItemsState from 'src/Editor/atoms/componentStructureState';
+import componentStructureState from 'src/Editor/atoms/componentStructureState';
 import currentState from 'src/Editor/atoms/currentState';
 import leftSortableItemsState from 'src/Editor/atoms/leftSortableItemsState';
 import { renderItem, SortableContainer } from 'src/Render';
@@ -31,8 +31,8 @@ import { findContainer, getFieldConfig } from './utils';
 // 编辑器布局容器
 const Layout: React.FC<EditorProps> = (props) => {
   const { componentMap } = props;
-  const [{ componentItems, structureItems }, setComponentItems] =
-    useRecoilState(componentItemsState);
+  const [{ componentItems, structureItems }, setComponentStructure] =
+    useRecoilState(componentStructureState);
   const [{ currentId, fieldConfig }, setCurrent] = useRecoilState(currentState);
   const setLeftSortableItems = useSetRecoilState(leftSortableItemsState);
   const [activeId, setActiveId] = useState<string | null>(null);
@@ -85,18 +85,21 @@ const Layout: React.FC<EditorProps> = (props) => {
             currentId: id,
           });
         }}
-        onDragOver={(event) => onDragOver(event, setComponentItems, componentItems)}
+        onDragOver={(event) => onDragOver(event, setComponentStructure, componentItems)}
         onDragEnd={(event) => {
           setActiveId(null);
-          onDragEnd(event, setComponentItems);
-          setLeftSortableItems((items) =>
-            items.map((item) => {
-              if (item === event.active.id) {
-                return uniqueId(`${item.split('-')[0]}-`);
-              }
-              return item;
-            }),
-          );
+          onDragEnd(event, setComponentStructure);
+          if (isNew) {
+            // 若此次添加的是新元素，则更新左侧组件的id
+            setLeftSortableItems((items) =>
+              items.map((item) => {
+                if (item === event.active.id) {
+                  return uniqueId(`${item.split('-')[0]}-`);
+                }
+                return item;
+              }),
+            );
+          }
         }}
         onDragCancel={() => setActiveId(null)}
       >

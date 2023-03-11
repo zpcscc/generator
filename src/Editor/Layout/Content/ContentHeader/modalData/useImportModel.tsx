@@ -4,13 +4,13 @@ import type { ModalProps } from 'antd';
 import { message } from 'antd';
 import { useState } from 'react';
 import { useSetRecoilState } from 'recoil';
-import componentItemsState from 'src/Editor/atoms/componentStructureState';
+import componentStructureState from 'src/Editor/atoms/componentStructureState';
 import { integrateToSeparate } from 'src/Render';
 import type { ModelType } from '../type';
 
 // 导入弹出框
 const useImportModel = (setModalType: (modelType: ModelType | null) => void): ModalProps => {
-  const setComponentItems = useSetRecoilState(componentItemsState);
+  const setComponentStructure = useSetRecoilState(componentStructureState);
   const [value, setValue] = useState<string>();
 
   return {
@@ -21,7 +21,7 @@ const useImportModel = (setModalType: (modelType: ModelType | null) => void): Mo
     onOk: () => {
       const componentItems = stringToData(value);
       if (Array.isArray(componentItems)) {
-        setComponentItems(integrateToSeparate(componentItems));
+        setComponentStructure(integrateToSeparate(componentItems));
         setModalType(null);
       } else {
         message.error('格式错误');

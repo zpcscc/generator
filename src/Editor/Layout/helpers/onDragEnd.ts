@@ -11,16 +11,16 @@ import { sortItems } from '../utils';
  */
 const onDragEnd = (
   { active, over }: DragEndEvent,
-  setComponentItems: SetterOrUpdater<ComponentStructureType>,
+  setComponentStructure: SetterOrUpdater<ComponentStructureType>,
 ) => {
   // 当前拖拽组件与所覆盖的组件不是同一个，则进行排序
   if (active.id !== over?.id && over?.id !== undefined) {
-    setComponentItems(({ componentItems, structureItems }) => ({
+    setComponentStructure(({ componentItems, structureItems }) => ({
       componentItems,
       structureItems: sortItems(structureItems, active.id, over?.id),
     }));
   } else {
-    // setComponentItems((componentItems) => formatComponentItems(componentItems));
+    // setComponentStructure((componentItems) => formatComponentItems(componentItems));
   }
 };
 

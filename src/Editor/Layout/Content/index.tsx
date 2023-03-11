@@ -1,15 +1,16 @@
 import { useSortable } from '@dnd-kit/sortable';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import currentState from 'src/Editor/atoms/currentState';
 import { Render } from 'src/Render';
 import componentStructureState from '../../atoms/componentStructureState';
-import { getFieldConfig } from '../utils';
+import { copyItem, deleteItem, getFieldConfig } from '../utils';
 import ContentHeader from './ContentHeader';
 import { ContentLayoutWrapper, ContentWrapper } from './Styled';
 
-// 中间区域画布
+// 中间画布内容区域
 const Content: React.FC = () => {
-  const { componentItems, structureItems } = useRecoilValue(componentStructureState);
+  const [{ componentItems, structureItems }, setComponentStructure] =
+    useRecoilState(componentStructureState);
   const setCurrent = useSetRecoilState(currentState);
   const { setNodeRef } = useSortable({ id: 'Content' });
 
@@ -22,12 +23,15 @@ const Content: React.FC = () => {
             type='editor'
             componentItems={componentItems}
             structureItems={structureItems}
-            onSelect={(id) =>
-              setCurrent({
-                fieldConfig: getFieldConfig(id),
-                currentId: id,
-              })
-            }
+            onSelect={(id) => setCurrent({ fieldConfig: getFieldConfig(id), currentId: id })}
+            onDelete={(id) => {
+              setCurrent({ fieldConfig: undefined, currentId: undefined });
+              setComponentStructure((componentStructure) => deleteItem(id, componentStructure));
+            }}
+            onCopy={(id) => {
+              setCurrent({ fieldConfig: undefined, currentId: undefined });
+              setComponentStructure((componentStructure) => copyItem(id, componentStructure));
+            }}
           />
         ) : (
           <div className='content-placeholder'>点击/拖拽左侧栏的组件进行添加</div>

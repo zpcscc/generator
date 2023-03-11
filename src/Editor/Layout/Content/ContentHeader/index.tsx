@@ -1,14 +1,14 @@
 import { Button, Modal } from 'antd';
 import { useState } from 'react';
 import { useSetRecoilState } from 'recoil';
-import componentItemsState from '../../../atoms/componentStructureState';
+import componentStructureState from '../../../atoms/componentStructureState';
 import useModelData from './modalData';
 import { ContentHeaderWrapper } from './Styled';
 import type { ModelType } from './type';
 
 // 中间区域画布头
 const ContentHeader: React.FC = () => {
-  const setComponentItems = useSetRecoilState(componentItemsState);
+  const setComponentStructure = useSetRecoilState(componentStructureState);
 
   const [modalType, setModalType] = useState<ModelType | null>(null);
   const modalDataMap = useModelData(setModalType);
@@ -17,7 +17,10 @@ const ContentHeader: React.FC = () => {
   return (
     <ContentHeaderWrapper size={[8, 16]} wrap>
       <Button onClick={() => setModalType('previewModel')}>预览</Button>
-      <Button danger onClick={() => setComponentItems({ componentItems: [], structureItems: [] })}>
+      <Button
+        danger
+        onClick={() => setComponentStructure({ componentItems: [], structureItems: [] })}
+      >
         清空
       </Button>
       <Button onClick={() => setModalType('importModel')}>导入</Button>
