@@ -1,7 +1,13 @@
 import type { FormInstance, FormProps } from 'antd';
 import { ConfigProvider, Form } from 'antd';
 import { isEmpty } from 'lodash';
-import type { AnyObject, ComponentItemType, ComponentMapType, StructureItemType } from 'src/type';
+import type {
+  AnyObject,
+  ComponentItemType,
+  ComponentMapType,
+  OnEventChangeType,
+  StructureItemType,
+} from 'src/type';
 import { loopRender } from './renderFn';
 import { FormWrapper } from './Styled';
 import { integrateToSeparate } from './utils';
@@ -21,8 +27,16 @@ export interface RenderProps {
   formOptions?: FormProps;
   // 值改变时
   onChange?: (changedValues: AnyObject, values: AnyObject, form: FormInstance<any>) => void;
+
+  // ** 编辑器画布渲染，额外用到的属性
+  // 当前选中的组件id
+  currentId?: string;
   // 选中的元素
-  onSelect?: (selectId: string) => void;
+  onSelect?: (id: string) => void;
+  // 需要删除的元素
+  onDelete?: (id: string) => void;
+  // 需要拷贝的元素
+  onCopy?: (id: string) => void;
 }
 
 /**
@@ -41,8 +55,11 @@ const Render: React.FC<RenderProps> = (props) => {
     defaultValue = {},
     componentMap = {},
     formOptions,
+    currentId,
     onChange,
     onSelect,
+    onDelete,
+    onCopy,
   } = props;
   const [form] = Form.useForm();
   const useComponentStructure = !isEmpty(props.structureItems);
@@ -58,13 +75,18 @@ const Render: React.FC<RenderProps> = (props) => {
     onChange?.(changedValues, values, form);
   };
 
+  const onEventChange: OnEventChangeType = {
+    onDelete,
+    onSelect,
+    onCopy,
+  };
+
   return (
     <ConfigProvider>
       <FormWrapper
         form={form}
         layout='vertical'
         onValuesChange={onFormValuesChange}
-        onClick={(e) => onSelect?.((e.target as HTMLDivElement).id)}
         {...formOptions}
       >
         {loopRender({
@@ -73,6 +95,8 @@ const Render: React.FC<RenderProps> = (props) => {
           defaultValue,
           componentMap,
           type,
+          onEventChange,
+          currentId,
         })}
       </FormWrapper>
     </ConfigProvider>

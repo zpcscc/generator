@@ -10,19 +10,25 @@ import { getFieldConfig } from '../utils';
  * @param setItems
  */
 const onDragOver = (
-  { active, over }: DragEndEvent,
-  setComponentItems: SetterOrUpdater<ComponentStructureType>,
+  event: DragEndEvent,
+  setComponentStructure: SetterOrUpdater<ComponentStructureType>,
   componentItems: ComponentItemType[],
 ) => {
+  const { active, over } = event;
   /**
-   * 从左侧组件列表拖拽至中间画布
+   * 从左侧组件列表拖拽至中间画布,同时满足以下条件
    * 1、画布组件列表中不存在over.id组件
+   * 2、拖拽的元素覆盖到中间画布区域或者中间组件上
    */
-  if (active?.id && !componentItems.find((item) => item.id === active.id)) {
+  if (
+    active?.id &&
+    !componentItems.find((item) => item.id === active.id) &&
+    (over?.id === 'Content' || componentItems.find((item) => item.id === over?.id))
+  ) {
     const fieldConfig: FieldConfigType = getFieldConfig(String(active.id));
     const { componentItem } = fieldConfig;
     const id = String(active?.id);
-    setComponentItems(({ componentItems, structureItems }) => ({
+    setComponentStructure(({ componentItems, structureItems }) => ({
       componentItems: [...componentItems, { ...componentItem, id }],
       structureItems: [...structureItems, { id }],
     }));

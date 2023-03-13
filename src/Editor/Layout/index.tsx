@@ -5,8 +5,10 @@ import {
   DndContext,
   DragOverlay,
   MeasuringStrategy,
+  MouseSensor,
   PointerSensor,
   pointerWithin,
+  TouchSensor,
   useSensor,
   useSensors,
 } from '@dnd-kit/core';
@@ -15,7 +17,7 @@ import { uniqueId } from 'lodash';
 import { useCallback, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useRecoilState, useSetRecoilState } from 'recoil';
-import componentItemsState from 'src/Editor/atoms/componentStructureState';
+import componentStructureState from 'src/Editor/atoms/componentStructureState';
 import currentState from 'src/Editor/atoms/currentState';
 import leftSortableItemsState from 'src/Editor/atoms/leftSortableItemsState';
 import { renderItem, SortableContainer } from 'src/Render';
@@ -31,8 +33,8 @@ import { findContainer, getFieldConfig } from './utils';
 // 编辑器布局容器
 const Layout: React.FC<EditorProps> = (props) => {
   const { componentMap } = props;
-  const [{ componentItems, structureItems }, setComponentItems] =
-    useRecoilState(componentItemsState);
+  const [{ componentItems, structureItems }, setComponentStructure] =
+    useRecoilState(componentStructureState);
   const [{ currentId, fieldConfig }, setCurrent] = useRecoilState(currentState);
   const setLeftSortableItems = useSetRecoilState(leftSortableItemsState);
   const [activeId, setActiveId] = useState<string | null>(null);
@@ -40,6 +42,11 @@ const Layout: React.FC<EditorProps> = (props) => {
   const structureItem = findContainer(currentId, structureItems);
 
   const sensors = useSensors(
+    // 鼠标传感器
+    useSensor(MouseSensor),
+    // 触摸传感器
+    useSensor(TouchSensor),
+    // 指针
     useSensor(PointerSensor, {
       activationConstraint: {
         // 拖移偏移1px的距离后再触发拖拽排序事件。若不设置偏移距离，会使拖拽事件覆盖掉点击事件。导致无法点击聚焦。
@@ -51,7 +58,7 @@ const Layout: React.FC<EditorProps> = (props) => {
   const collisionDetection: CollisionDetection = useCallback(
     (args) => {
       // 若拖拽的是左侧组件，使用指针碰撞检测算法
-      if (!currentId?.toString().includes('-')) {
+      if (isNew) {
         const pointerCollisions = pointerWithin(args);
         if (pointerCollisions.length > 0) {
           return pointerCollisions;
@@ -61,18 +68,14 @@ const Layout: React.FC<EditorProps> = (props) => {
       // 其他情况使用四角定位算法
       return closestCorners(args);
     },
-    [currentId],
+    [isNew],
   );
 
   return (
     <LayoutWrapper>
       <DndContext
         sensors={sensors}
-        measuring={{
-          droppable: {
-            strategy: MeasuringStrategy.Always,
-          },
-        }}
+        measuring={{ droppable: { strategy: MeasuringStrategy.Always } }}
         collisionDetection={collisionDetection}
         onDragStart={({ active }) => {
           if (!active) return;
@@ -80,23 +83,23 @@ const Layout: React.FC<EditorProps> = (props) => {
           const isExistence = componentItems.find((item) => item.id === id);
           setIsNew(!isExistence);
           setActiveId(id);
-          setCurrent({
-            fieldConfig: getFieldConfig(id),
-            currentId: id,
-          });
+          setCurrent({ fieldConfig: getFieldConfig(id), currentId: id });
         }}
-        onDragOver={(event) => onDragOver(event, setComponentItems, componentItems)}
+        onDragOver={(event) => onDragOver(event, setComponentStructure, componentItems)}
         onDragEnd={(event) => {
           setActiveId(null);
-          onDragEnd(event, setComponentItems);
-          setLeftSortableItems((items) =>
-            items.map((item) => {
-              if (item === event.active.id) {
-                return uniqueId(`${item.split('-')[0]}-`);
-              }
-              return item;
-            }),
-          );
+          onDragEnd(event, setComponentStructure);
+          if (isNew) {
+            // 若此次添加的是新元素，则更新左侧组件的id
+            setLeftSortableItems((items) =>
+              items.map((item) => {
+                if (item === event.active.id) {
+                  return uniqueId(`${item.split('-')[0]}-`);
+                }
+                return item;
+              }),
+            );
+          }
         }}
         onDragCancel={() => setActiveId(null)}
       >
@@ -108,11 +111,7 @@ const Layout: React.FC<EditorProps> = (props) => {
             // 拖动结束后的放置动画
             dropAnimation={{
               sideEffects: defaultDropAnimationSideEffects({
-                styles: {
-                  active: {
-                    opacity: '0.5',
-                  },
-                },
+                styles: { active: { opacity: '0.5' } },
               }),
             }}
           >
@@ -121,7 +120,7 @@ const Layout: React.FC<EditorProps> = (props) => {
                 <ButtonWrapper>{fieldConfig?.label}</ButtonWrapper>
               ) : (
                 <Form layout='vertical'>
-                  <SortableContainer id={structureItem?.id} focus>
+                  <SortableContainer id={structureItem?.id} currentId={currentId}>
                     {renderItem({
                       structureItem,
                       componentItems,

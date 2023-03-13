@@ -3,6 +3,7 @@ import type {
   OptionsConfigType,
   OptionType,
   SelectProps,
+  StyledType,
   TextAreaProps,
 } from '@dxsixpc/components';
 import type { FormItemProps } from 'antd';
@@ -37,19 +38,9 @@ export interface PropsType {
   [key: string]: any;
 }
 
-// 组件自定义样式字段类型
-export interface StyledType {
-  [key: string]: React.CSSProperties | StyledType | string | number;
-}
-
-/**
- * @name component对象的类型
- */
-export interface ComponentItemType extends Omit<FormItemProps, 'children'> {
-  // 每个组件的唯一标识id
-  id: string;
-  // 组件的类型
-  type: keyof typeof ComponentMap;
+// 组件item中可配置的字段类型
+export class ConfigType {
+  // ** 以下是可配置的类型
   // 组件标题名称
   label?: string;
   // 显示标题
@@ -58,6 +49,19 @@ export interface ComponentItemType extends Omit<FormItemProps, 'children'> {
   hidden?: boolean;
   // 组件自定义样式
   styled?: StyledType;
+}
+
+type ConfigAndFormItemType = ConfigType & Omit<FormItemProps, 'children'>;
+
+/**
+ * @name component对象的类型
+ */
+export interface ComponentItemType extends ConfigAndFormItemType {
+  // ** 以下是固定字段，不可动态配置；可配置的类型，请放在ConfigType中
+  // 每个组件的唯一标识id
+  id: string;
+  // 组件的类型
+  type: keyof typeof ComponentMap;
   // 组件的参数集合，props里的内容会传到组件里
   props?: PropsType;
   // 可嵌套的子组件

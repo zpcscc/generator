@@ -15,3 +15,9 @@ export interface FieldConfigType {
 }
 
 export type FieldMapType = Record<keyof typeof fieldMao, FieldConfigType>;
+
+export interface OnEventChangeType {
+  onSelect?: (id: string) => void;
+  onDelete?: (id: string) => void;
+  onCopy?: (id: string) => void;
+}

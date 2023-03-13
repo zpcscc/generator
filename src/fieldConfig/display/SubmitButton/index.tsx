@@ -7,6 +7,13 @@ const submitButton: FieldConfigType = {
   componentItem: {
     id: 'submitButton',
     type: 'Button',
+    props: {
+      type: 'primary',
+      children: '提交按钮',
+      styled: {
+        width: '100%',
+      },
+    },
   },
   configPanel: submitButtonConfig,
 };

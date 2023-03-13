@@ -1,6 +1,7 @@
 import { useSortable } from '@dnd-kit/sortable';
 import { uniqueId } from 'lodash';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useMemo } from 'react';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import componentStructureState from 'src/Editor/atoms/componentStructureState';
 import currentState from 'src/Editor/atoms/currentState';
 import leftSortableItemsState from 'src/Editor/atoms/leftSortableItemsState';
@@ -16,13 +17,18 @@ interface ItemProps {
 const Button: React.FC<ItemProps> = (props) => {
   const { fieldConfig } = props;
   const { label, componentItem } = fieldConfig;
-  const setCurrent = useSetRecoilState(currentState);
-  const setComponentItems = useSetRecoilState(componentStructureState);
+  const [{ currentId }, setCurrent] = useRecoilState(currentState);
+  const [{ componentItems }, setComponentStructure] = useRecoilState(componentStructureState);
   const leftSortableItems = useRecoilValue(leftSortableItemsState);
   const id = leftSortableItems.find((item) => item.split('-')[0] === componentItem.id) || 'input';
   const { listeners, setNodeRef, attributes, isDragging } = useSortable({
     id,
   });
+  const isComponentItem = useMemo(
+    () => (currentId ? Boolean(componentItems.find((item) => item.id === currentId)) : false),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [currentId, componentItems],
+  );
 
   const onClick = () => {
     const newId = uniqueId(`${componentItem.id}-`);
@@ -30,7 +36,7 @@ const Button: React.FC<ItemProps> = (props) => {
       fieldConfig: getFieldConfig(id),
       currentId: newId,
     });
-    setComponentItems(({ componentItems, structureItems }) => ({
+    setComponentStructure(({ componentItems, structureItems }) => ({
       componentItems: [...componentItems, { ...componentItem, id: newId }],
       structureItems: [...structureItems, { id: newId }],
     }));
@@ -40,7 +46,7 @@ const Button: React.FC<ItemProps> = (props) => {
     <ButtonWrapper
       style={{ opacity: isDragging ? 0.5 : undefined }}
       onClick={onClick}
-      ref={setNodeRef}
+      ref={isComponentItem ? undefined : setNodeRef}
       {...attributes}
       {...listeners}
     >
