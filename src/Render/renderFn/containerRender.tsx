@@ -1,6 +1,4 @@
 import { getComponent } from '@dxsixpc/components';
-import { styledToString } from '@dxsixpc/utils';
-import { omit } from 'lodash';
 import type { ComponentItemType, OnEventChangeType, StructureItemType } from 'src/type';
 import loopRender from './loopRender';
 import type { BaseRenderType } from './type';
@@ -10,6 +8,7 @@ export interface ContainerRenderProps extends BaseRenderType {
   structureItem?: StructureItemType;
   componentItems: ComponentItemType[];
   onEventChange?: OnEventChangeType;
+  currentId?: string;
 }
 
 // 渲染包含children的布局组件
@@ -27,11 +26,7 @@ const containerRender = (props: ContainerRenderProps) => {
   if (!children || hidden) return;
   const Component = getComponent(type);
   return (
-    <Component
-      key={id}
-      {...omit(componentItem?.props, ['styled'])}
-      styled={styledToString(componentItem?.props?.styled)}
-    >
+    <Component key={id} {...componentItem?.props}>
       {loopRender({
         componentItems,
         structureItems: children,

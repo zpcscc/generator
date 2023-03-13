@@ -1,4 +1,5 @@
-import { Button, Modal } from 'antd';
+import { Button } from '@dxsixpc/components';
+import { Modal } from 'antd';
 import { useState } from 'react';
 import { useSetRecoilState } from 'recoil';
 import componentStructureState from '../../../atoms/componentStructureState';

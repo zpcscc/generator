@@ -27,6 +27,10 @@ export interface RenderProps {
   formOptions?: FormProps;
   // 值改变时
   onChange?: (changedValues: AnyObject, values: AnyObject, form: FormInstance<any>) => void;
+
+  // ** 编辑器画布渲染，额外用到的属性
+  // 当前选中的组件id
+  currentId?: string;
   // 选中的元素
   onSelect?: (id: string) => void;
   // 需要删除的元素
@@ -51,6 +55,7 @@ const Render: React.FC<RenderProps> = (props) => {
     defaultValue = {},
     componentMap = {},
     formOptions,
+    currentId,
     onChange,
     onSelect,
     onDelete,
@@ -91,6 +96,7 @@ const Render: React.FC<RenderProps> = (props) => {
           componentMap,
           type,
           onEventChange,
+          currentId,
         })}
       </FormWrapper>
     </ConfigProvider>

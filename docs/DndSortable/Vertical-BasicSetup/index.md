@@ -1,5 +1,6 @@
 ---
 title: BasicSetup
+debug: true
 nav:
   title: 拖拽排序
 group:

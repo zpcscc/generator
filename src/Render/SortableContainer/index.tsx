@@ -1,15 +1,14 @@
 import { CopyOutlined, DeleteOutlined } from '@ant-design/icons';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import { useState } from 'react';
 import type { OnEventChangeType } from 'src/type';
 import { PointerWrapper, SortableWrapper } from './Styled';
 
 interface SortableContainerProps {
   children: React.ReactNode;
   id?: string;
-  focus?: boolean;
   onEventChange?: OnEventChangeType;
+  currentId?: string;
 }
 
 /**
@@ -18,13 +17,13 @@ interface SortableContainerProps {
  * @returns
  */
 const SortableContainer: React.FC<SortableContainerProps> = (props) => {
-  const { id = '', focus = false, children, onEventChange } = props;
+  const { id = '', currentId, children, onEventChange } = props;
   const { onSelect, onCopy, onDelete } = onEventChange || {};
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
     id,
   });
+  const isFocus = currentId === id;
 
-  const [isFocus, setIsFocus] = useState<boolean>(focus);
   const focusStyle = isFocus
     ? {
         outline: '3px solid rgb(64, 158, 255)',
@@ -43,11 +42,7 @@ const SortableContainer: React.FC<SortableContainerProps> = (props) => {
         opacity: isDragging ? 0.5 : undefined,
         ...focusStyle,
       }}
-      onFocus={() => {
-        setIsFocus(true);
-        onSelect?.(id);
-      }}
-      onBlur={() => setIsFocus(false)}
+      onFocus={() => onSelect?.(id)}
       ref={setNodeRef}
       {...attributes}
       {...listeners}

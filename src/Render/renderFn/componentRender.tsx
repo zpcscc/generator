@@ -1,5 +1,5 @@
+/** @jsxImportSource @emotion/react */
 import { getComponent } from '@dxsixpc/components';
-import { styledToString } from '@dxsixpc/utils';
 import { css } from '@emotion/react';
 import { omit } from 'lodash';
 import type { ComponentItemType } from 'src/type';
@@ -23,14 +23,11 @@ const componentRender = (props: ComponentRenderProps) => {
       initialValue={defaultValue?.[id]}
       {...omit(componentItem, ['styled', 'id', 'props', 'hidden', 'children', 'showLabel'])}
       css={css`
-        ${styledToString(styled)}
+        ${styled}
       `}
       className={props.type === 'editor' ? editorStyled : ''}
     >
-      <Component
-        {...omit(componentItem?.props, ['styled'])}
-        styled={styledToString(componentItem?.props?.styled)}
-      />
+      <Component {...componentItem?.props} />
     </FormItemWrapper>
   );
 };
