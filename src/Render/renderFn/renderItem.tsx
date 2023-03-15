@@ -1,5 +1,5 @@
 import { isEmpty } from 'lodash';
-import type { ComponentItemType, OnEventChangeType, StructureItemType } from 'src/type';
+import type { ComponentItemType, StructureItemType } from 'src/type';
 import { getComponentItem } from '../utils';
 import componentRender from './componentRender';
 import containerRender from './containerRender';
@@ -8,20 +8,10 @@ import type { BaseRenderType } from './type';
 export interface RenderItemProps extends BaseRenderType {
   componentItems: ComponentItemType[];
   structureItem?: StructureItemType;
-  onEventChange?: OnEventChangeType;
-  currentId?: string;
 }
 
 const renderItem = (props: RenderItemProps) => {
-  const {
-    componentItems,
-    structureItem,
-    defaultValue,
-    componentMap,
-    type,
-    onEventChange,
-    currentId,
-  } = props;
+  const { componentItems, structureItem, defaultValue = {}, componentMap, editorProps } = props;
   const { id = '', children } = structureItem || {};
   const componentItem = getComponentItem(componentItems, id);
   return !isEmpty(children)
@@ -31,11 +21,9 @@ const renderItem = (props: RenderItemProps) => {
         structureItem,
         componentMap,
         defaultValue,
-        type,
-        onEventChange,
-        currentId,
+        editorProps,
       })
-    : componentRender({ componentItem, componentMap, defaultValue, type });
+    : componentRender({ componentItem, componentMap, defaultValue, editorProps });
 };
 
 export default renderItem;

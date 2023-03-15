@@ -10,7 +10,7 @@ import { LeftSiderWrapper } from './Styled';
 
 const fieldConfig = {
   表单组件: formConfigMap,
-  容器布局组件: containerConfigMap,
+  '容器布局组件(开发中，未完成)': containerConfigMap,
   展示组件: displayConfigMap,
 };
 

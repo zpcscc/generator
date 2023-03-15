@@ -8,9 +8,9 @@ import type { StructureItemType } from 'src/type';
  * @param items
  * @returns item
  */
-const findContainer = (
-  id?: UniqueIdentifier,
+const findStructureItem = (
   items?: StructureItemType[],
+  id?: UniqueIdentifier,
 ): StructureItemType | undefined => {
   if (!id || !items) return undefined;
   let structureItem;
@@ -27,7 +27,7 @@ const findContainer = (
     }
   };
   loopItems(items);
-  return structureItem || { id, children: [] };
+  return structureItem;
 };
 
-export default findContainer;
+export default findStructureItem;

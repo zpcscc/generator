@@ -1,6 +1,6 @@
-import type { UniqueIdentifier } from '@dnd-kit/core';
 import { isEmpty } from 'lodash';
-import type { ComponentStructureType } from 'src/type';
+import type { ComponentStructureType, StructureItemType } from 'src/type';
+import formatItems from './formatItems';
 
 /**
  * @name 输入id，删除此项
@@ -9,28 +9,31 @@ import type { ComponentStructureType } from 'src/type';
  * @returns item
  */
 const deleteItem = (
-  id: UniqueIdentifier,
   componentStructure: ComponentStructureType,
+  id: string,
 ): ComponentStructureType => {
   const { componentItems, structureItems } = componentStructure;
   // 递归循环遍历数据
-  const loopItems = (items) => {
+  const loopItems = (items: StructureItemType[]) => {
     return items
       .map((item) =>
         item.id === id
           ? null
           : {
               id: item.id,
-              children: isEmpty(item.children) ? null : loopItems(item.children),
+              children:
+                item.children === undefined || isEmpty(item.children)
+                  ? null
+                  : loopItems(item.children),
             },
       )
       .filter(Boolean);
   };
 
-  return {
-    componentItems: componentItems.filter((item) => item.id !== id),
-    structureItems: loopItems(structureItems),
-  };
+  return formatItems(
+    componentItems.filter((item) => item.id !== id),
+    loopItems(structureItems),
+  );
 };
 
 export default deleteItem;

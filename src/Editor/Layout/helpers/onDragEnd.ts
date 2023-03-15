@@ -1,7 +1,7 @@
 import type { DragEndEvent } from '@dnd-kit/core';
 import type { SetterOrUpdater } from 'recoil';
-import type { ComponentStructureType } from 'src/type';
-import { sortItems } from '../utils';
+import type { ComponentItemType, ComponentStructureType, StructureItemType } from 'src/type';
+import { findContainerItem, sortStructureItems } from '../utils';
 
 /**
  * @name 拖拽结束时
@@ -10,18 +10,32 @@ import { sortItems } from '../utils';
  * @param setItems
  */
 const onDragEnd = (
-  { active, over }: DragEndEvent,
+  event: DragEndEvent,
+  componentItems: ComponentItemType[],
+  structureItems: StructureItemType[],
   setComponentStructure: SetterOrUpdater<ComponentStructureType>,
 ) => {
-  // 当前拖拽组件与所覆盖的组件不是同一个，则进行排序
-  if (active.id !== over?.id && over?.id !== undefined) {
+  const { active, over } = event;
+  if (!over?.id) return;
+  const activeId = String(active.id);
+  const overId = String(over?.id);
+
+  const activeContainerItem = findContainerItem(structureItems, activeId);
+  const overContainerItem = findContainerItem(structureItems, overId);
+  // 没有找到容器，直接退出
+  if (!activeContainerItem || !overContainerItem) return;
+
+  // 两者id不相等，但容器相等。说明需要的是在同一容器下的排序操作
+  if (activeId !== overId && activeContainerItem.id === overContainerItem.id) {
+    // 当前拖拽组件与所覆盖的组件不是同一个，则进行排序
     setComponentStructure(({ componentItems, structureItems }) => ({
       componentItems,
-      structureItems: sortItems(structureItems, active.id, over?.id),
+      structureItems: sortStructureItems(structureItems, activeContainerItem.id, activeId, overId),
     }));
-  } else {
-    // setComponentStructure((componentItems) => formatComponentItems(componentItems));
   }
+
+  // 两者容器id不同，则不在同一个容器中。需要调整位置
+  // if (activeContainerItem.id !== overContainerItem.id) {}
 };
 
 export default onDragEnd;

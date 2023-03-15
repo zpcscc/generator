@@ -8,8 +8,8 @@ import type { ComponentItemType, ComponentStructureType, StructureItemType } fro
  * @returns item
  */
 const copyItem = (
-  id: string,
   componentStructure: ComponentStructureType,
+  id: string,
   newId?: string,
 ): ComponentStructureType => {
   const { componentItems, structureItems } = componentStructure;

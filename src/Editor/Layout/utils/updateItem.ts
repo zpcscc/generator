@@ -9,8 +9,8 @@ const ConfigTypeMap = new ConfigType();
  * @returns item
  */
 const updateItem = (
-  id: string,
   componentStructure: ComponentStructureType,
+  id: string,
   changeValue: AnyObject,
 ): ComponentStructureType => {
   if (!changeValue) return componentStructure;

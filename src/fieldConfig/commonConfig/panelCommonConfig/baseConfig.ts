@@ -1,4 +1,5 @@
 // 这这里对每个组件进行统一配置
+import type { OptionsConfigType } from '@dxsixpc/components';
 import type { ComponentItemType } from 'src/type';
 
 /**
@@ -57,7 +58,7 @@ export const radioOptionsConfig = (): ComponentItemType => ({
         { label: '选项2', value: '选项2' },
         { label: '选项3', value: '选项3' },
       ],
-    },
+    } as OptionsConfigType<'Radio'>,
   },
 });
 
@@ -77,7 +78,7 @@ export const checkboxOptionsConfig = (): ComponentItemType => ({
         { label: '选项2', value: '选项2' },
         { label: '选项3', value: '选项3' },
       ],
-    },
+    } as OptionsConfigType<'Checkbox'>,
   },
 });
 

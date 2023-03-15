@@ -1,6 +1,5 @@
 import { SortableContext } from '@dnd-kit/sortable';
 import { Fragment } from 'react';
-import type { RenderProps } from '../Render';
 import SortableContainer from '../SortableContainer';
 
 const ComponentMap = {
@@ -14,7 +13,7 @@ const ComponentMap = {
  * @param componentConfig
  * @returns
  */
-const getWrapper = (type: RenderProps['type'] | 'component'): React.FC<any> => {
+const getWrapper = (type: 'editor' | 'play' | 'component'): React.FC<any> => {
   return Reflect.get({ ...ComponentMap }, type || 'play') || Fragment;
 };
 

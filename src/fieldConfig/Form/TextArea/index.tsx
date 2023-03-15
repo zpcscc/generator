@@ -1,8 +1,9 @@
+import type { TextAreaProps } from '@dxsixpc/components';
 import type { FieldConfigType } from 'src/type';
 import { inputConfig } from '../input/config';
 
 // 文本框
-const textarea: FieldConfigType = {
+const textarea: FieldConfigType<TextAreaProps> = {
   label: '文本框',
   componentItem: {
     id: 'textarea',
