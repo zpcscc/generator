@@ -1,7 +1,9 @@
 {
   "name": "@dxsixpc/generator",
   "version": "0.1.2",
-  "description": "低代码页面(表单)生成器",
+  "description": "低代码表单生成器",
+  "homepage": "https://dxsixpc.github.io/generator",
+  "repository": "https://github.com/dxsixpc/generator",
   "license": "MIT",
   "author": {
     "name": "dxsix",
