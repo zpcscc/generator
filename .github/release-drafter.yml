@@ -58,16 +58,17 @@ categories:
       - '🗑revert'
       - 'revert'
 autolabeler:
-  - label: 'test'
-    branch:
-      - 'master'
-    title:
-      - '/🚨test/'
   - label: 'feat'
     branch:
-      - 'master'
+      - '/master/'
     title:
       - '/✨feat/'
+  - label: 'test'
+    branch:
+      - '/master/'
+    title:
+      - '/🚨test/'
+  
 change-template: '* $TITLE (#$NUMBER) @$AUTHOR'
 template: |
   ## 更新内容
