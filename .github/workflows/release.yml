@@ -5,16 +5,8 @@ on:
     branches:
       - "master"
 
-permissions:
-  contents: read
-
 jobs:
-  update_release_draft:
-    permissions: 
-      contents: write
-      pull-requests: write
-    runs-on: ubuntu-latest
-    steps:
-      - uses: release-drafter/release-drafter@v5
-        env:
-          GITHUB_TOKEN: ${{ secrets.ZPCSCC }}
+  call-workflow-release:
+    uses: dxsixpc/configs/.github/workflows/release-config.yml
+    secrets:
+      token: ${{ secrets.ZPCSCC }}
