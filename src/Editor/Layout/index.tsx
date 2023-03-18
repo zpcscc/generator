@@ -5,10 +5,8 @@ import {
   DndContext,
   DragOverlay,
   MeasuringStrategy,
-  MouseSensor,
   PointerSensor,
   pointerWithin,
-  TouchSensor,
   useSensor,
   useSensors,
 } from '@dnd-kit/core';
@@ -28,7 +26,7 @@ import LeftSider from './LeftSider';
 import { ButtonWrapper } from './LeftSider/Styled';
 import RightSider from './RightSider';
 import { LayoutWrapper } from './Styled';
-import { findContainer, getFieldConfig } from './utils';
+import { findStructureItem, getFieldConfig } from './utils';
 
 // 编辑器布局容器
 const Layout: React.FC<EditorProps> = (props) => {
@@ -39,14 +37,8 @@ const Layout: React.FC<EditorProps> = (props) => {
   const setLeftSortableItems = useSetRecoilState(leftSortableItemsState);
   const [activeId, setActiveId] = useState<string | null>(null);
   const [isNew, setIsNew] = useState<boolean>(false);
-  const structureItem = findContainer(currentId, structureItems);
-
+  const structureItem = findStructureItem(structureItems, currentId);
   const sensors = useSensors(
-    // 鼠标传感器
-    useSensor(MouseSensor),
-    // 触摸传感器
-    useSensor(TouchSensor),
-    // 指针
     useSensor(PointerSensor, {
       activationConstraint: {
         // 拖移偏移1px的距离后再触发拖拽排序事件。若不设置偏移距离，会使拖拽事件覆盖掉点击事件。导致无法点击聚焦。
@@ -55,21 +47,15 @@ const Layout: React.FC<EditorProps> = (props) => {
     }),
   );
 
-  const collisionDetection: CollisionDetection = useCallback(
-    (args) => {
-      // 若拖拽的是左侧组件，使用指针碰撞检测算法
-      if (isNew) {
-        const pointerCollisions = pointerWithin(args);
-        if (pointerCollisions.length > 0) {
-          return pointerCollisions;
-        }
-        return closestCorners(args);
-      }
-      // 其他情况使用四角定位算法
-      return closestCorners(args);
-    },
-    [isNew],
-  );
+  const collisionDetection: CollisionDetection = useCallback((args) => {
+    // 优先使用指针碰撞检测算法，精度最高，以指针所在位置计算。
+    const pointerCollisions = pointerWithin(args);
+    if (pointerCollisions.length > 0) {
+      return pointerCollisions;
+    }
+    // 若指针碰撞检测算法无数据，则使用四角定位算法
+    return closestCorners(args);
+  }, []);
 
   return (
     <LayoutWrapper>
@@ -85,10 +71,12 @@ const Layout: React.FC<EditorProps> = (props) => {
           setActiveId(id);
           setCurrent({ fieldConfig: getFieldConfig(id), currentId: id });
         }}
-        onDragOver={(event) => onDragOver(event, setComponentStructure, componentItems)}
+        onDragOver={(event) =>
+          onDragOver(event, componentItems, structureItems, setComponentStructure)
+        }
         onDragEnd={(event) => {
           setActiveId(null);
-          onDragEnd(event, setComponentStructure);
+          onDragEnd(event, componentItems, structureItems, setComponentStructure);
           if (isNew) {
             // 若此次添加的是新元素，则更新左侧组件的id
             setLeftSortableItems((items) =>
@@ -120,13 +108,12 @@ const Layout: React.FC<EditorProps> = (props) => {
                 <ButtonWrapper>{fieldConfig?.label}</ButtonWrapper>
               ) : (
                 <Form layout='vertical'>
-                  <SortableContainer id={structureItem?.id} currentId={currentId}>
+                  <SortableContainer id={structureItem?.id} editorProps={{ currentId }}>
                     {renderItem({
                       structureItem,
                       componentItems,
-                      defaultValue: {},
                       componentMap,
-                      type: 'editor',
+                      editorProps: { currentId },
                     })}
                   </SortableContainer>
                 </Form>

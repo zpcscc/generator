@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { getComponent } from '@dxsixpc/components';
 import { css } from '@emotion/react';
-import { omit } from 'lodash';
+import { isEmpty, isNil, omit } from 'lodash';
 import type { ComponentItemType } from 'src/type';
 import { editorStyled, FormItemWrapper } from '../Styled';
 import type { BaseRenderType } from './type';
@@ -12,8 +12,8 @@ export interface ComponentRenderProps extends BaseRenderType {
 
 // 渲染组件
 const componentRender = (props: ComponentRenderProps) => {
-  const { componentItem, componentMap = {}, defaultValue = {} } = props;
-  const { id = '', type, styled } = componentItem || {};
+  const { componentItem, componentMap = {}, defaultValue = {}, editorProps } = props;
+  const { id = '', type, styled, showLabel, label } = componentItem || {};
   const Component = getComponent(type, componentMap);
 
   return (
@@ -22,10 +22,11 @@ const componentRender = (props: ComponentRenderProps) => {
       name={id}
       initialValue={defaultValue?.[id]}
       {...omit(componentItem, ['styled', 'id', 'props', 'hidden', 'children', 'showLabel'])}
+      label={isNil(showLabel) ? label : showLabel ? label : undefined}
       css={css`
         ${styled}
       `}
-      className={props.type === 'editor' ? editorStyled : ''}
+      className={!isEmpty(editorProps) ? editorStyled : ''}
     >
       <Component {...componentItem?.props} />
     </FormItemWrapper>

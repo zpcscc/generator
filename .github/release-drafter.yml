@@ -57,11 +57,12 @@ categories:
     labels:
       - '🗑revert'
       - 'revert'
-exclude-labels:
-  - reverted
-  - no-changelog
-  - skip-changelog
-  - invalid
+autolabeler:
+  - label: 'test'
+    branch:
+      - 'master'
+    title:
+      - '/🚨test/'
 change-template: '* $TITLE (#$NUMBER) @$AUTHOR'
 template: |
   ## 更新内容

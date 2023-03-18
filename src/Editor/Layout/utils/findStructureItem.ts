@@ -8,12 +8,13 @@ import type { StructureItemType } from 'src/type';
  * @param items
  * @returns item
  */
-const findContainer = (
+const findStructureItem = (
+  structureItems?: StructureItemType[],
   id?: UniqueIdentifier,
-  items?: StructureItemType[],
 ): StructureItemType | undefined => {
-  if (!id || !items) return undefined;
+  if (!id || !structureItems) return undefined;
   let structureItem;
+  const rootStructureItem = { id: 'root', children: structureItems };
   // 递归循环遍历数据
   const loopItems = (items) => {
     for (let i = 0; i < items.length; i++) {
@@ -26,8 +27,9 @@ const findContainer = (
       }
     }
   };
-  loopItems(items);
-  return structureItem || { id, children: [] };
+  loopItems(structureItems);
+  if (id === 'root') return rootStructureItem;
+  return structureItem;
 };
 
-export default findContainer;
+export default findStructureItem;

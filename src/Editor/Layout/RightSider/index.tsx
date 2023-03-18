@@ -30,7 +30,7 @@ const RightSider: React.FC<LeftSiderProps> = () => {
   const onValuesChange = (changeValue?: AnyObject, values?: AnyObject) => {
     if (currentId && changeValue) {
       setComponentStructure((componentStructure) =>
-        updateItem(currentId, componentStructure, changeValue),
+        updateItem(componentStructure, currentId, changeValue),
       );
     }
   };

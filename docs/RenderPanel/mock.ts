@@ -174,7 +174,7 @@ export const pageData: ComponentItemType[] = [
           color: '#666699',
           '&': {
             '.ant-alert-message': {
-              'font-size': '12px',
+              fontSize: '12px',
             },
           },
         },

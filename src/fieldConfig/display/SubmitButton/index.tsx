@@ -1,8 +1,9 @@
+import type { ButtonProps } from '@dxsixpc/components';
 import type { FieldConfigType } from 'src/type';
 import { submitButtonConfig } from './config';
 
 // 提交按钮
-const submitButton: FieldConfigType = {
+const submitButton: FieldConfigType<ButtonProps> = {
   label: '提交按钮',
   componentItem: {
     id: 'submitButton',

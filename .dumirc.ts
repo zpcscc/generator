@@ -10,8 +10,9 @@ export default defineConfig({
     socialLinks: {
       github: `https://github.com/dxsixpc/${name}`,
     },
-    logo: `/${name}/logo.png`,
+    logo: 'https://zpcscc.top/img/logo.png',
   },
+  favicons: ['https://zpcscc.top/img/favicon.ico'],
   alias: {
     src: resolve(__dirname, './src'),
     '@dxsixpc/generator': resolve(__dirname, './src'),

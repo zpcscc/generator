@@ -1,3 +1,4 @@
+import type { CascadeProps } from '@dxsixpc/components';
 import type { FieldConfigType } from 'src/type';
 import { cascadeConfig } from './config';
 // import { provinceCityAreaCascadeData } from './province-city-china';
@@ -22,7 +23,7 @@ const cascadeDataMock = [
 ];
 
 // 级联选择框
-const cascade: FieldConfigType = {
+const cascade: FieldConfigType<CascadeProps> = {
   label: '级联组件',
   componentItem: {
     id: 'cascade',

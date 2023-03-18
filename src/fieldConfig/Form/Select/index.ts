@@ -1,9 +1,10 @@
+import type { SelectProps } from '@dxsixpc/components';
 import type { FieldConfigType } from 'src/type';
 import { radioOptionsConfig } from '../../commonConfig';
 import { selectConfig } from './config';
 
 // 下拉框
-const select: FieldConfigType = {
+const select: FieldConfigType<SelectProps> = {
   label: '下拉框',
   componentItem: {
     id: 'select',

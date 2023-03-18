@@ -13,29 +13,30 @@ const Content: React.FC = () => {
   const [{ componentItems, structureItems }, setComponentStructure] =
     useRecoilState(componentStructureState);
   const [{ currentId }, setCurrent] = useRecoilState(currentState);
-  const isInContent = Boolean(componentItems.find((item) => item.id === currentId));
-  const { setNodeRef } = useDroppable({ id: 'Content', disabled: isInContent });
+  const isInRoot = Boolean(structureItems.find((item) => item.id === currentId));
+  const { setNodeRef } = useDroppable({ id: 'root', disabled: isInRoot });
   return (
     <ContentLayoutWrapper>
       <ContentHeader />
       <ContentWrapper ref={setNodeRef}>
         {componentItems?.length ? (
           <Render
-            type='editor'
             componentItems={componentItems}
             structureItems={structureItems}
-            currentId={currentId}
-            onSelect={(id) => setCurrent({ fieldConfig: getFieldConfig(id), currentId: id })}
-            onDelete={(id) => {
-              setCurrent({ fieldConfig: undefined, currentId: undefined });
-              setComponentStructure((componentStructure) => deleteItem(id, componentStructure));
-            }}
-            onCopy={(id) => {
-              const newId = uniqueId(`${id.split('-')[0]}-`);
-              setCurrent({ fieldConfig: getFieldConfig(id), currentId: newId });
-              setComponentStructure((componentStructure) =>
-                copyItem(id, componentStructure, newId),
-              );
+            editorProps={{
+              currentId,
+              onSelect: (id) => setCurrent({ fieldConfig: getFieldConfig(id), currentId: id }),
+              onDelete: (id) => {
+                setCurrent({ fieldConfig: undefined, currentId: undefined });
+                setComponentStructure((componentStructure) => deleteItem(componentStructure, id));
+              },
+              onCopy: (id) => {
+                const newId = uniqueId(`${id.split('-')[0]}-`);
+                setCurrent({ fieldConfig: getFieldConfig(id), currentId: newId });
+                setComponentStructure((componentStructure) =>
+                  copyItem(componentStructure, id, newId),
+                );
+              },
             }}
           />
         ) : (
