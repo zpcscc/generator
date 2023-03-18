@@ -7,6 +7,6 @@ on:
 
 jobs:
   call-workflow-release:
-    uses: dxsixpc/configs/.github/workflows/release-config.yml
+    uses: dxsixpc/configs/.github/workflows/release-config.yml@master
     secrets:
       token: ${{ secrets.ZPCSCC }}
