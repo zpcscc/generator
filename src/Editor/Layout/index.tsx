@@ -38,9 +38,7 @@ const Layout: React.FC<EditorProps> = (props) => {
   const [activeId, setActiveId] = useState<string | null>(null);
   const [isNew, setIsNew] = useState<boolean>(false);
   const structureItem = findStructureItem(structureItems, currentId);
-
   const sensors = useSensors(
-    // 指针
     useSensor(PointerSensor, {
       activationConstraint: {
         // 拖移偏移1px的距离后再触发拖拽排序事件。若不设置偏移距离，会使拖拽事件覆盖掉点击事件。导致无法点击聚焦。

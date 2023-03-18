@@ -38,7 +38,11 @@ const updateStructureItem = (
       .filter(Boolean);
   };
 
-  return loopItems(structureItems);
+  const newStructureItems = cloneDeep(structureItems) || [];
+  if (addContainerId === 'root') {
+    newStructureItems.splice(index, 0, newItem);
+  }
+  return loopItems(newStructureItems);
 };
 
 export default updateStructureItem;

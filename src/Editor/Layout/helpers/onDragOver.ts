@@ -17,6 +17,7 @@ import {
 
 /**
  * @name 拖拽覆盖到某个组件时
+ * @description onDragOver中，不负责组件的排序，只负责组件的添加，和跨容器组件的添加与删除
  * @param param
  * @param items
  * @param setItems
@@ -39,9 +40,8 @@ const onDragOver = (
    */
   if (
     !componentItems.find((item) => item.id === active.id) &&
-    (overId === 'Content' || componentItems.find((item) => item.id === overId))
+    (overId === 'root' || componentItems.find((item) => item.id === overId))
   ) {
-    console.log('添加');
     // 添加新元素到画布中
     const { componentItem }: FieldConfigType = getFieldConfig(String(active.id));
     setComponentStructure(({ componentItems, structureItems }) => ({
@@ -54,23 +54,21 @@ const onDragOver = (
   // 当前选中元素的的item
   // 获取对应元素所在容器的item
   const activeContainerItem = findContainerItem(structureItems, activeId);
-  // console.log('overId: ', overId);
   const overContainerItem = findContainerItem(structureItems, overId, isContainer(overId));
-  console.log('overContainerItem: ', overContainerItem);
   // 没有找到容器，直接退出
   if (!activeContainerItem || !overContainerItem) return;
 
-  // 两者容器id不同，则不在同一个容器中。需要调整位置
-  if (activeContainerItem.id !== overContainerItem.id) {
-    // 将当前拖拽的组件，放入所覆盖到的容器中
-
+  // 两者不是同一元素且不在同一个容器中。需要调整位置
+  if (activeId !== overId && activeContainerItem.id !== overContainerItem.id) {
     const activeStructureItem = findStructureItem(structureItems, activeId);
     const overStructureItem = findStructureItem(structureItems, overId);
     if (!activeStructureItem || !overStructureItem) return;
     // const activeItems = activeContainerItem.children || [];
     const overItems = overContainerItem.children || [];
     const overIndex = overItems.findIndex((item) => item.id === overId);
+    console.log('overIndex: ', overIndex);
 
+    // 更新结构数据，将active在对应容器中添加与删除
     const newStructureItems = updateStructureItem(
       structureItems,
       activeId,
@@ -78,6 +76,7 @@ const onDragOver = (
       activeStructureItem,
       overIndex,
     );
+
     console.log('newStructureItems: ', newStructureItems);
 
     setComponentStructure(({ componentItems }) => formatItems(componentItems, newStructureItems));

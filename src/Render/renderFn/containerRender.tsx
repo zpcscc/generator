@@ -3,7 +3,6 @@ import { isEmpty } from 'lodash';
 import type { ComponentItemType, StructureItemType } from 'src/type';
 import { isContainer } from 'src/utils';
 import { getWrapper } from '../helpers';
-import { strategy } from '../utils';
 import loopRender from './loopRender';
 import type { BaseRenderType } from './type';
 
@@ -21,8 +20,11 @@ const containerRender = (props: ContainerRenderProps) => {
   const { type, hidden } = componentItem || {};
   const isEditor = !isEmpty(editorProps);
   if ((isEditor && !isContainer(id)) || !children || hidden) return;
-  const Wrapper = getWrapper(isEditor ? 'editor' : 'play');
-  const wrapperProps = isEditor ? { items: children, strategy } : {};
+  const { Wrapper, wrapperProps } = getWrapper(
+    isEditor ? 'editor' : 'play',
+    structureItem,
+    componentItem,
+  );
   const Component = getComponent(type);
   return (
     <Wrapper {...wrapperProps}>

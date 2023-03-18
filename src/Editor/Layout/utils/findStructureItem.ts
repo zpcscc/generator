@@ -9,11 +9,12 @@ import type { StructureItemType } from 'src/type';
  * @returns item
  */
 const findStructureItem = (
-  items?: StructureItemType[],
+  structureItems?: StructureItemType[],
   id?: UniqueIdentifier,
 ): StructureItemType | undefined => {
-  if (!id || !items) return undefined;
+  if (!id || !structureItems) return undefined;
   let structureItem;
+  const rootStructureItem = { id: 'root', children: structureItems };
   // 递归循环遍历数据
   const loopItems = (items) => {
     for (let i = 0; i < items.length; i++) {
@@ -26,7 +27,8 @@ const findStructureItem = (
       }
     }
   };
-  loopItems(items);
+  loopItems(structureItems);
+  if (id === 'root') return rootStructureItem;
   return structureItem;
 };
 

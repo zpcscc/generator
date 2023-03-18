@@ -11,7 +11,7 @@ import sortItems from './sortItems';
 const sortStructureItems = (
   // 完整的结构数据
   structureItems: StructureItemType[],
-  // 需要被添加子元素的容器id
+  // 需要排序的容器id
   containerId: string,
   activeId: string,
   overId: string,
@@ -29,6 +29,10 @@ const sortStructureItems = (
       };
     });
   };
+
+  if (containerId === 'root') {
+    return sortItems(structureItems || [], activeId, overId);
+  }
   return loopItems(structureItems);
 };
 

@@ -15,15 +15,15 @@ export interface LoopRenderProps extends BaseRenderType {
 const loopRender = (props: LoopRenderProps): React.ReactNode => {
   const { componentItems, structureItems, defaultValue, componentMap, editorProps } = props;
   const isEditor = !isEmpty(editorProps);
-  const ComponentWrapper = getWrapper(isEditor ? 'component' : 'play');
+  const { Wrapper } = getWrapper(isEditor ? 'component' : 'play');
 
   return (
     <>
       {structureItems?.map((structureItem: StructureItemType) => {
         const { id } = structureItem || {};
-        const componentWrapperProps = isEditor ? { id, editorProps } : {};
+        const wrapperProps = isEditor ? { id, editorProps } : {};
         return (
-          <ComponentWrapper key={id} {...componentWrapperProps}>
+          <Wrapper key={id} {...wrapperProps}>
             {renderItem({
               componentItems,
               structureItem,
@@ -31,7 +31,7 @@ const loopRender = (props: LoopRenderProps): React.ReactNode => {
               componentMap,
               editorProps,
             })}
-          </ComponentWrapper>
+          </Wrapper>
         );
       })}
     </>

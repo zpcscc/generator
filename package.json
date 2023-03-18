@@ -51,7 +51,7 @@
     "@dnd-kit/modifiers": "^6.0.1",
     "@dnd-kit/sortable": "^7.0.2",
     "@dnd-kit/utilities": "^3.2.1",
-    "@dxsixpc/components": "0.2.4",
+    "@dxsixpc/components": "0.2.6",
     "@dxsixpc/utils": "^0.2.2",
     "@emotion/css": "^11.10.6",
     "@emotion/react": "^11.10.6",
@@ -81,7 +81,7 @@
     "classnames": "^2.3.2",
     "dumi": "^2.1.15",
     "eslint": "^8.36.0",
-    "father": "^4.1.6",
+    "father": "^4.1.7",
     "gh-pages": "^5.0.0",
     "husky": "^8.0.1",
     "lint-staged": "^13.2.0",
@@ -91,9 +91,9 @@
     "react-dom": "^18.0.0",
     "react-is": "^18.2.0",
     "styled-components": "^5.3.9",
-    "stylelint": "^15.2.0",
-    "typescript": "^4.9.5",
-    "webpack": "^5.76.1"
+    "stylelint": "^15.3.0",
+    "typescript": "^5.0.2",
+    "webpack": "^5.76.2"
   },
   "peerDependencies": {
     "react": ">=16.9.0",

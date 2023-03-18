@@ -8,10 +8,10 @@ import type {
   EditorPropsType,
   StructureItemType,
 } from 'src/type';
+import { FormWrapper } from './Styled';
 import { getWrapper } from './helpers';
 import { loopRender } from './renderFn';
-import { FormWrapper } from './Styled';
-import { integrateToSeparate, strategy } from './utils';
+import { integrateToSeparate } from './utils';
 
 export interface RenderProps {
   // 表单组件列表
@@ -56,8 +56,10 @@ const Render: React.FC<RenderProps> = (props) => {
     onChange?.(changedValues, values, form);
   };
   const isEditor = !isEmpty(editorProps);
-  const Wrapper = getWrapper(isEditor ? 'editor' : 'play');
-  const wrapperProps = isEditor ? { items: structureItems, strategy } : {};
+  const { Wrapper, wrapperProps } = getWrapper(isEditor ? 'editor' : 'play', {
+    id: 'root',
+    children: structureItems,
+  });
 
   return (
     <ConfigProvider>

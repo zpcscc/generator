@@ -14,6 +14,7 @@ const findContainerItem = (
 ): StructureItemType | undefined => {
   if (!id || !structureItems) return undefined;
   let currStructureItem;
+  const rootStructureItem = { id: 'root', children: structureItems };
   // 递归循环遍历数据
   const loopItems = (structureItem: StructureItemType) => {
     const { children } = structureItem;
@@ -33,7 +34,8 @@ const findContainerItem = (
       }
     }
   };
-  loopItems({ id: 'root', children: structureItems });
+  loopItems(rootStructureItem);
+  if (id === 'root') return rootStructureItem;
   return currStructureItem;
 };
 
