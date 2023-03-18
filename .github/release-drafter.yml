@@ -3,6 +3,17 @@ name-template: 'v$NEXT_PATCH_VERSION 🌈'
 tag-template: 'v$NEXT_PATCH_VERSION'
 version-template: $MAJOR.$MINOR.$PATCH
 # Emoji reference: https://gitmoji.carloscuesta.me/
+autolabeler:
+  - label: 'feat'
+    branch:
+      - '/master/'
+    title:
+      - '/✨feat/'
+  - label: 'test'
+    branch:
+      - '/master/'
+    title:
+      - '/🚨test/'
 categories:
   - title: '✨ 新功能'
     labels:
@@ -57,18 +68,6 @@ categories:
     labels:
       - '🗑revert'
       - 'revert'
-autolabeler:
-  - label: 'feat'
-    branch:
-      - '/master/'
-    title:
-      - '/✨feat/'
-  - label: 'test'
-    branch:
-      - '/master/'
-    title:
-      - '/🚨test/'
-  
 change-template: '* $TITLE (#$NUMBER) @$AUTHOR'
 template: |
   ## 更新内容
