@@ -63,6 +63,11 @@ autolabeler:
       - 'master'
     title:
       - '/🚨test/'
+  - label: 'feat'
+    branch:
+      - 'master'
+    title:
+      - '/✨feat/'
 change-template: '* $TITLE (#$NUMBER) @$AUTHOR'
 template: |
   ## 更新内容
