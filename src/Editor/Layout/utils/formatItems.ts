@@ -1,5 +1,6 @@
 import { isEmpty } from 'lodash';
 import type { ComponentItemType, ComponentStructureType, StructureItemType } from 'src/type';
+import getFieldConfig from './getFieldConfig';
 
 /**
  * @name 传入组件的数据结构。格式化，同步组件与结构两者的数据并返回。
@@ -20,8 +21,8 @@ const formatItems = (
       .map((item) => {
         const currComponentItem = componentItems.find(
           (componentItem) => componentItem.id === item.id,
-        );
-        if (currComponentItem) newComponentItems.push(currComponentItem);
+        ) || { ...getFieldConfig(item.id).componentItem, id: item.id };
+        newComponentItems.push(currComponentItem);
         return {
           ...item,
           children:

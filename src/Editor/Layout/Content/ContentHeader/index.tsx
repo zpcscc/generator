@@ -3,8 +3,8 @@ import { Modal } from 'antd';
 import { useState } from 'react';
 import { useSetRecoilState } from 'recoil';
 import componentStructureState from '../../../atoms/componentStructureState';
-import useModelData from './modalData';
 import { ContentHeaderWrapper } from './Styled';
+import useModelData from './modalData';
 import type { ModelType } from './type';
 
 // 中间区域画布头

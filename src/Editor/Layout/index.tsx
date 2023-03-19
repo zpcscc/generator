@@ -1,29 +1,24 @@
 import type { CollisionDetection } from '@dnd-kit/core';
 import {
   closestCorners,
-  defaultDropAnimationSideEffects,
   DndContext,
-  DragOverlay,
   MeasuringStrategy,
   PointerSensor,
   pointerWithin,
   useSensor,
   useSensors,
 } from '@dnd-kit/core';
-import { Form } from 'antd';
 import { uniqueId } from 'lodash';
 import { useCallback, useState } from 'react';
-import { createPortal } from 'react-dom';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import componentStructureState from 'src/Editor/atoms/componentStructureState';
 import currentState from 'src/Editor/atoms/currentState';
 import leftSortableItemsState from 'src/Editor/atoms/leftSortableItemsState';
-import { renderItem, SortableContainer } from 'src/Render';
 import type { EditorProps } from '../Editor';
 import Content from './Content';
+import DndDragOverlay from './DndDragOverlay';
 import { onDragEnd, onDragOver } from './helpers';
 import LeftSider from './LeftSider';
-import { ButtonWrapper } from './LeftSider/Styled';
 import RightSider from './RightSider';
 import { LayoutWrapper } from './Styled';
 import { findStructureItem, getFieldConfig } from './utils';
@@ -31,8 +26,8 @@ import { findStructureItem, getFieldConfig } from './utils';
 // 编辑器布局容器
 const Layout: React.FC<EditorProps> = (props) => {
   const { componentMap } = props;
-  const [{ componentItems, structureItems }, setComponentStructure] =
-    useRecoilState(componentStructureState);
+  const [componentStructure, setComponentStructure] = useRecoilState(componentStructureState);
+  const { componentItems, structureItems } = componentStructure;
   const [{ currentId, fieldConfig }, setCurrent] = useRecoilState(currentState);
   const setLeftSortableItems = useSetRecoilState(leftSortableItemsState);
   const [activeId, setActiveId] = useState<string | null>(null);
@@ -47,15 +42,19 @@ const Layout: React.FC<EditorProps> = (props) => {
     }),
   );
 
-  const collisionDetection: CollisionDetection = useCallback((args) => {
-    // 优先使用指针碰撞检测算法，精度最高，以指针所在位置计算。
-    const pointerCollisions = pointerWithin(args);
-    if (pointerCollisions.length > 0) {
-      return pointerCollisions;
-    }
-    // 若指针碰撞检测算法无数据，则使用四角定位算法
-    return closestCorners(args);
-  }, []);
+  const collisionDetection: CollisionDetection = useCallback(
+    (args) => {
+      if (isNew) {
+        // 添加新元素时，需要使用指针算法，为了精确识别root根容器
+        const pointerCollisions = pointerWithin(args);
+        if (pointerCollisions.length > 0) return pointerCollisions;
+        return closestCorners(args);
+      }
+      // 其他情况，使用四角定位算法。有一定的容错率，所有操作都有反馈。用户体验会好些。
+      return closestCorners(args);
+    },
+    [isNew],
+  );
 
   return (
     <LayoutWrapper>
@@ -66,24 +65,19 @@ const Layout: React.FC<EditorProps> = (props) => {
         onDragStart={({ active }) => {
           if (!active) return;
           const id = String(active.id);
-          const isExistence = componentItems.find((item) => item.id === id);
-          setIsNew(!isExistence);
+          setIsNew(!componentItems.find((item) => item.id === String(active.id)));
           setActiveId(id);
           setCurrent({ fieldConfig: getFieldConfig(id), currentId: id });
         }}
-        onDragOver={(event) =>
-          onDragOver(event, componentItems, structureItems, setComponentStructure)
-        }
+        onDragOver={(event) => onDragOver(event, componentStructure, setComponentStructure)}
         onDragEnd={(event) => {
           setActiveId(null);
-          onDragEnd(event, componentItems, structureItems, setComponentStructure);
+          onDragEnd(event, componentStructure, setComponentStructure);
           if (isNew) {
             // 若此次添加的是新元素，则更新左侧组件的id
             setLeftSortableItems((items) =>
               items.map((item) => {
-                if (item === event.active.id) {
-                  return uniqueId(`${item.split('-')[0]}-`);
-                }
+                if (item === event.active.id) return uniqueId(`${item.split('-')[0]}-`);
                 return item;
               }),
             );
@@ -94,34 +88,15 @@ const Layout: React.FC<EditorProps> = (props) => {
         <LeftSider />
         <Content />
         <RightSider />
-        {createPortal(
-          <DragOverlay
-            // 拖动结束后的放置动画
-            dropAnimation={{
-              sideEffects: defaultDropAnimationSideEffects({
-                styles: { active: { opacity: '0.5' } },
-              }),
-            }}
-          >
-            {activeId ? (
-              isNew ? (
-                <ButtonWrapper>{fieldConfig?.label}</ButtonWrapper>
-              ) : (
-                <Form layout='vertical'>
-                  <SortableContainer id={structureItem?.id} editorProps={{ currentId }}>
-                    {renderItem({
-                      structureItem,
-                      componentItems,
-                      componentMap,
-                      editorProps: { currentId },
-                    })}
-                  </SortableContainer>
-                </Form>
-              )
-            ) : null}
-          </DragOverlay>,
-          document.body,
-        )}
+        <DndDragOverlay
+          componentItems={componentItems}
+          componentMap={componentMap}
+          currentId={currentId}
+          activeId={activeId}
+          structureItem={structureItem}
+          fieldConfig={fieldConfig}
+          isNew={isNew}
+        />
       </DndContext>
     </LayoutWrapper>
   );

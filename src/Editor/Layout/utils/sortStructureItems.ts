@@ -11,10 +11,10 @@ import sortItems from './sortItems';
 const sortStructureItems = (
   // 完整的结构数据
   structureItems: StructureItemType[],
-  // 需要排序的容器id
-  containerId: string,
   activeId: string,
   overId: string,
+  // 需要排序的容器id
+  containerId?: string,
 ): StructureItemType[] => {
   // 递归循环遍历数据
   const loopItems = (items: StructureItemType[]) => {
@@ -30,7 +30,7 @@ const sortStructureItems = (
     });
   };
 
-  if (containerId === 'root') {
+  if (!containerId || containerId === 'root') {
     return sortItems(structureItems || [], activeId, overId);
   }
   return loopItems(structureItems);

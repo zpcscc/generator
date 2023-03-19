@@ -10,32 +10,27 @@ import type { StructureItemType } from 'src/type';
 const findContainerItem = (
   structureItems?: StructureItemType[],
   id?: string,
-  isContainer?: boolean,
 ): StructureItemType | undefined => {
   if (!id || !structureItems) return undefined;
-  let currStructureItem;
-  const rootStructureItem = { id: 'root', children: structureItems };
+  let currStructureItem: StructureItemType | undefined;
+  if (id === 'root') {
+    return { id: 'root', children: isEmpty(structureItems) ? undefined : structureItems };
+  }
   // 递归循环遍历数据
-  const loopItems = (structureItem: StructureItemType) => {
-    const { children } = structureItem;
+  const loopItems = (structureItem?: StructureItemType) => {
+    const { children } = structureItem || {};
     if (children) {
       for (let i = 0; i < children?.length; i++) {
         if (children?.[i]?.id === id) {
-          /**
-           * 判断需要寻找的item是否是容器，
-           * 1、若本身是容器，则返回本身的容器。
-           * 2、本身不是容器，则返回包裹它的父容器。
-           */
-          currStructureItem = isContainer ? children?.[i] : structureItem;
+          currStructureItem = structureItem;
           break;
-        } else if (!isEmpty(children?.[i].children)) {
+        } else if (!isEmpty(children?.[i]?.children)) {
           loopItems(children?.[i]);
         }
       }
     }
   };
-  loopItems(rootStructureItem);
-  if (id === 'root') return rootStructureItem;
+  loopItems({ id: 'root', children: structureItems });
   return currStructureItem;
 };
 

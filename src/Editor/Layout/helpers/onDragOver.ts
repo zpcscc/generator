@@ -1,19 +1,8 @@
 import type { DragEndEvent } from '@dnd-kit/core';
 import type { SetterOrUpdater } from 'recoil';
-import type {
-  ComponentItemType,
-  ComponentStructureType,
-  FieldConfigType,
-  StructureItemType,
-} from 'src/type';
+import type { ComponentStructureType } from 'src/type';
 import { isContainer } from 'src/utils';
-import {
-  findContainerItem,
-  findStructureItem,
-  formatItems,
-  getFieldConfig,
-  updateStructureItem,
-} from '../utils';
+import { findContainerItem, findStructureItem, updateComponentStructure } from '../utils';
 
 /**
  * @name 拖拽覆盖到某个组件时
@@ -24,68 +13,62 @@ import {
  */
 const onDragOver = (
   event: DragEndEvent,
-  componentItems: ComponentItemType[],
-  structureItems: StructureItemType[],
+  componentStructure: ComponentStructureType,
   setComponentStructure: SetterOrUpdater<ComponentStructureType>,
 ) => {
   const { active, over } = event;
   if (!over?.id) return;
   const activeId = String(active.id);
   const overId = String(over?.id);
+  const { structureItems } = componentStructure;
+
+  // 获取当前元素所在容器的item
+  const activeContainerItem = findContainerItem(structureItems, activeId);
+  const overContainerItem = findContainerItem(structureItems, overId);
+  // console.log('activeId: ', activeId, overId);
+  // console.log('activeContainerItem: ', activeContainerItem, overContainerItem);
+  // 没有找到所需要覆盖的容器，直接退出
+  if (!overContainerItem) return;
+
+  let activeStructureItem = findStructureItem(structureItems, activeId);
+  const overStructureItem = findStructureItem(structureItems, overId);
+  if (!overStructureItem) return componentStructure;
+  // 找不到当前元素的结构数据，说明时新添加的元素。初始化当前元素数据
+  if (!activeStructureItem) activeStructureItem = { id: activeId };
+  const overContainerChildren = overContainerItem.children || [];
+  const overIndex = overContainerChildren.findIndex((item) => item.id === overId);
+
+  // 是否为同一元素
+  const isSameItem = activeId === overId;
+  // 是否是同一容器
+  const isSameContainer = activeContainerItem?.id === overContainerItem.id;
 
   /**
-   * 从左侧组件列表拖拽至中间画布,添加新元素到画布中。需同时满足以下条件
-   * 1、画布组件列表中不存在over.id组件
-   * 2、拖拽的元素覆盖到中间画布区域或者画布区域组件上
+   * 以下几种情况，满足其一，则触发数据更新
+   * 1、两者不是同一元素，不在同一容器中。
+   * 2、两者不是同一元素，在同一容器中。over元素也是容器，且active元素不在over容器中
    */
   if (
-    !componentItems.find((item) => item.id === active.id) &&
-    (overId === 'root' || componentItems.find((item) => item.id === overId))
+    // 两者不是同一元素
+    !isSameItem &&
+    // 两者不在同一个容器中
+    (!isSameContainer ||
+      // 若两者在同一个容器中，但over元素也是个容器
+      (isSameContainer &&
+        isContainer(overId) &&
+        !overStructureItem.children?.find((item) => item.id === activeId)))
   ) {
-    // 添加新元素到画布中
-    const { componentItem }: FieldConfigType = getFieldConfig(String(active.id));
-    setComponentStructure(({ componentItems, structureItems }) => ({
-      componentItems: [...componentItems, { ...componentItem, id: activeId }],
-      structureItems: [...structureItems, { id: activeId }],
-    }));
-    return;
-  }
-
-  // 当前选中元素的的item
-  // 获取对应元素所在容器的item
-  const activeContainerItem = findContainerItem(structureItems, activeId);
-  const overContainerItem = findContainerItem(structureItems, overId, isContainer(overId));
-  // 没有找到容器，直接退出
-  if (!activeContainerItem || !overContainerItem) return;
-
-  // 两者不是同一元素且不在同一个容器中。需要调整位置
-  if (activeId !== overId && activeContainerItem.id !== overContainerItem.id) {
-    const activeStructureItem = findStructureItem(structureItems, activeId);
-    const overStructureItem = findStructureItem(structureItems, overId);
-    if (!activeStructureItem || !overStructureItem) return;
-    // const activeItems = activeContainerItem.children || [];
-    const overItems = overContainerItem.children || [];
-    const overIndex = overItems.findIndex((item) => item.id === overId);
-    console.log('overIndex: ', overIndex);
-
     // 更新结构数据，将active在对应容器中添加与删除
-    const newStructureItems = updateStructureItem(
-      structureItems,
-      activeId,
-      overContainerItem.id,
-      activeStructureItem,
-      overIndex,
+    setComponentStructure(
+      updateComponentStructure({
+        componentStructure,
+        deleteItemId: activeId,
+        addContainerId: isContainer(overId) ? overId : overContainerItem.id,
+        newStructureItem: activeStructureItem,
+        structureIndex: overIndex === -1 ? overContainerChildren.length : overIndex,
+      }),
     );
-
-    console.log('newStructureItems: ', newStructureItems);
-
-    setComponentStructure(({ componentItems }) => formatItems(componentItems, newStructureItems));
   }
-
-  // 若元素覆盖到容器上，且元素不在当前容器里，则添加
-  // if (containerList.includes(overId.split('-')[0])) {
-  // }
-
   return false;
 };
 export default onDragOver;

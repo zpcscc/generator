@@ -6,5 +6,5 @@ export { default as formatItems } from './formatItems';
 export { default as getFieldConfig } from './getFieldConfig';
 export { default as sortItems } from './sortItems';
 export { default as sortStructureItems } from './sortStructureItems';
+export { default as updateComponentStructure } from './updateComponentStructure';
 export { default as updateItem } from './updateItem';
-export { default as updateStructureItem } from './updateStructureItems';

@@ -13,35 +13,37 @@ const Content: React.FC = () => {
   const [{ componentItems, structureItems }, setComponentStructure] =
     useRecoilState(componentStructureState);
   const [{ currentId }, setCurrent] = useRecoilState(currentState);
-  const isInRoot = Boolean(structureItems.find((item) => item.id === currentId));
+  const isInRoot = Boolean(structureItems.find((item) => item?.id === currentId));
   const { setNodeRef } = useDroppable({ id: 'root', disabled: isInRoot });
   return (
     <ContentLayoutWrapper>
       <ContentHeader />
-      <ContentWrapper ref={setNodeRef}>
-        {componentItems?.length ? (
-          <Render
-            componentItems={componentItems}
-            structureItems={structureItems}
-            editorProps={{
-              currentId,
-              onSelect: (id) => setCurrent({ fieldConfig: getFieldConfig(id), currentId: id }),
-              onDelete: (id) => {
-                setCurrent({ fieldConfig: undefined, currentId: undefined });
-                setComponentStructure((componentStructure) => deleteItem(componentStructure, id));
-              },
-              onCopy: (id) => {
-                const newId = uniqueId(`${id.split('-')[0]}-`);
-                setCurrent({ fieldConfig: getFieldConfig(id), currentId: newId });
-                setComponentStructure((componentStructure) =>
-                  copyItem(componentStructure, id, newId),
-                );
-              },
-            }}
-          />
-        ) : (
-          <div className='content-placeholder'>点击/拖拽左侧栏的组件进行添加</div>
-        )}
+      <ContentWrapper>
+        <div ref={setNodeRef}>
+          {componentItems?.length ? (
+            <Render
+              componentItems={componentItems}
+              structureItems={structureItems}
+              editorProps={{
+                currentId,
+                onSelect: (id) => setCurrent({ fieldConfig: getFieldConfig(id), currentId: id }),
+                onDelete: (id) => {
+                  setCurrent({ fieldConfig: undefined, currentId: undefined });
+                  setComponentStructure((componentStructure) => deleteItem(componentStructure, id));
+                },
+                onCopy: (id) => {
+                  const newId = uniqueId(`${id.split('-')[0]}-`);
+                  setCurrent({ fieldConfig: getFieldConfig(id), currentId: newId });
+                  setComponentStructure((componentStructure) =>
+                    copyItem(componentStructure, id, newId),
+                  );
+                },
+              }}
+            />
+          ) : (
+            <div className='content-placeholder'>点击/拖拽左侧栏的组件进行添加</div>
+          )}
+        </div>
       </ContentWrapper>
     </ContentLayoutWrapper>
   );
