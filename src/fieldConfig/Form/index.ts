@@ -1,4 +1,4 @@
-export { default as cascade } from './cascade';
+export { default as cascade } from './cascades';
 export { default as checkbox } from './checkbox';
 export { default as input } from './input';
 export { default as inputNumber } from './inputNumber';
