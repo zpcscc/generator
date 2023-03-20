@@ -42,19 +42,12 @@ const Layout: React.FC<EditorProps> = (props) => {
     }),
   );
 
-  const collisionDetection: CollisionDetection = useCallback(
-    (args) => {
-      if (isNew) {
-        // 添加新元素时，需要使用指针算法，为了精确识别root根容器
-        const pointerCollisions = pointerWithin(args);
-        if (pointerCollisions.length > 0) return pointerCollisions;
-        return closestCorners(args);
-      }
-      // 其他情况，使用四角定位算法。有一定的容错率，所有操作都有反馈。用户体验会好些。
-      return closestCorners(args);
-    },
-    [isNew],
-  );
+  const collisionDetection: CollisionDetection = useCallback((args) => {
+    // 优先使用指针算法，为了精确识别容器
+    const pointerCollisions = pointerWithin(args);
+    if (pointerCollisions.length > 0) return pointerCollisions;
+    return closestCorners(args);
+  }, []);
 
   return (
     <LayoutWrapper>
