@@ -1,5 +1,5 @@
-import type { SpaceProps } from '@dxsixpc/components';
-import type { FieldConfigType } from 'src/type';
+import { type SpaceProps } from '@dxsixpc/components';
+import { type FieldConfigType } from 'src/type';
 import { spaceConfig } from './config';
 
 const space: FieldConfigType<SpaceProps> = {

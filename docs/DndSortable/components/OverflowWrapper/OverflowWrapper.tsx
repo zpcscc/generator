@@ -1,10 +1,11 @@
+import { type FC, type ReactNode } from 'react';
 import { OverflowStyledWrapper } from './Styled';
 
 export interface OverflowWrapperProps {
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
-const OverflowWrapper: React.FC<OverflowWrapperProps> = ({ children }) => {
+const OverflowWrapper: FC<OverflowWrapperProps> = ({ children }) => {
   return <OverflowStyledWrapper>{children}</OverflowStyledWrapper>;
 };
 

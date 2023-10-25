@@ -1,5 +1,5 @@
 import { isEmpty } from 'lodash';
-import type { ComponentStructureType, StructureItemType } from 'src/type';
+import { type ComponentStructureType, type StructureItemType } from 'src/type';
 import formatItems from './formatItems';
 
 /**

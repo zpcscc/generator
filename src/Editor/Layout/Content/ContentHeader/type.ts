@@ -1,4 +1,4 @@
-import type { ModalProps } from 'antd';
+import { type ModalProps } from 'antd';
 
 export type ModelType = 'importModel' | 'exportModel' | 'previewModel';
 

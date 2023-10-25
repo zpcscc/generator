@@ -1,4 +1,5 @@
 import { css } from '@emotion/react';
+import { type FC } from 'react';
 import { dragging, ItemWrapper } from './Styled';
 
 export interface ItemProps {
@@ -6,7 +7,7 @@ export interface ItemProps {
   isDragging?: boolean;
 }
 
-const Item: React.FC<ItemProps> = (props) => {
+const Item: FC<ItemProps> = (props) => {
   const { value, isDragging } = props;
 
   return (

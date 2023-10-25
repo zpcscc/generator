@@ -1,9 +1,17 @@
-import type { DraggableSyntheticListeners } from '@dnd-kit/core';
-import type { Transform } from '@dnd-kit/utilities';
+import { type DraggableSyntheticListeners } from '@dnd-kit/core';
+import { type Transform } from '@dnd-kit/utilities';
 import classNames from 'classnames';
-import { forwardRef, memo, useEffect } from 'react';
-import { Handle, Remove } from './components';
+import {
+  forwardRef,
+  memo,
+  useEffect,
+  type CSSProperties,
+  type ReactElement,
+  type ReactNode,
+  type Ref,
+} from 'react';
 import styles from './Item.module.css';
+import { Handle, Remove } from './components';
 
 export interface ItemProps {
   dragOverlay?: boolean;
@@ -18,10 +26,10 @@ export interface ItemProps {
   transform?: Transform | null;
   listeners?: DraggableSyntheticListeners;
   sorting?: boolean;
-  style?: React.CSSProperties;
+  style?: CSSProperties;
   transition?: string | null;
-  wrapperStyle?: React.CSSProperties;
-  value: React.ReactNode;
+  wrapperStyle?: CSSProperties;
+  value: ReactNode;
   onRemove?: () => void;
   renderItem?: (args: {
     dragOverlay: boolean;
@@ -30,12 +38,12 @@ export interface ItemProps {
     index: number | undefined;
     fadeIn: boolean;
     listeners: DraggableSyntheticListeners;
-    ref: React.Ref<HTMLElement>;
-    style: React.CSSProperties | undefined;
+    ref: Ref<HTMLElement>;
+    style: CSSProperties | undefined;
     transform: ItemProps['transform'];
     transition: ItemProps['transition'];
     value: ItemProps['value'];
-  }) => React.ReactElement;
+  }) => ReactElement;
 }
 
 const Item = memo(
@@ -108,7 +116,7 @@ const Item = memo(
               '--scale-y': transform?.scaleY ? `${transform.scaleY}` : undefined,
               '--index': index,
               '--color': color,
-            } as React.CSSProperties
+            } as CSSProperties
           }
           ref={ref}
         >
@@ -123,9 +131,9 @@ const Item = memo(
             )}
             style={style}
             data-cypress='draggable-item'
-            {...(!handle ? listeners : undefined)}
+            {...(handle ? undefined : listeners)}
             {...props}
-            tabIndex={!handle ? 0 : undefined}
+            tabIndex={handle ? undefined : 0}
           >
             {value}
             <span className={styles.Actions}>

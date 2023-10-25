@@ -1,4 +1,4 @@
-import type { ComponentItemType } from 'src/type';
+import { type ComponentItemType } from 'src/type';
 import { labelSpaceConfig } from '../../commonConfig';
 
 // 级联组件配置项

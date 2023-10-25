@@ -1,16 +1,16 @@
-import type { UniqueIdentifier } from '@dnd-kit/core';
-import { useDroppable } from '@dnd-kit/core';
+import { useDroppable, type UniqueIdentifier } from '@dnd-kit/core';
 import classNames from 'classnames';
-import { droppable } from './droppable-svg';
+import { type FC, type ReactNode } from 'react';
 import styles from './Droppable.module.css';
+import { droppable } from './droppable-svg';
 
 export interface DroppableProps {
-  children: React.ReactNode;
+  children: ReactNode;
   dragging: boolean;
   id: UniqueIdentifier;
 }
 
-const Droppable: React.FC<DroppableProps> = ({ children, id, dragging }) => {
+const Droppable: FC<DroppableProps> = ({ children, id, dragging }) => {
   const { isOver, setNodeRef } = useDroppable({
     id,
   });

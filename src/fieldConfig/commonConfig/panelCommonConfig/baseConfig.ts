@@ -1,6 +1,6 @@
 // 这这里对每个组件进行统一配置
-import type { OptionsConfigType } from '@dxsixpc/components';
-import type { ComponentItemType } from 'src/type';
+import { type OptionsConfigType } from '@dxsixpc/components';
+import { type ComponentItemType } from 'src/type';
 
 /**
  * @name 标题配置

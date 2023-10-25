@@ -1,5 +1,5 @@
-import type { RadioGroupProps } from '@dxsixpc/components';
-import type { FieldConfigType } from 'src/type';
+import { type RadioGroupProps } from '@dxsixpc/components';
+import { type FieldConfigType } from 'src/type';
 import { radioOptionsConfig } from '../../commonConfig';
 import { radioConfig } from './config';
 

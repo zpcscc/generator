@@ -1,5 +1,9 @@
 import { isEmpty } from 'lodash';
-import type { ComponentItemType, ComponentStructureType, StructureItemType } from 'src/type';
+import {
+  type ComponentItemType,
+  type ComponentStructureType,
+  type StructureItemType,
+} from 'src/type';
 import getFieldConfig from './getFieldConfig';
 
 /**

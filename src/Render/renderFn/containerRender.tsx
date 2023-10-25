@@ -1,10 +1,10 @@
 import { getComponent } from '@dxsixpc/components';
 import { isEmpty } from 'lodash';
-import type { ComponentItemType, StructureItemType } from 'src/type';
+import { type ComponentItemType, type StructureItemType } from 'src/type';
 import { isContainer } from 'src/utils';
 import { getWrapper } from '../helpers';
 import loopRender from './loopRender';
-import type { BaseRenderType } from './type';
+import { type BaseRenderType } from './type';
 
 export interface ContainerRenderProps extends BaseRenderType {
   componentItem?: ComponentItemType;

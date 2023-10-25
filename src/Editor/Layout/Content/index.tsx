@@ -1,5 +1,6 @@
 import { useDroppable } from '@dnd-kit/core';
 import { uniqueId } from 'lodash';
+import { type FC } from 'react';
 import { useRecoilState } from 'recoil';
 import currentState from 'src/Editor/atoms/currentState';
 import { Render } from 'src/Render';
@@ -9,11 +10,11 @@ import ContentHeader from './ContentHeader';
 import { ContentLayoutWrapper, ContentWrapper } from './Styled';
 
 // 中间画布内容区域
-const Content: React.FC = () => {
+const Content: FC = () => {
   const [{ componentItems, structureItems }, setComponentStructure] =
     useRecoilState(componentStructureState);
   const [{ currentId }, setCurrent] = useRecoilState(currentState);
-  const isInRoot = Boolean(structureItems.find((item) => item?.id === currentId));
+  const isInRoot = Boolean(structureItems.some((item) => item?.id === currentId));
   const { setNodeRef } = useDroppable({ id: 'root', disabled: isInRoot });
   return (
     <ContentLayoutWrapper>

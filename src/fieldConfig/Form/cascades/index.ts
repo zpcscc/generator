@@ -1,5 +1,5 @@
-import type { CascadeProps } from '@dxsixpc/components';
-import type { FieldConfigType } from 'src/type';
+import { type CascadeProps } from '@dxsixpc/components';
+import { type FieldConfigType } from 'src/type';
 import { cascadeConfig } from './config';
 // import { provinceCityAreaCascadeData } from './province-city-china';
 

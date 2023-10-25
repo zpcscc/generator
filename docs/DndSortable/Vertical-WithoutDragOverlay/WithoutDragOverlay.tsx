@@ -1,25 +1,25 @@
-import type { UniqueIdentifier } from '@dnd-kit/core';
 import {
-  closestCenter,
   DndContext,
   KeyboardSensor,
   MouseSensor,
   TouchSensor,
+  closestCenter,
   useSensor,
   useSensors,
+  type UniqueIdentifier,
 } from '@dnd-kit/core';
 import {
+  SortableContext,
   arrayMove,
   rectSortingStrategy,
-  SortableContext,
   sortableKeyboardCoordinates,
 } from '@dnd-kit/sortable';
-import { useState } from 'react';
+import { useState, type FC } from 'react';
 import createRange from '../utilities/createRange';
 import SortableItem from './SortableItem';
 import { UlWrapper, Wrapper } from './Styled';
 
-const WithoutDragOverlay: React.FC = () => {
+const WithoutDragOverlay: FC = () => {
   // 当前的对象列表
   const [items, setItems] = useState<UniqueIdentifier[]>(
     // 按递增的方式，新增一个包含16个item的数组

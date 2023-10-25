@@ -1,5 +1,5 @@
-import type { InputProps } from '@dxsixpc/components';
-import type { FieldConfigType } from 'src/type';
+import { type InputProps } from '@dxsixpc/components';
+import { type FieldConfigType } from 'src/type';
 import { inputConfig } from './config';
 
 // 输入框

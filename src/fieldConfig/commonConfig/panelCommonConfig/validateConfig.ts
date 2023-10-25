@@ -1,5 +1,5 @@
 // 通用校验配置
-import type { ComponentItemType } from 'src/type';
+import { type ComponentItemType } from 'src/type';
 
 /**
  * @name 必填验证配置

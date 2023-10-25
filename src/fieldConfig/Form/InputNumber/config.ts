@@ -1,4 +1,4 @@
-import type { ComponentItemType } from 'src/type';
+import { type ComponentItemType } from 'src/type';
 import { labelSpaceConfig, maxConfig, minConfig, placeholderConfig } from '../../commonConfig';
 
 // 整数输入框配置项

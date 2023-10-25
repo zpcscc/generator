@@ -1,6 +1,6 @@
+/* eslint-disable max-len */
 import { forwardRef } from 'react';
-import type { ActionProps } from '../Action';
-import { Action } from '../Action';
+import { Action, type ActionProps } from '../Action';
 
 const Handle = forwardRef<HTMLButtonElement, ActionProps>((props, ref) => {
   return (

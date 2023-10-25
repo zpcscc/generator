@@ -1,22 +1,22 @@
-import type { UniqueIdentifier } from '@dnd-kit/core';
 import {
-  closestCenter,
-  defaultDropAnimationSideEffects,
   DndContext,
   DragOverlay,
   KeyboardSensor,
   MouseSensor,
   TouchSensor,
+  closestCenter,
+  defaultDropAnimationSideEffects,
   useSensor,
   useSensors,
+  type UniqueIdentifier,
 } from '@dnd-kit/core';
 import {
-  arrayMove,
   SortableContext,
+  arrayMove,
   sortableKeyboardCoordinates,
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
-import { useState } from 'react';
+import { useState, type FC } from 'react';
 import { createPortal } from 'react-dom';
 import createRange from '../utilities/createRange';
 import SortableItem from './SortableItem';
@@ -26,7 +26,7 @@ import { UlWrapper, Wrapper } from './Styled';
 const heights = [90, 110, 60, 50, 50, 60, 100, 120, 200, 180, 70, 90, 90, 40, 60, 80];
 
 // 基础配置
-const BasicSetup: React.FC = () => {
+const BasicSetup: FC = () => {
   // 当前的对象列表
   const [items, setItems] = useState<UniqueIdentifier[]>(
     // 按递增的方式，新增一个包含16个item的数组

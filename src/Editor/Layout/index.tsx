@@ -1,30 +1,30 @@
-import type { CollisionDetection } from '@dnd-kit/core';
 import {
-  closestCorners,
   DndContext,
   MeasuringStrategy,
   PointerSensor,
+  closestCorners,
   pointerWithin,
   useSensor,
   useSensors,
+  type CollisionDetection,
 } from '@dnd-kit/core';
 import { uniqueId } from 'lodash';
-import { useCallback, useState } from 'react';
+import { useCallback, useState, type FC } from 'react';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import componentStructureState from 'src/Editor/atoms/componentStructureState';
 import currentState from 'src/Editor/atoms/currentState';
 import leftSortableItemsState from 'src/Editor/atoms/leftSortableItemsState';
-import type { EditorProps } from '../Editor';
+import { type EditorProps } from '../Editor';
 import Content from './Content';
 import DndDragOverlay from './DndDragOverlay';
-import { onDragEnd, onDragOver } from './helpers';
 import LeftSider from './LeftSider';
 import RightSider from './RightSider';
 import { LayoutWrapper } from './Styled';
+import { onDragEnd, onDragOver } from './helpers';
 import { findStructureItem, getFieldConfig } from './utils';
 
 // 编辑器布局容器
-const Layout: React.FC<EditorProps> = (props) => {
+const Layout: FC<EditorProps> = (props) => {
   const { componentMap } = props;
   const [componentStructure, setComponentStructure] = useRecoilState(componentStructureState);
   const { componentItems, structureItems } = componentStructure;
@@ -58,7 +58,7 @@ const Layout: React.FC<EditorProps> = (props) => {
         onDragStart={({ active }) => {
           if (!active) return;
           const id = String(active.id);
-          setIsNew(!componentItems.find((item) => item.id === String(active.id)));
+          setIsNew(!componentItems.some((item) => item.id === String(active.id)));
           setActiveId(id);
           setCurrent({ fieldConfig: getFieldConfig(id), currentId: id });
         }}

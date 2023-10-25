@@ -1,4 +1,4 @@
-import type { ComponentItemType, StructureItemType } from 'src/type';
+import { type ComponentItemType, type StructureItemType } from 'src/type';
 
 // 分离 -> 集成
 const separateToIntegrate = (

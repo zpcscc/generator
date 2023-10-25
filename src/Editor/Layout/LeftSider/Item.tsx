@@ -1,11 +1,11 @@
 import { useSortable } from '@dnd-kit/sortable';
 import { uniqueId } from 'lodash';
-import { useMemo } from 'react';
+import { useMemo, type FC } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import componentStructureState from 'src/Editor/atoms/componentStructureState';
 import currentState from 'src/Editor/atoms/currentState';
 import leftSortableItemsState from 'src/Editor/atoms/leftSortableItemsState';
-import type { FieldConfigType } from 'src/type';
+import { type FieldConfigType } from 'src/type';
 import { getFieldConfig } from '../utils';
 import { ButtonWrapper } from './Styled';
 
@@ -14,7 +14,7 @@ interface ItemProps {
 }
 
 // 左侧组件item
-const Button: React.FC<ItemProps> = (props) => {
+const Button: FC<ItemProps> = (props) => {
   const { fieldConfig } = props;
   const { label, componentItem } = fieldConfig;
   const [{ currentId }, setCurrent] = useRecoilState(currentState);
@@ -25,7 +25,7 @@ const Button: React.FC<ItemProps> = (props) => {
     id,
   });
   const isComponentItem = useMemo(
-    () => (currentId ? Boolean(componentItems.find((item) => item.id === currentId)) : false),
+    () => (currentId ? Boolean(componentItems.some((item) => item.id === currentId)) : false),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [currentId, componentItems],
   );

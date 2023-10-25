@@ -1,5 +1,5 @@
-import type { TextAreaProps } from '@dxsixpc/components';
-import type { FieldConfigType } from 'src/type';
+import { type TextAreaProps } from '@dxsixpc/components';
+import { type FieldConfigType } from 'src/type';
 import { inputConfig } from '../input/config';
 
 // 文本框

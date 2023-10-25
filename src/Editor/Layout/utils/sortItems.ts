@@ -1,5 +1,5 @@
 import { arrayMove } from '@dnd-kit/sortable';
-import type { StructureItemType } from 'src/type';
+import { type StructureItemType } from 'src/type';
 
 /**
  * @name 项目排序

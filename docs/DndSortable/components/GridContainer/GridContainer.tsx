@@ -1,17 +1,18 @@
+import { type CSSProperties, type FC, type ReactNode } from 'react';
 import { GridContainerWrapper } from './Styled';
 
 export interface GridContainerProps {
-  children: React.ReactNode;
+  children: ReactNode;
   columns: number;
 }
 
-const GridContainer: React.FC<GridContainerProps> = ({ children, columns }) => {
+const GridContainer: FC<GridContainerProps> = ({ children, columns }) => {
   return (
     <GridContainerWrapper
       style={
         {
           '--col-count': columns,
-        } as React.CSSProperties
+        } as CSSProperties
       }
     >
       {children}

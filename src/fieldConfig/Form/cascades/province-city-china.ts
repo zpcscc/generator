@@ -2,7 +2,7 @@ import area from '@province-city-china/area/area.min.json';
 import city from '@province-city-china/city/city.min.json';
 import province from '@province-city-china/province/province.min.json';
 import { specialProvinceJson } from './specialProvince';
-import type { ProvinceCityChinaType } from './type';
+import { type ProvinceCityChinaType } from './type';
 
 // 省市区数据
 export const provinceCityChina: ProvinceCityChinaType = {
@@ -31,13 +31,13 @@ export const provinceCityAreaCascadeData = () => {
   const newProvinceJson: ProvinceJsonType = provinceCityChina;
 
   newProvinceJson.Area.forEach((currArea) => {
-    const cityCode = currArea.c.substring(0, 4);
+    const cityCode = currArea.c.slice(0, 4);
     const currCity = newProvinceJson.City.find(
-      (cityItem) => cityItem.c.substring(0, 4) === cityCode.substring(0, 4),
+      (cityItem) => cityItem.c.slice(0, 4) === cityCode.slice(0, 4),
     );
 
     const currProvince = newProvinceJson.Province.find((provinceItem) => {
-      return provinceItem.c.substring(0, 2) === cityCode.substring(0, 2);
+      return provinceItem.c.slice(0, 2) === cityCode.slice(0, 2);
     });
 
     if (currProvince) {
@@ -53,7 +53,7 @@ export const provinceCityAreaCascadeData = () => {
   newProvinceJson.City.forEach((cityItem) => {
     if (!cityCodes.includes(cityItem.c)) {
       const prov = newProvinceJson.Province.find(
-        (provinceItem) => provinceItem.c === cityItem.c.substring(0, 2),
+        (provinceItem) => provinceItem.c === cityItem.c.slice(0, 2),
       );
       if (prov) items.push([prov.n, cityItem.n, cityItem.n]);
     }

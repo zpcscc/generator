@@ -1,5 +1,5 @@
 {
-  "extends": "@dxsixpc/configs/tsconfig",
+  "extends": "@dxsixpc/configs/tsconfig/tsconfig.react.json",
   "compilerOptions": {
     "baseUrl": ".",
     "outDir": "dist",
@@ -15,5 +15,5 @@
     },
     "types": ["react", "@emotion/react"]
   },
-  "include": [".dumi/**/*", ".dumirc.ts", "src/**/*", "docs/**/*", ".eslintrc.js"]
+  "include": [".dumirc.ts", "src/**/*", "docs/**/*", ".eslintrc.js"]
 }

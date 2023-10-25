@@ -1,6 +1,6 @@
 /* eslint-disable import/namespace */
 import * as fieldMap from 'src/fieldConfig';
-import type { ComponentItemType } from 'src/type';
+import { type ComponentItemType } from 'src/type';
 
 /**
  * @name 通过id，找到对应的componentItem

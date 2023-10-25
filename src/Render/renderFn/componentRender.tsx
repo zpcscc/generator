@@ -2,9 +2,9 @@
 import { getComponent } from '@dxsixpc/components';
 import { css } from '@emotion/react';
 import { isEmpty, isNil, omit } from 'lodash';
-import type { ComponentItemType } from 'src/type';
-import { editorStyled, FormItemWrapper } from '../Styled';
-import type { BaseRenderType } from './type';
+import { type ComponentItemType } from 'src/type';
+import { FormItemWrapper, editorStyled } from '../Styled';
+import { type BaseRenderType } from './type';
 
 export interface ComponentRenderProps extends BaseRenderType {
   componentItem?: ComponentItemType;
@@ -26,7 +26,7 @@ const componentRender = (props: ComponentRenderProps) => {
       css={css`
         ${styled}
       `}
-      className={!isEmpty(editorProps) ? editorStyled : ''}
+      className={isEmpty(editorProps) ? '' : editorStyled}
     >
       <Component {...componentItem?.props} />
     </FormItemWrapper>

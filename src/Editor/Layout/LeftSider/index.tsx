@@ -1,5 +1,6 @@
 import { SortableContext } from '@dnd-kit/sortable';
 import { Space, Typography } from 'antd';
+import { type FC } from 'react';
 import { useRecoilValue } from 'recoil';
 import leftSortableItemsState from 'src/Editor/atoms/leftSortableItemsState';
 import * as containerConfigMap from 'src/fieldConfig/container';
@@ -15,7 +16,7 @@ const fieldConfig = {
 };
 
 // 左侧组件列表
-const LeftSider: React.FC = () => {
+const LeftSider: FC = () => {
   const leftSortableItems = useRecoilValue(leftSortableItemsState);
 
   return (

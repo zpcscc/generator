@@ -1,5 +1,4 @@
-import type { AnyObject, ComponentStructureType } from 'src/type';
-import { ConfigType } from 'src/type';
+import { ConfigType, type AnyObject, type ComponentStructureType } from 'src/type';
 const ConfigTypeMap = new ConfigType();
 
 /**

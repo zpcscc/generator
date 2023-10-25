@@ -1,11 +1,11 @@
-import type { HTMLAttributes } from 'react';
+import { type FC, type HTMLAttributes, type ReactNode } from 'react';
 import { ButtonWrapper } from './Styled';
 
 export interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
-const Button: React.FC<ButtonProps> = ({ children, ...props }) => {
+const Button: FC<ButtonProps> = ({ children, ...props }) => {
   return <ButtonWrapper {...props}>{children}</ButtonWrapper>;
 };
 

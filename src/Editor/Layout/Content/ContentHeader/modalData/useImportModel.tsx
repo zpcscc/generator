@@ -1,12 +1,11 @@
 import { SimpleCodeEditor } from '@dxsixpc/components';
 import { stringToData } from '@dxsixpc/utils';
-import type { ModalProps } from 'antd';
-import { message } from 'antd';
+import { message, type ModalProps } from 'antd';
 import { useState } from 'react';
 import { useSetRecoilState } from 'recoil';
 import componentStructureState from 'src/Editor/atoms/componentStructureState';
 import { integrateToSeparate } from 'src/Render';
-import type { ModelType } from '../type';
+import { type ModelType } from '../type';
 
 // 导入弹出框
 const useImportModel = (setModalType: (modelType: ModelType | null) => void): ModalProps => {

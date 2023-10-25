@@ -1,4 +1,4 @@
-import type { ProvinceCityChinaType } from './type';
+import { type ProvinceCityChinaType } from './type';
 
 // 港澳台的省市区数据
 export const specialProvinceJson: ProvinceCityChinaType = {

@@ -1,5 +1,5 @@
-import type { ClientRect } from '@dnd-kit/core';
-import type { SortingStrategy } from '@dnd-kit/sortable';
+import { type ClientRect } from '@dnd-kit/core';
+import { type SortingStrategy } from '@dnd-kit/sortable';
 
 /**
  * @name 获取元素在水平和垂直的间距

@@ -1,5 +1,5 @@
 import { isEmpty } from 'lodash';
-import type { StructureItemType } from 'src/type';
+import { type StructureItemType } from 'src/type';
 import sortItems from './sortItems';
 
 /**

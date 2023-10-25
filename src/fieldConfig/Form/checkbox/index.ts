@@ -1,5 +1,5 @@
-import type { CheckboxGroupProps } from '@dxsixpc/components';
-import type { FieldConfigType } from 'src/type';
+import { type CheckboxGroupProps } from '@dxsixpc/components';
+import { type FieldConfigType } from 'src/type';
 import { checkboxOptionsConfig } from '../../commonConfig';
 import { checkboxConfig } from './config';
 

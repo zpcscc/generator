@@ -1,4 +1,4 @@
-import type { ComponentItemType } from 'src/type';
+import { type ComponentItemType } from 'src/type';
 import { labelSpaceConfig } from '../../commonConfig';
 
 // 多选框组件配置项

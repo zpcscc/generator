@@ -1,5 +1,5 @@
 import { isEmpty } from 'lodash';
-import type { StructureItemType } from 'src/type';
+import { type StructureItemType } from 'src/type';
 
 /**
  * @name 输入元素id，找到id所在所在的容器item

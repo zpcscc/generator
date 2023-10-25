@@ -1,13 +1,13 @@
 import classNames from 'classnames';
-import { forwardRef } from 'react';
+import { forwardRef, type CSSProperties, type HTMLAttributes } from 'react';
 import { ActionWrapper } from './Styled';
 
-export interface ActionProps extends React.HTMLAttributes<HTMLButtonElement> {
+export interface ActionProps extends HTMLAttributes<HTMLButtonElement> {
   active?: {
     fill: string;
     background: string;
   };
-  cursor?: React.CSSProperties['cursor'];
+  cursor?: CSSProperties['cursor'];
 }
 
 const Action = forwardRef<HTMLButtonElement, ActionProps>(
@@ -24,7 +24,7 @@ const Action = forwardRef<HTMLButtonElement, ActionProps>(
             cursor,
             '--fill': active?.fill,
             '--background': active?.background,
-          } as React.CSSProperties
+          } as CSSProperties
         }
       />
     );

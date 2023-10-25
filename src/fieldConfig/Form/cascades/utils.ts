@@ -1,4 +1,4 @@
-import type { AnyObject } from 'src/type';
+import { type AnyObject } from 'src/type';
 import { provinceCityAreaCascadeData } from './province-city-china';
 
 // 数组转化成字符串，用于手动输入面板显示
@@ -18,14 +18,14 @@ const arr2str = (arr: string[][]) => {
 const str2arr = (str: string) => {
   const resArr: string[][] = [];
   const arr = str.split('\n');
-  for (let i = 0; i < arr.length; i++) {
-    const line = arr[i].trim();
+  for (const element of arr) {
+    const line = element.trim();
     if (line !== '') {
-      const cols = line.split(/，|,|\t/);
+      const cols = line.split(/[\t,，]/);
       const colArr: string[] = [];
-      for (let j = 0; j < cols.length; j++) {
-        const col = cols[j].trim();
-        if (col !== '') colArr.push(col.replace(/^“|^‘|^"|^'|"$|'$|”$|’$/g, ''));
+      for (const col_ of cols) {
+        const col = col_.trim();
+        if (col !== '') colArr.push(col.replaceAll(/^“|^‘|^"|^'|"$|'$|”$|’$/g, ''));
       }
       if (colArr.length > 0) resArr.push(colArr);
     }

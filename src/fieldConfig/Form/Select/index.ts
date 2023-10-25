@@ -1,5 +1,5 @@
-import type { SelectProps } from '@dxsixpc/components';
-import type { FieldConfigType } from 'src/type';
+import { type SelectProps } from '@dxsixpc/components';
+import { type FieldConfigType } from 'src/type';
 import { radioOptionsConfig } from '../../commonConfig';
 import { selectConfig } from './config';
 

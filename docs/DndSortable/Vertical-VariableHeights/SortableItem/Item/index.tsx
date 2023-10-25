@@ -1,4 +1,5 @@
 import { css } from '@emotion/react';
+import { type FC } from 'react';
 import { dragging, dragOverlay, ItemWrapper } from './Styled';
 
 export interface ItemProps {
@@ -8,7 +9,7 @@ export interface ItemProps {
   height?: number;
 }
 
-const Item: React.FC<ItemProps> = (props) => {
+const Item: FC<ItemProps> = (props) => {
   const { value, isDragging, isDragOverlay, height } = props;
 
   return (

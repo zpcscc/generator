@@ -1,5 +1,5 @@
 // 通用布局配置
-import type { ComponentItemType } from 'src/type';
+import { type ComponentItemType } from 'src/type';
 
 /**
  * @name 分隔线配置

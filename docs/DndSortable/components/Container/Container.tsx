@@ -1,15 +1,21 @@
-import { forwardRef } from 'react';
+import {
+  forwardRef,
+  type CSSProperties,
+  type HTMLAttributes,
+  type ReactNode,
+  type RefObject,
+} from 'react';
 import { Handle, Remove } from '../Item';
 import { ActionsWrapper, ButtonWrapper, DivWrapper, HeaderWrapper } from './Styled';
 
 export interface ContainerProps {
-  children: React.ReactNode;
+  children: ReactNode;
   columns?: number;
   label?: string;
-  style?: React.CSSProperties;
+  style?: CSSProperties;
   horizontal?: boolean;
   hover?: boolean;
-  handleProps?: React.HTMLAttributes<any>;
+  handleProps?: HTMLAttributes<any>;
   scrollable?: boolean;
   shadow?: boolean;
   placeholder?: boolean;
@@ -52,12 +58,12 @@ const Container = forwardRef<HTMLDivElement, ContainerProps>(
     return (
       <Component
         {...props}
-        ref={ref as React.RefObject<HTMLButtonElement> & React.RefObject<HTMLDivElement>}
+        ref={ref as RefObject<HTMLButtonElement> & RefObject<HTMLDivElement>}
         style={
           {
             ...style,
             '--columns': columns,
-          } as React.CSSProperties
+          } as CSSProperties
         }
         onClick={onClick}
         tabIndex={onClick ? 0 : undefined}

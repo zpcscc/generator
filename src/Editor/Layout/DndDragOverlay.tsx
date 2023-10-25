@@ -1,12 +1,13 @@
 import { defaultDropAnimationSideEffects, DragOverlay } from '@dnd-kit/core';
 import { Form } from 'antd';
+import { type FC } from 'react';
 import { createPortal } from 'react-dom';
 import { renderItem, SortableContainer } from 'src/Render';
-import type {
-  ComponentItemType,
-  ComponentMapType,
-  FieldConfigType,
-  StructureItemType,
+import {
+  type ComponentItemType,
+  type ComponentMapType,
+  type FieldConfigType,
+  type StructureItemType,
 } from 'src/type';
 import { ButtonWrapper } from './LeftSider/Styled';
 
@@ -21,7 +22,7 @@ interface DndDragOverlayProps {
 }
 
 // 用于拖动时，显示组件
-const DndDragOverlay: React.FC<DndDragOverlayProps> = (props) => {
+const DndDragOverlay: FC<DndDragOverlayProps> = (props) => {
   const { activeId, currentId, isNew, fieldConfig, componentMap, structureItem, componentItems } =
     props;
   return createPortal(

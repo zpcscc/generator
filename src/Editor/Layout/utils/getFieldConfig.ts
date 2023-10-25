@@ -1,5 +1,5 @@
 import * as fieldMap from 'src/fieldConfig';
-import type { FieldMapType } from 'src/type';
+import { type FieldMapType } from 'src/type';
 
 /**
  * @name 获取对应的属性type

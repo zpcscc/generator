@@ -1,14 +1,14 @@
 import { Button } from '@dxsixpc/components';
 import { Modal } from 'antd';
-import { useState } from 'react';
+import { useState, type FC } from 'react';
 import { useSetRecoilState } from 'recoil';
 import componentStructureState from '../../../atoms/componentStructureState';
 import { ContentHeaderWrapper } from './Styled';
 import useModelData from './modalData';
-import type { ModelType } from './type';
+import { type ModelType } from './type';
 
 // 中间区域画布头
-const ContentHeader: React.FC = () => {
+const ContentHeader: FC = () => {
   const setComponentStructure = useSetRecoilState(componentStructureState);
 
   const [modalType, setModalType] = useState<ModelType | null>(null);

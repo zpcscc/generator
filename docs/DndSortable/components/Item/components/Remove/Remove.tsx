@@ -1,7 +1,8 @@
-import type { ActionProps } from '../Action';
-import { Action } from '../Action';
+/* eslint-disable max-len */
+import { type FC } from 'react';
+import { Action, type ActionProps } from '../Action';
 
-const Remove: React.FC<ActionProps> = (props) => {
+const Remove: FC<ActionProps> = (props) => {
   return (
     <Action
       {...props}

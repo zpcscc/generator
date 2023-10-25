@@ -1,4 +1,4 @@
-import type { ModelDataType, ModelType } from '../type';
+import { type ModelDataType, type ModelType } from '../type';
 import useExportModel from './useExportModel';
 import useImportModel from './useImportModel';
 import usePreviewModel from './usePreviewModel';

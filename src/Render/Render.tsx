@@ -1,12 +1,12 @@
-import type { FormInstance, FormProps } from 'antd';
-import { ConfigProvider, Form } from 'antd';
+import { ConfigProvider, Form, type FormInstance, type FormProps } from 'antd';
 import { isEmpty } from 'lodash';
-import type {
-  AnyObject,
-  ComponentItemType,
-  ComponentMapType,
-  EditorPropsType,
-  StructureItemType,
+import { type FC } from 'react';
+import {
+  type AnyObject,
+  type ComponentItemType,
+  type ComponentMapType,
+  type EditorPropsType,
+  type StructureItemType,
 } from 'src/type';
 import { FormWrapper } from './Styled';
 import { getWrapper } from './helpers';
@@ -40,7 +40,7 @@ export interface RenderProps {
  * @param formOptions 表单组件props
  * @link formOptions参数详见 https://ant.design/components/form-cn/#Form
  */
-const Render: React.FC<RenderProps> = (props) => {
+const Render: FC<RenderProps> = (props) => {
   const { defaultValue = {}, componentMap = {}, formOptions, onChange, editorProps } = props;
   const [form] = Form.useForm();
   const useComponentStructure = !isEmpty(props.structureItems);

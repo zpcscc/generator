@@ -1,4 +1,8 @@
-import type { ComponentItemType, ComponentStructureType, StructureItemType } from 'src/type';
+import {
+  type ComponentItemType,
+  type ComponentStructureType,
+  type StructureItemType,
+} from 'src/type';
 
 /**
  * @name 数据与布局结构分离

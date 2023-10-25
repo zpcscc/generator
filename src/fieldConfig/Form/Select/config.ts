@@ -1,4 +1,4 @@
-import type { ComponentItemType } from 'src/type';
+import { type ComponentItemType } from 'src/type';
 import { labelSpaceConfig, placeholderConfig } from '../../commonConfig';
 
 // 下拉框组件配置项

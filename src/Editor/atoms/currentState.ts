@@ -1,5 +1,5 @@
 import { atom } from 'recoil';
-import type { FieldConfigType } from 'src/type';
+import { type FieldConfigType } from 'src/type';
 
 interface CurrentStateProps {
   fieldConfig?: FieldConfigType;

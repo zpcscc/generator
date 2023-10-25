@@ -1,17 +1,17 @@
-import type { SortingStrategy } from '@dnd-kit/sortable';
 import {
-  horizontalListSortingStrategy,
   SortableContext,
+  horizontalListSortingStrategy,
   verticalListSortingStrategy,
+  type SortingStrategy,
 } from '@dnd-kit/sortable';
-import { Fragment } from 'react';
-import type { AnyObject, ComponentItemType, StructureItemType } from 'src/type';
+import { Fragment, type FC } from 'react';
+import { type AnyObject, type ComponentItemType, type StructureItemType } from 'src/type';
 import SortableContainer from '../SortableContainer';
 
 type WrapperType = 'editor' | 'play' | 'component';
 
 interface WrapperResult {
-  Wrapper: React.FC<any>;
+  Wrapper: FC<any>;
   wrapperProps?: AnyObject;
 }
 
@@ -30,7 +30,7 @@ const getWrapper = (
   const { props } = componentItem || {};
 
   switch (type) {
-    case 'editor':
+    case 'editor': {
       strategy = verticalListSortingStrategy;
       // 需要根据容器组件的配置，设置不同的拖拽排序策略。垂直排序或水平排序。
       if (componentItem?.type === 'Space' && props?.direction === 'horizontal') {
@@ -40,10 +40,13 @@ const getWrapper = (
         Wrapper: SortableContext,
         wrapperProps: { items: children, strategy },
       };
-    case 'component':
+    }
+    case 'component': {
       return { Wrapper: SortableContainer };
-    default:
+    }
+    default: {
       return { Wrapper: Fragment };
+    }
   }
 };
 

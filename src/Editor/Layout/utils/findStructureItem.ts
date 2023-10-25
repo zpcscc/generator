@@ -1,6 +1,6 @@
-import type { UniqueIdentifier } from '@dnd-kit/core';
+import { type UniqueIdentifier } from '@dnd-kit/core';
 import { isEmpty } from 'lodash';
-import type { StructureItemType } from 'src/type';
+import { type StructureItemType } from 'src/type';
 
 /**
  * @name 输入容器id，找到id所在的item
@@ -17,9 +17,8 @@ const findStructureItem = (
   const rootStructureItem = { id: 'root', children: structureItems };
   // 递归循环遍历数据
   const loopItems = (items) => {
-    for (let i = 0; i < items.length; i++) {
-      const currItem = items[i];
-      if (items[i]?.id === id) {
+    for (const currItem of items) {
+      if (currItem?.id === id) {
         structureItem = currItem;
         break;
       } else if (!isEmpty(currItem?.children)) {

@@ -1,6 +1,6 @@
-import type * as fieldMao from 'src/fieldConfig';
-import type { ComponentItemType } from './ComponentType';
-import type { AnyObject } from './Custom';
+import type * as fieldMap from 'src/fieldConfig';
+import { type ComponentItemType } from './ComponentType';
+import { type AnyObject } from './Custom';
 
 // 字段配置默认类型，这里的类型用作左侧组件列表展示
 export interface FieldConfigType<T = AnyObject> {
@@ -14,7 +14,7 @@ export interface FieldConfigType<T = AnyObject> {
   configPanel: (value?: AnyObject) => ComponentItemType[];
 }
 
-export type FieldMapType = Record<keyof typeof fieldMao, FieldConfigType>;
+export type FieldMapType = Record<keyof typeof fieldMap, FieldConfigType>;
 
 export interface EditorPropsType {
   currentId?: string;

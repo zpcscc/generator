@@ -1,4 +1,4 @@
-import type { ComponentItemType } from 'src/type';
+import { type ComponentItemType } from 'src/type';
 
 // 提交按钮配置项
 export const submitButtonConfig = (): ComponentItemType[] => {

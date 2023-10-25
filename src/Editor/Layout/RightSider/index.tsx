@@ -1,9 +1,9 @@
 import { Form } from 'antd';
 import { omit } from 'lodash';
-import { useEffect } from 'react';
+import { useEffect, type FC } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { Render } from 'src/Render';
-import type { AnyObject, ComponentItemType } from 'src/type';
+import { type AnyObject, type ComponentItemType } from 'src/type';
 import componentStructureState from '../../atoms/componentStructureState';
 import currentState from '../../atoms/currentState';
 import { updateItem } from '../utils';
@@ -15,7 +15,7 @@ export interface LeftSiderProps {
 }
 
 // 右侧组件配置面板,用于渲染配置项
-const RightSider: React.FC<LeftSiderProps> = () => {
+const RightSider: FC<LeftSiderProps> = () => {
   const { fieldConfig, currentId } = useRecoilValue(currentState);
   const [{ componentItems, structureItems }, setComponentStructure] =
     useRecoilState(componentStructureState);
@@ -38,7 +38,7 @@ const RightSider: React.FC<LeftSiderProps> = () => {
   useEffect(() => {
     // 组件切换时，更新表单面板对应的值
     if (defaultValue) form?.setFieldsValue(defaultValue);
-    // eslint-disable-next-line
+    // eslint-disable-next-line unicorn/no-abusive-eslint-disable, react-hooks/exhaustive-deps
   }, [currentId, structureItems]);
 
   return (

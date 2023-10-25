@@ -1,5 +1,6 @@
+import { type FC } from 'react';
 import { RecoilRoot } from 'recoil';
-import type { ComponentItemType, ComponentMapType } from 'src/type';
+import { type ComponentItemType, type ComponentMapType } from 'src/type';
 import Layout from './Layout';
 
 export interface EditorProps {
@@ -9,7 +10,7 @@ export interface EditorProps {
   onChange: (componentItems: ComponentItemType[]) => void;
 }
 
-const Editor: React.FC<EditorProps> = (props) => {
+const Editor: FC<EditorProps> = (props) => {
   return (
     <RecoilRoot>
       <Layout {...props} />

@@ -1,4 +1,4 @@
-import type { ComponentItemType } from '@dxsixpc/generator';
+import { type ComponentItemType } from '@dxsixpc/generator';
 
 export const pageData: ComponentItemType[] = [
   {

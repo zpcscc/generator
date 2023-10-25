@@ -1,5 +1,5 @@
-import type { ButtonProps } from '@dxsixpc/components';
-import type { FieldConfigType } from 'src/type';
+import { type ButtonProps } from '@dxsixpc/components';
+import { type FieldConfigType } from 'src/type';
 import { submitButtonConfig } from './config';
 
 // 提交按钮

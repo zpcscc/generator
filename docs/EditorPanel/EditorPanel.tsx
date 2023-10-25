@@ -1,6 +1,5 @@
-import type { ComponentItemType } from '@dxsixpc/generator';
-import { Editor } from '@dxsixpc/generator';
-import { useEffect } from 'react';
+import { Editor, type ComponentItemType } from '@dxsixpc/generator';
+import { useEffect, type FC } from 'react';
 import { EditorWrapper } from './Styled';
 
 interface EditorProps {
@@ -8,7 +7,7 @@ interface EditorProps {
 }
 
 // 编辑器
-const EditorPanel: React.FC<EditorProps> = () => {
+const EditorPanel: FC<EditorProps> = () => {
   const onChange = (pageData: ComponentItemType[]) => {
     console.log(pageData);
   };

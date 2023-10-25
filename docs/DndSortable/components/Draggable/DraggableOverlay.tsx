@@ -1,7 +1,6 @@
-import type { DropAnimation } from '@dnd-kit/core';
-import { DragOverlay, useDndContext } from '@dnd-kit/core';
+import { DragOverlay, useDndContext, type DropAnimation } from '@dnd-kit/core';
 import { CSS } from '@dnd-kit/utilities';
-import type { ComponentProps } from 'react';
+import { type ComponentProps, type FC } from 'react';
 import { createPortal } from 'react-dom';
 import Draggable from './Draggable';
 
@@ -50,7 +49,7 @@ export interface DraggableOverlayProps {
   dropAnimation?: DropAnimation | null;
 }
 
-const DraggableOverlay: React.FC<DraggableOverlayProps> = ({
+const DraggableOverlay: FC<DraggableOverlayProps> = ({
   axis,
   dropAnimation = dropAnimationConfig,
 }) => {

@@ -1,4 +1,4 @@
-import type { ComponentItemType } from 'src/type';
+import { type ComponentItemType } from 'src/type';
 
 // 间隔配置项
 export const spaceConfig = (): ComponentItemType[] => {

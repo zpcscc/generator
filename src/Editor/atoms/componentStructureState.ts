@@ -1,5 +1,5 @@
 import { atom } from 'recoil';
-import type { ComponentStructureType } from 'src/type';
+import { type ComponentStructureType } from 'src/type';
 
 /**
  * @name 当前画布上的组件数据

@@ -1,13 +1,14 @@
-import type {
-  ComponentMap,
-  OptionsConfigType,
-  OptionType,
-  SelectProps,
-  StyledType,
-  TextAreaProps,
+import {
+  type ComponentMap,
+  type OptionsConfigType,
+  type OptionType,
+  type SelectProps,
+  type StyledType,
+  type TextAreaProps,
 } from '@dxsixpc/components';
-import type { FormItemProps } from 'antd';
-import type { AnyObject } from './Custom';
+import { type FormItemProps } from 'antd';
+import { type FC } from 'react';
+import { type AnyObject } from './Custom';
 
 /**
  * @name component组件参数的类型
@@ -83,4 +84,4 @@ export interface ComponentStructureType {
 }
 
 // 外部传入的组件对象类型
-export type ComponentMapType = Record<string, React.FC<any>>;
+export type ComponentMapType = Record<string, FC<any>>;

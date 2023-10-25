@@ -1,10 +1,11 @@
-import type { DraggableSyntheticListeners } from '@dnd-kit/core';
-import type { Transform } from '@dnd-kit/utilities';
+/* eslint-disable no-unused-vars */
+import { type DraggableSyntheticListeners } from '@dnd-kit/core';
+import { type Transform } from '@dnd-kit/utilities';
 import classNames from 'classnames';
-import { forwardRef } from 'react';
+import { forwardRef, type CSSProperties } from 'react';
 import { Handle } from '../Item/components/Handle';
-import { draggable, draggableHorizontal, draggableVertical } from './draggable-svg';
 import styles from './Draggable.module.css';
+import { draggable, draggableHorizontal, draggableVertical } from './draggable-svg';
 
 export enum Axis {
   All,
@@ -19,8 +20,8 @@ export interface DraggableProps {
   handle?: boolean;
   label?: string;
   listeners?: DraggableSyntheticListeners;
-  style?: React.CSSProperties;
-  buttonStyle?: React.CSSProperties;
+  style?: CSSProperties;
+  buttonStyle?: CSSProperties;
   transform?: Transform | null;
 }
 
@@ -53,7 +54,7 @@ const Draggable = forwardRef<HTMLButtonElement, DraggableProps>(
             ...style,
             '--translate-x': `${transform?.x ?? 0}px`,
             '--translate-y': `${transform?.y ?? 0}px`,
-          } as React.CSSProperties
+          } as CSSProperties
         }
       >
         <button

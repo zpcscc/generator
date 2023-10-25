@@ -1,6 +1,6 @@
-import type { DragEndEvent } from '@dnd-kit/core';
-import type { SetterOrUpdater } from 'recoil';
-import type { ComponentStructureType } from 'src/type';
+import { type DragEndEvent } from '@dnd-kit/core';
+import { type SetterOrUpdater } from 'recoil';
+import { type ComponentStructureType } from 'src/type';
 import { findContainerItem, sortStructureItems } from '../utils';
 
 /**

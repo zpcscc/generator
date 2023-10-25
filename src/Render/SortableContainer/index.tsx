@@ -1,11 +1,12 @@
 import { CopyOutlined, DeleteOutlined } from '@ant-design/icons';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import type { EditorPropsType } from 'src/type';
+import { type FC, type ReactNode } from 'react';
+import { type EditorPropsType } from 'src/type';
 import { PointerWrapper, SortableWrapper } from './Styled';
 
 export interface SortableContainerProps {
-  children: React.ReactNode;
+  children: ReactNode;
   id?: string;
   editorProps?: EditorPropsType;
 }
@@ -15,7 +16,7 @@ export interface SortableContainerProps {
  * @param props
  * @returns
  */
-const SortableContainer: React.FC<SortableContainerProps> = (props) => {
+const SortableContainer: FC<SortableContainerProps> = (props) => {
   const { id = '', children, editorProps } = props;
   const { onSelect, onCopy, onDelete, currentId } = editorProps || {};
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({

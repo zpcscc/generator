@@ -1,13 +1,12 @@
 import { MonacoEditor, Title } from '@dxsixpc/components';
-import type { AnyObject, ComponentItemType } from '@dxsixpc/generator';
-import { Render } from '@dxsixpc/generator';
+import { Render, type AnyObject, type ComponentItemType } from '@dxsixpc/generator';
 import { dataToString, stringToData } from '@dxsixpc/utils';
-import { useEffect, useState } from 'react';
-import { pageData } from './mock';
+import { useEffect, useState, type FC } from 'react';
 import { EditorSpace, RenderSpace, SpaceWrapper } from './Styled';
+import { pageData } from './mock';
 
 // 渲染器
-const RenderPanel: React.FC = () => {
+const RenderPanel: FC = () => {
   const [value, setValue] = useState<ComponentItemType[]>(pageData);
 
   const onChange = (value?: string) => {
@@ -19,8 +18,8 @@ const RenderPanel: React.FC = () => {
   };
 
   const onValuesChange = (changeValue?: AnyObject, values?: AnyObject) => {
-    console.log('changeValue: ', changeValue);
-    console.log('values: ', values);
+    console.log('changeValue:', changeValue);
+    console.log('values:', values);
   };
 
   useEffect(() => {

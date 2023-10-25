@@ -1,8 +1,8 @@
-import type { ModalProps } from 'antd';
+import { type ModalProps } from 'antd';
 import { useRecoilValue } from 'recoil';
 import componentStructureState from 'src/Editor/atoms/componentStructureState';
 import { Render } from 'src/Render';
-import type { ModelType } from '../type';
+import { type ModelType } from '../type';
 
 // 预览弹出框
 const usePreviewModel = (setModalType: (modelType: ModelType | null) => void): ModalProps => {
